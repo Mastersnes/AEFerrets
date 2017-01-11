@@ -1,0 +1,51 @@
+<div class="close">X</div>
+<div class="top contenu">
+	<div class="couverture">
+		<img id="premiere" alt="<%= data.livre.titre %>" src="<%= data.livre.premiere %>" />
+		<img id="quatrieme" alt="<%= data.livre.titre %>" src="<%= data.livre.quatrieme %>" />
+	</div>
+	<div class="texte">
+		<div class="titre"><%= data.livre.titre %></div>
+		<div class="resume"><%= data.livre.resume %></div>
+	</div>
+</div>
+<div class="bottom">
+	<div class="left member">
+		<div class="two">
+			<div class="ul">
+				<div class="scroll">
+					<% 
+						for (var index in data.livre.papiers) {
+						var buy = data.livre.papiers[index];
+					%>
+						<span class="link" href="<%=buy.link%>"><%= buy.titre%></span>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<div class="one">
+			<div class="ul">
+				<span>Acheter en Livre</span>
+			</div>
+		</div>
+	</div>
+	<div class="right member">
+		<div class="two">
+			<div class="ul">
+				<div class="scroll">
+					<% 
+						for (var index in data.livre.ebooks) {
+						var buy = data.livre.ebooks[index];
+					%>
+						<span class="link" href="<%=buy.link%>"><%= buy.titre%></span>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<div class="one">
+			<div class="ul">
+				<span>Acheter en Ebook</span>
+			</div>
+		</div>
+	</div>
+</div>
