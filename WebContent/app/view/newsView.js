@@ -81,7 +81,7 @@ function($, _, Utils, page, NewsModel) {
 		this.renderDate = function(listDate) {
 			var that = this;
 			$(".news.liste ul").html("");
-			for (var i=listDate.length-1; i>=0; i--) {
+			for (var i=0; i<listDate.length; i++) {
 				var date = listDate[i];
 				var domDate = document.createElement("li");
 				$(domDate).html(Utils.formatDate(date));
@@ -151,6 +151,8 @@ function($, _, Utils, page, NewsModel) {
 					}else {
 						that.select = 0;
 					}
+					console.log(that.select);
+					console.log(that.listNews);
 					that.preview = data.preview;
 					that.next = data.next;
 					that.model.resetIf(data.date);

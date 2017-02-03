@@ -20,15 +20,18 @@ public class JsonUtil {
 	public static synchronized String load(final String path) {
 		String json = "";
 		BufferedReader in = null;
+        final File data = new File(path);
 		try {
-			final File data = new File(path);
 			in = new BufferedReader(new FileReader(data));
 			String line;
 			while ((line = in.readLine()) != null) {
 				json += line;
 			}
 		} catch (final Exception e) {
-			LOGGER.log(Level.WARNING, "Erreur lors du chargement du serveur : " + e.getMessage());
+            LOGGER.log(Level.WARNING, "Erreur lors du chargement du server : " + e.getMessage());
+            if (data != null) {
+                LOGGER.log(Level.WARNING, "Erreur lors du chargement du fichier : " + data.getAbsolutePath());
+            }
 		} finally {
 			if (in != null) {
 				try {

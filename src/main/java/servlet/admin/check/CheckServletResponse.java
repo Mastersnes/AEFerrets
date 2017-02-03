@@ -1,4 +1,4 @@
-package servlet.admin;
+package servlet.admin.check;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import bean.User;
  * @author Snes
  * 
  */
-public class AdminServletResponse extends GeneralResponse {
+public class CheckServletResponse extends GeneralResponse {
 	private int nbrConnexion;
 	private Map<String, User> connexions;
 

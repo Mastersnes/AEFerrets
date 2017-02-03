@@ -15,7 +15,7 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Cons
 		this.init = function() {
 			this.el = $("#app");
 			var that = this;
-			Utils.load("list", null, function(data) {
+			Utils.load("list", "", function(data) {
 				var codeRetour = data.codeRetour;
 				if (codeRetour === 0) {
 					that.livres = data.livres;

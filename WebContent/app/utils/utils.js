@@ -6,7 +6,7 @@ define(["jquery"], function($){
 		**/
 		load : function(url, params, successC, type) {
 			if (!type) type = "POST";
-			
+			console.log("load : " + url);
 			$.ajax({
 	            type: type,
 	            url: url,

@@ -2,17 +2,14 @@ package servlet.news;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
 import utils.Constantes;
-import utils.JsonUtil;
 import bdd.Connexion;
-import bean.News;
-
-import com.google.gson.Gson;
+import bdd.NewsDAO;
+import bean.NewsGroup;
 
 /**
  * Controller permettant de lister les news disponibles
@@ -30,32 +27,36 @@ public class NewsServlet extends AbstractServlet<NewsServletRequest, NewsServlet
 
 	@Override
 	protected NewsServletResponse doPost(final NewsServletRequest request) throws ServletException, IOException {
-		String search = request.getDate();
+        String search = request.getDate();
 		final NewsServletResponse response = new NewsServletResponse();
 
-		final String json = JsonUtil.load(JsonUtil.NEWS_PATH);
-		final Gson gson = Constantes.GSON;
-		@SuppressWarnings("unchecked")
-		final TreeMap<String, List<News>> mapNews = gson.fromJson(json, TreeMap.class);
+		final NewsDAO dao = NewsDAO.getInstance();
+		
+        /**
+         * Recuperation de la liste des dates
+         */
+        final List<String> listDate = response.getDate();
+		listDate.addAll(dao.listDate());
 
-		final List<String> listDate = response.getDate();
-		listDate.addAll(mapNews.keySet());
+        /**
+         * Recuperation de la liste des news pour la date recherchée
+         */
+        final NewsGroup groupSearch = dao.getNews(search);
+        search = groupSearch.getDate();
+        response.getNews().addAll(groupSearch.getNews());
 
-		if (!mapNews.containsKey(search)) {
-			search = mapNews.lastKey();
-		}
-
-		response.getNews().addAll(mapNews.get(search));
-		final int index = listDate.indexOf(search);
-
+        /**
+         * Recuperation des index suivant et precedant
+         */
+        final int index = listDate.indexOf(search);
 		if (index > 0) {
-			response.setPreview(listDate.get(index - 1));
+            response.setNext(listDate.get(index - 1));
 		}
 		if (index < listDate.size() - 1) {
-			response.setNext(listDate.get(index + 1));
+            response.setPreview(listDate.get(index + 1));
 		}
-
-		Connexion.addNew(getClientIpAddr(), "Chargement des news : " + search);
+		
+        Connexion.addNew(getClientIpAddr(), "Chargement des news : " + search);
 
 		return response;
 	}

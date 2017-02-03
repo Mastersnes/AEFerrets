@@ -19,7 +19,7 @@ function(Utils) {
 		
 		this.resetIf = function(liste) {
 			if (this.data.date == "last") {
-				this.data.date = liste[liste.length-1];
+				this.data.date = liste[0];
 			}
 		};
 	};
