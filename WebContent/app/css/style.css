@@ -531,21 +531,56 @@ body {
 }
 
 /**
+* Admin
+**/
+.adminPage li {
+	list-style: none;
+}
+.adminPage li:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+}
+.adminPage table {
+	border-collapse: collapse;
+}
+.adminPage th {
+	background-color: blue;
+	color: white;
+}
+.adminPage table,th,td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+/**
+* Utils
+**/
+.error, .info {
+	text-align: center;
+    font-size: -webkit-xxx-large;
+    word-wrap: break-word;
+}
+.error {
+	color: red;
+}
+.info {
+	color: black;
+}
+
+/**
 * Controles responsive
 **/
 @media screen and (orientation:portrait) {
-	.error {
+	.error-responsive {
 		visibility: visible;
-		text-align: center;
-		font-size: -webkit-xxx-large;
-		word-wrap: break-word;
 	}
 	.mainPage {
 		visibility: hidden;
 	}
 }
 @media screen and (orientation:landscape) {
-	.error {
+	.error-responsive {
 		visibility: hidden;
 	}
 	.mainPage {

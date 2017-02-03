@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
-import bdd.Connexion;
+import servlet.abstrait.GeneralResponse;
 import bdd.LivreDAO;
 import bdd.NewsDAO;
 
@@ -15,19 +15,23 @@ import bdd.NewsDAO;
  * @author Snes
  * 
  */
-public class RefreshServlet extends AbstractServlet<String, String> {
+public class RefreshServlet extends AbstractServlet<String, GeneralResponse> {
     private static final long serialVersionUID = -4647019705021722992L;
 
     @Override
-    protected String doGet(final String request) throws ServletException, IOException {
-        LivreDAO.getInstance().refresh();
-        NewsDAO.getInstance().refresh();
-        return "DONE";
+    protected GeneralResponse doGet(final String request) throws ServletException, IOException {
+        return null;
     }
 
     @Override
-    protected String doPost(final String request) throws ServletException, IOException {
-        return null;
+    protected GeneralResponse doPost(final String request) throws ServletException, IOException {
+        LivreDAO.getInstance().refresh();
+        NewsDAO.getInstance().refresh();
+
+        final GeneralResponse response = new GeneralResponse();
+        response.setCodeRetour(0);
+        response.setMessage("Le site a ete rafraichie avec les nouvelles donnees");
+        return response;
     }
 
     @Override

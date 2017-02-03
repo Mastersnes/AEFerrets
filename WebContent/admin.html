@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>A.E Ferrets - Administration</title>
+		<link rel="shortcut icon" href="app/img/favicon.png" />
+		<link rel="apple-touch-icon" href="app/img/favicon.png" />
+		<link rel="icon" type="image/ jpeg" href="app/img/favicon.png" />
+		<meta property="og:image" content="app/img/miniature.jpg" />
+		
+		<meta name="title" content="A.E Ferrets - Administration"/>
+		<meta property="og:title" content="A.E Ferrets - Administration">
+		
+		<meta name="description" content="Page d'administration du site officiel de A.E Ferrets."/>
+		<meta property="og:description" content="Page d'administration du site officiel de A.E Ferrets.">
+		<meta name="keywords" content="A.EFerrets; Livre; La Petite Porte; Dedicace; AEFerrets; Ferrets; AE; A.E; Ecrivain; Fantastique; Auteur; Auteure; Litterature; Fantasy; Fantaisie; Roman; Nouvelle; Novel; Ebook; Book; aeferrets; editions Faerwynn; Les Editions Faerwynn"/>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta http-equiv="Cache-Control" content="private" />
+		<meta http-equiv="Expires" content="86400000" />
+		<meta http-equiv="Cache-Control" content="max-age=86400000" />
+		
+		<script src="lib/require.min.js"></script>
+		<link rel="stylesheet" href="app/css/style.css">
+	</head>
+	<body>
+		<div>
+			<div id="app"></div>
+			<script>
+				require(['app/config/config.js'], function () {
+					require(['app/view/admin/adminView'], function (main) {
+						new main();
+					});
+				});
+			</script>
+		</div>
+	</body>
+</html>
