@@ -18,37 +18,37 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Minify css and js -->
 			<plugin>
-			    <groupId>com.samaxes.maven</groupId>
-			    <artifactId>minify-maven-plugin</artifactId>
-			    <version>1.7.2</version>
-			    <executions>
-			        <execution>
-			            <phase>prepare-package</phase>
-			            <goals>
-			                <goal>minify</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			    <configuration>
-			        <charset>UTF-8</charset>
-			        <skipMerge>true</skipMerge>
-			        <webappSourceDir>${basedir}/WebContent</webappSourceDir>
-			        <cssSourceDir>app/css</cssSourceDir>
-			        <jsSourceDir>app</jsSourceDir>
-			        <jsEngine>CLOSURE</jsEngine>
-			        <nosuffix>true</nosuffix>
-			        <cssSourceIncludes>
-			            <cssSourceInclude>**/*.css</cssSourceInclude>
-			        </cssSourceIncludes>
-			        <jsSourceIncludes>
-			            <jsSourceInclude>**/*.js</jsSourceInclude>
-			        </jsSourceIncludes>
-			    </configuration>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.2</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<charset>UTF-8</charset>
+					<skipMerge>true</skipMerge>
+					<webappSourceDir>${basedir}/WebContent</webappSourceDir>
+					<cssSourceDir>app/css</cssSourceDir>
+					<jsSourceDir>app</jsSourceDir>
+					<jsEngine>CLOSURE</jsEngine>
+					<nosuffix>true</nosuffix>
+					<cssSourceIncludes>
+						<cssSourceInclude>**/*.css</cssSourceInclude>
+					</cssSourceIncludes>
+					<jsSourceIncludes>
+						<jsSourceInclude>**/*.js</jsSourceInclude>
+					</jsSourceIncludes>
+				</configuration>
 			</plugin>
-			
+
 			<!-- Create war -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -58,6 +58,16 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<warSourceExcludes>app/**/*.js, app/**/*.css</warSourceExcludes>
+				</configuration>
+			</plugin>
+
+			<!-- Make test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -78,6 +88,12 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
 		</dependency>
 	</dependencies>
 </project>
