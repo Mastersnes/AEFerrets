@@ -9,6 +9,7 @@ package bean;
 public class News {
 	private String titre;
 	private String image;
+    private String video;
 	private String texte;
 
 	public String getTitre() {
@@ -34,4 +35,19 @@ public class News {
 	public void setTexte(final String texte) {
 		this.texte = texte;
 	}
+
+    /**
+     * @return the video
+     */
+    public String getVideo() {
+        return video;
+    }
+
+    /**
+     * @param video
+     *            the video to set
+     */
+    public void setVideo(final String video) {
+        this.video = video;
+    }
 }

@@ -30,22 +30,10 @@ function($, _, Utils, page, NewsModel) {
 			$(".news .date").html(this.model.getDate());
 			$(".news .titre").html(news.titre);
 			$(".news .img").html("");
-			if (news.image) {
-				if (news.image instanceof Array) {
-					for (var index in news.image) {
-						this.createImage(news.image[index], index==0);
-					}
-				}else {
-					this.createImage(news.image);
-				}
-				var that = this;
-				$(".news img").click(function() {
-					$(".grosseImage img").attr("src", $(this).attr("src"));
-					$(".grosseImage img").attr("alt", $(this).attr("alt"));
-					$(".grosseImage").show("slow");
-					that.checkGrosseImg();
-				});
-			}
+			
+			if (news.image) this.renderImage(news.image);
+			if (news.video) this.renderVideo(news.video);
+			
 			$(".news .resume").html(news.texte);
 			
 			if (this.select > 0 || this.next) {
@@ -65,7 +53,24 @@ function($, _, Utils, page, NewsModel) {
 			}
 		};
 		
-		this.createImage = function(image, first) {
+		this.renderImage = function (img) {
+			if (img instanceof Array) {
+				for (var index in img) {
+					this.createImage(img[index]);
+				}
+			}else {
+				this.createImage(img);
+			}
+			var that = this;
+			$(".news img").click(function() {
+				$(".grosseImage img").attr("src", $(this).attr("src"));
+				$(".grosseImage img").attr("alt", $(this).attr("alt"));
+				$(".grosseImage").show("slow");
+				that.checkGrosseImg();
+			});
+		};
+		
+		this.createImage = function(image) {
 			var imageDom = document.createElement("img");
 			$(imageDom).attr("alt", image);
 			$(imageDom).attr("src", image);
@@ -76,6 +81,33 @@ function($, _, Utils, page, NewsModel) {
 					"filter": "alpha(opacity=100)"
 				});
 			});
+		};
+		
+		this.renderVideo = function (video) {
+			if (video instanceof Array) {
+				for (var index in video) {
+					this.createVideo(video[index]);
+				}
+			}else {
+				this.createVideo(video);
+			}
+		};
+		
+		this.createVideo = function(video) {
+			var videoDom = document.createElement("video");
+			$(videoDom).attr("controls", "true");
+			
+			var src = video;
+			var isYoutube = video && video.match(/(?:youtu|youtube)(?:\.com|\.be)\/([\w\W]+)/i);
+	        if (isYoutube) {
+	            var id = isYoutube[1].match(/watch\?v=|[\w\W]+/gi);
+	            id = (id.length > 1) ? id.splice(1) : id;
+	            src = "http://www.youtubeinmp4.com/redirect.php?video=" + id.toString();
+	        }
+			$(videoDom).attr("src", src);
+			$(videoDom).attr("type", "video/mp4");
+			
+			$(".news .video").append($(videoDom));
 		};
 		
 		this.renderDate = function(listDate) {

@@ -316,6 +316,23 @@ body {
 	background-color: #222222;
 	color: white;
 }
+.news .contenu .texte .video {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+}
+.news .contenu .texte .video > video:first-child {
+    max-height: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.news .contenu .texte .video > video {
+    max-height: 20vh;
+    display: inline-block;
+    margin: 0.1%;
+}
 
 /**
 * Zoom
