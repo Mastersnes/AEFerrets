@@ -31,8 +31,8 @@ function($, _, Utils, page, NewsModel) {
 			$(".news .titre").html(news.titre);
 			$(".news .img").html("");
 			
-			if (news.image) this.renderImage(news.image);
-			if (news.video) this.renderVideo(news.video);
+			this.renderImage(news.image);
+			this.renderVideo(news.video);
 			
 			$(".news .resume").html(news.texte);
 			
@@ -54,6 +54,8 @@ function($, _, Utils, page, NewsModel) {
 		};
 		
 		this.renderImage = function (img) {
+			$(".news .img").empty();
+			if (!img) return;
 			if (img instanceof Array) {
 				for (var index in img) {
 					this.createImage(img[index]);
@@ -84,6 +86,8 @@ function($, _, Utils, page, NewsModel) {
 		};
 		
 		this.renderVideo = function (video) {
+			$(".news .video").empty();
+			if (!video) return;
 			if (video instanceof Array) {
 				for (var index in video) {
 					this.createVideo(video[index]);
@@ -183,8 +187,6 @@ function($, _, Utils, page, NewsModel) {
 					}else {
 						that.select = 0;
 					}
-					console.log(that.select);
-					console.log(that.listNews);
 					that.preview = data.preview;
 					that.next = data.next;
 					that.model.resetIf(data.date);
