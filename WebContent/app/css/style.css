@@ -168,6 +168,8 @@ body {
 	height: 100%;
 	image-rendering: crisp-edges;
 	display: none;
+	position: absolute;
+    left: 0;
 }
 .accueil .contenu {
 	position: relative;
@@ -181,7 +183,8 @@ body {
 	border-bottom-right-radius: 10px;
 }
 .accueil .contenu .texte {
-	margin-left: 2%;
+	position: absolute;
+	width: auto;
 }
 .accueil .contenu .texte .titre {
 	text-align: left;
@@ -203,7 +206,10 @@ body {
 	color: #6705af;
 }
 .accueil #premiere {
-	position: absolute;
+	z-index: 1;
+}
+.accueil #quatrieme {
+	z-index: -1;
 }
 
 /**

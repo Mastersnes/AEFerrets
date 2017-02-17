@@ -26,6 +26,7 @@ function($, _, page) {
 		this.makeEvents = function() {
 			var that = this;
 			$(".accueil img").on("load", function() {
+				$(".accueil .texte").css("margin-left", $(".accueil img#quatrieme").width()+20);
 				$(".accueil img#premiere").fadeIn("slow", function() {
 					$(".accueil img#premiere").width($(".accueil img#quatrieme").width());
 					$(".accueil img#quatrieme").show();
@@ -36,7 +37,7 @@ function($, _, page) {
 					that.width = $(".accueil #quatrieme").width();
 				}
 				$(".accueil #premiere").animate({
-					width: '0%'
+					width: '0'
 				}, "slow");
 				$(".plus").css("text-decoration", "underline");
 			});
