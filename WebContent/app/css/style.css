@@ -451,6 +451,7 @@ body {
 	left: 0;
 	background-color: white;
 	display: none;
+	z-index: 2;
 }
 .consultPage .close {
 	position: absolute;
