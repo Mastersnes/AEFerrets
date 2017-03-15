@@ -37,7 +37,9 @@ define(["jquery"], function($){
 				this.createImage(element, img);
 			}
 			var that = this;
+			console.log(element);
 			$(element).find(".img").click(function() {
+				console.log($(this))
 				$(".grosseImage img").attr("src", $(this).attr("src"));
 				$(".grosseImage img").attr("alt", $(this).attr("alt"));
 				$(".grosseImage").show("slow");
@@ -99,9 +101,9 @@ define(["jquery"], function($){
 		/**
 		 * Renvoi l'image actuellement zoomée
 		 */
-		this.getCurrentImg = function(element) {
+		this.getCurrentImg = function() {
 			var src = $(".grosseImage img").attr("src");
-			return $(element).find$("img[src='"+src+"']");
+			return $("img[src='"+src+"']");
 		};
 		
 		/**
