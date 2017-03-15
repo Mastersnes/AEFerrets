@@ -34,6 +34,16 @@
 		<servlet-name>SalonsServlet</servlet-name>
 		<url-pattern>/salons</url-pattern>
 	</servlet-mapping>
+
+	<!-- Biographie -->
+	<servlet>
+	    <servlet-name>MoiServlet</servlet-name>
+	    <servlet-class>servlet.moi.MoiServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoiServlet</servlet-name>
+		<url-pattern>/moi</url-pattern>
+	</servlet-mapping>
 	
 	<!-- Redirection d'image -->
 	<servlet>

@@ -30,6 +30,8 @@ body {
 	margin-top: 0.5%;
 }
 .header-menu > ul {
+	display: table;
+	width: 100%;
 	height: 100%;
 	padding: 0;
 	margin: 0;
@@ -37,10 +39,9 @@ body {
 	border-bottom: 1px solid;
 }
 .header-menu > ul > li {
-	display: inline-block;
+	display: table-cell;
 	list-style: none;
 	cursor: pointer;
-	width: 16.32%;
 	height: 100%;
 	
 	text-align: center;
@@ -228,12 +229,12 @@ body {
 }
 
 /**
-* News et Salons
+* News, Salons et Moi
 **/
-.news.centralBloc .salons.centralBloc {
+.article.centralBloc {
 	height: 85%;
 }
-.news .contenu, .salons .contenu {
+.article .contenu {
 	cursor: auto;
 	border: 1px solid;
 	
@@ -242,57 +243,57 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 }
-.news .contenu .texte, .salons .contenu .texte {
+.article .contenu .texte {
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: relative;
 }
-.news .contenu .texte .titre, .salons .contenu .texte .titre {
+.article .contenu .texte .titre {
 	text-align: center;
 	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
 }
-.news .contenu .date, .salons .contenu .date {
+.article .contenu .date {
 	position: absolute;
 	margin-left: 1%;
 	margin-top: 0.5%;
 }
-.news .contenu .texte .resume, .salons .contenu .texte .resume {
+.article .contenu .texte .resume {
 	text-align: center;
 	margin-left: 1%;
 }
-.news .contenu .texte .img, .salons .contenu .texte .img {
+.article .contenu .texte .img {
 	margin-left: auto;
 	margin-right: auto;
 	width: 80%;
 	text-align: center;
 	cursor: pointer;
 }
-.news .contenu .texte .img > img:first-child, .salons .contenu .texte .img > img:first-child {
+.article .contenu .texte .img > img:first-child {
 	max-height: 50vh;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
-.news .contenu .texte .img > img, .salons .contenu .texte .img > img {
+.article .contenu .texte .img > img {
 	max-height: 20vh;
 	display: inline-block;
     margin: 0.1%;
 	opacity: 0;
     filter: alpha(opacity=0);
 }
-.news .plus, .salons .plus {
+.article .plus {
 	float: left;
 	width: 50%;
 	text-align: center;
 	color: #6705af;
 	cursor: pointer;
 }
-.news .plus:hover, .salons .plus:hover {
+.article .plus:hover {
 	text-decoration: underline;
 }
-.news.liste, .salons.liste {
+.article.liste {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -303,7 +304,7 @@ body {
 	margin-left: 2%;
 }
 
-.news.liste ul, .salons.liste ul {
+.article.liste ul {
 	width: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -314,27 +315,27 @@ body {
 	margin: 0;
 	margin-top: 5%;
 }
-.news.liste li, .salons.liste li {
+.article.liste li {
 	cursor: pointer;
 	transition: all .2s ease-in-out;
 }
-.news.liste li:hover, .salons.liste li:hover {
+.article.liste li:hover {
 	background-color: #222222;
 	color: white;
 }
-.news .contenu .texte .video, .salons .contenu .texte .video {
+.article .contenu .texte .video {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     text-align: center;
 }
-.news .contenu .texte .video > video:first-child, .salons .contenu .texte .video > video:first-child {
+.article .contenu .texte .video > video:first-child {
     max-height: 50vh;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
-.news .contenu .texte .video > video, .salons .contenu .texte .video > video {
+.article .contenu .texte .video > video {
     max-height: 20vh;
     display: inline-block;
     margin: 0.1%;

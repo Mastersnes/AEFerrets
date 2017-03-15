@@ -86,7 +86,6 @@ function($, _, Utils, MediaUtils, page, SalonsModel) {
 			Utils.load("salons", this.model.data, function(data) {
 				var codeRetour = data.codeRetour;
 				if (codeRetour === 0) {
-					console.log(data.salons);
 					that.listSalons = data.salons;
 					if (makeLast) {
 						that.select = that.listSalons.length-1;

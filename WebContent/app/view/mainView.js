@@ -8,8 +8,9 @@ define(["jquery",
         "app/view/newsView",
         "app/view/livresView",
         "app/view/salonsView",
+        "app/view/moiView",
         "app/view/consultView"], 
-function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, SalonsView, ConsultView) {
+function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, ConsultView) {
 	'use strict';
 
 	return function() {
@@ -44,7 +45,7 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 		};
 		this.chargeNews = function() {
 			if (!this.news) {
-				this.news = new NewsView();
+				this.news = new NewsView(this);
 			}
 			this.news.show();
 		};
@@ -56,21 +57,27 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 		};
 		this.chargeSalons = function() {
 			if (!this.salons) {
-				this.salons = new SalonsView();
+				this.salons = new SalonsView(this);
 			}
 			this.salons.show();
 		};
 		this.chargeMoi = function() {
-			if (!this.accueil) {
-				this.accueil = new AccueilView();
+			if (!this.moi) {
+				this.moi = new MoiView(this);
 			}
-			this.accueil.show();
+			this.moi.show();
 		};
 		this.chargeContact = function() {
 			if (!this.contact) {
-				this.contact = new ContactView();
+				this.contact = new ContactView(this);
 			}
 			this.contact.show();
+		};
+		this.chargeSouvenirs = function() {
+			if (!this.souvenirs) {
+				this.souvenirs = new AccueilView(this);
+			}
+			this.souvenirs.show();
 		};
 		
 		this.gereMenu = function() {
@@ -92,6 +99,9 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 			});
 			$("#contact").click(function() {
 				that.chargeContact();
+			});
+			$("#souvenirs").click(function() {
+				that.chargeSouvenirs();
 			});
 		};
 		
