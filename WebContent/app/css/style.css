@@ -228,12 +228,12 @@ body {
 }
 
 /**
-* News
+* News et Salons
 **/
-.news.centralBloc {
+.news.centralBloc .salons.centralBloc {
 	height: 85%;
 }
-.news .contenu {
+.news .contenu, .salons .contenu {
 	cursor: auto;
 	border: 1px solid;
 	
@@ -242,57 +242,57 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 }
-.news .contenu .texte {
+.news .contenu .texte, .salons .contenu .texte {
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: relative;
 }
-.news .contenu .texte .titre {
+.news .contenu .texte .titre, .salons .contenu .texte .titre {
 	text-align: center;
 	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
 }
-.news .contenu .date {
+.news .contenu .date, .salons .contenu .date {
 	position: absolute;
 	margin-left: 1%;
 	margin-top: 0.5%;
 }
-.news .contenu .texte .resume {
+.news .contenu .texte .resume, .salons .contenu .texte .resume {
 	text-align: center;
 	margin-left: 1%;
 }
-.news .contenu .texte .img {
+.news .contenu .texte .img, .salons .contenu .texte .img {
 	margin-left: auto;
 	margin-right: auto;
 	width: 80%;
 	text-align: center;
 	cursor: pointer;
 }
-.news .contenu .texte .img > img:first-child {
+.news .contenu .texte .img > img:first-child, .salons .contenu .texte .img > img:first-child {
 	max-height: 50vh;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
-.news .contenu .texte .img > img {
+.news .contenu .texte .img > img, .salons .contenu .texte .img > img {
 	max-height: 20vh;
 	display: inline-block;
     margin: 0.1%;
 	opacity: 0;
     filter: alpha(opacity=0);
 }
-.news .plus {
+.news .plus, .salons .plus {
 	float: left;
 	width: 50%;
 	text-align: center;
 	color: #6705af;
 	cursor: pointer;
 }
-.news .plus:hover {
+.news .plus:hover, .salons .plus:hover {
 	text-decoration: underline;
 }
-.news.liste {
+.news.liste, .salons.liste {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -303,7 +303,7 @@ body {
 	margin-left: 2%;
 }
 
-.news.liste ul {
+.news.liste ul, .salons.liste ul {
 	width: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -314,27 +314,27 @@ body {
 	margin: 0;
 	margin-top: 5%;
 }
-.news.liste li {
+.news.liste li, .salons.liste li {
 	cursor: pointer;
 	transition: all .2s ease-in-out;
 }
-.news.liste li:hover {
+.news.liste li:hover, .salons.liste li:hover {
 	background-color: #222222;
 	color: white;
 }
-.news .contenu .texte .video {
+.news .contenu .texte .video, .salons .contenu .texte .video {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     text-align: center;
 }
-.news .contenu .texte .video > video:first-child {
+.news .contenu .texte .video > video:first-child, .salons .contenu .texte .video > video:first-child {
     max-height: 50vh;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
-.news .contenu .texte .video > video {
+.news .contenu .texte .video > video, .salons .contenu .texte .video > video {
     max-height: 20vh;
     display: inline-block;
     margin: 0.1%;

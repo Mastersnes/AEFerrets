@@ -7,8 +7,9 @@ define(["jquery",
         "app/view/contactView",
         "app/view/newsView",
         "app/view/livresView",
+        "app/view/salonsView",
         "app/view/consultView"], 
-function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, ConsultView) {
+function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, SalonsView, ConsultView) {
 	'use strict';
 
 	return function() {
@@ -54,10 +55,10 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Cons
 			this.listLivre.show();
 		};
 		this.chargeSalons = function() {
-			if (!this.accueil) {
-				this.accueil = new AccueilView();
+			if (!this.salons) {
+				this.salons = new SalonsView();
 			}
-			this.accueil.show();
+			this.salons.show();
 		};
 		this.chargeMoi = function() {
 			if (!this.accueil) {

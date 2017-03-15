@@ -9,6 +9,7 @@ import java.util.logging.Level;
 public class JsonUtil {
 	public static final String LIVRE_PATH = "./AEFerrets/livres.json";
 	public static final String NEWS_PATH = "./AEFerrets/news.json";
+    public static final String SALONS_PATH = "./AEFerrets/salons.json";
 	private static Logger LOGGER = new Logger(JsonUtil.class.getName());
 
 	/**

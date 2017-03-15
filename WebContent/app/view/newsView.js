@@ -2,15 +2,17 @@
 define(["jquery", 
         'underscore', 
         "app/utils/utils", 
+        "app/utils/mediaUtils", 
         "text!app/template/news.html",
         "app/model/newsModel"], 
-function($, _, Utils, page, NewsModel) {
+function($, _, Utils, MediaUtils, page, NewsModel) {
 	'use strict';
 
 	return function(parent) {
 		this.init = function(parent) {
 			this.parent = parent;
 			this.el = $(".corps");
+			this.mediaUtils = new MediaUtils();
 			this.model = new NewsModel();
 			this.select = 0;
 		};
@@ -29,10 +31,9 @@ function($, _, Utils, page, NewsModel) {
 			var news = this.listNews[this.select];
 			$(".news .date").html(this.model.getDate());
 			$(".news .titre").html(news.titre);
-			$(".news .img").html("");
 			
-			this.renderImage(news.image);
-			this.renderVideo(news.video);
+			this.mediaUtils.renderImage($(".news"), news.image);
+			this.mediaUtils.renderVideo($(".news"), news.video);
 			
 			$(".news .resume").html(news.texte);
 			
@@ -53,67 +54,6 @@ function($, _, Utils, page, NewsModel) {
 			}
 		};
 		
-		this.renderImage = function (img) {
-			$(".news .img").empty();
-			if (!img) return;
-			if (img instanceof Array) {
-				for (var index in img) {
-					this.createImage(img[index]);
-				}
-			}else {
-				this.createImage(img);
-			}
-			var that = this;
-			$(".news img").click(function() {
-				$(".grosseImage img").attr("src", $(this).attr("src"));
-				$(".grosseImage img").attr("alt", $(this).attr("alt"));
-				$(".grosseImage").show("slow");
-				that.checkGrosseImg();
-			});
-		};
-		
-		this.createImage = function(image) {
-			var imageDom = document.createElement("img");
-			$(imageDom).attr("alt", image);
-			$(imageDom).attr("src", image);
-			$(".news .img").append($(imageDom));
-			$(imageDom).on("load", function() {
-				$(this).animate({
-					"opacity": "1",
-					"filter": "alpha(opacity=100)"
-				});
-			});
-		};
-		
-		this.renderVideo = function (video) {
-			$(".news .video").empty();
-			if (!video) return;
-			if (video instanceof Array) {
-				for (var index in video) {
-					this.createVideo(video[index]);
-				}
-			}else {
-				this.createVideo(video);
-			}
-		};
-		
-		this.createVideo = function(video) {
-			var videoDom = document.createElement("video");
-			$(videoDom).attr("controls", "true");
-			
-			var src = video;
-			var isYoutube = video && video.match(/(?:youtu|youtube)(?:\.com|\.be)\/([\w\W]+)/i);
-	        if (isYoutube) {
-	            var id = isYoutube[1].match(/watch\?v=|[\w\W]+/gi);
-	            id = (id.length > 1) ? id.splice(1) : id;
-	            src = "http://www.youtubeinmp4.com/redirect.php?video=" + id.toString();
-	        }
-			$(videoDom).attr("src", src);
-			$(videoDom).attr("type", "video/mp4");
-			
-			$(".news .video").append($(videoDom));
-		};
-		
 		this.renderDate = function(listDate) {
 			var that = this;
 			$(".news.liste ul").html("");
@@ -131,24 +71,8 @@ function($, _, Utils, page, NewsModel) {
 		};
 		
 		this.makeEvents = function() {
-			$(".grosseImage .mask, .grosseImage .close, .grosseImage img").click(function() {
-				$(".grosseImage").hide("slow");
-			});
+			this.mediaUtils.makeEvents();
 			var that = this;
-			$(".grosseImage .preview").click(function() {
-				var current = that.getCurrentImg();
-				var preview = current.prev("img");
-				$(".grosseImage img").attr("src", preview.attr("src"));
-				$(".grosseImage img").attr("alt", preview.attr("alt"));
-				that.checkGrosseImg();
-			});
-			$(".grosseImage .next").click(function() {
-				var current = that.getCurrentImg();
-				var next = current.next("img");
-				$(".grosseImage img").attr("src", next.attr("src"));
-				$(".grosseImage img").attr("alt", next.attr("alt"));
-				that.checkGrosseImg();
-			});
 			$(".news .preview").click(function() {
 				that.select++;
 				if (that.select > that.listNews.length-1) {
@@ -194,29 +118,6 @@ function($, _, Utils, page, NewsModel) {
 					that.renderDate(data.date);
 				}
 			}, "POST");
-		};
-		
-		this.getCurrentImg = function() {
-			var src = $(".grosseImage img").attr("src");
-			return $(".news img[src='"+src+"']");
-		};
-		
-		this.checkGrosseImg = function() {
-			var current = this.getCurrentImg();
-			console.log("next");
-			console.log(current.next("img").length);
-			if (current.next("img").length == 0) {
-				$(".grosseImage .next").hide();
-			}else {
-				$(".grosseImage .next").show();
-			}
-			console.log("prev");
-			console.log(current.prev("img").length);
-			if (current.prev("img").length == 0) {
-				$(".grosseImage .preview").hide();
-			}else {
-				$(".grosseImage .preview").show();
-			}
 		};
 		
 		this.init(parent);

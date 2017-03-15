@@ -24,6 +24,16 @@
 		<servlet-name>NewsServlet</servlet-name>
 		<url-pattern>/news</url-pattern>
 	</servlet-mapping>
+
+	<!-- Liste des salons -->
+	<servlet>
+	    <servlet-name>SalonsServlet</servlet-name>
+	    <servlet-class>servlet.salons.SalonsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SalonsServlet</servlet-name>
+		<url-pattern>/salons</url-pattern>
+	</servlet-mapping>
 	
 	<!-- Redirection d'image -->
 	<servlet>
