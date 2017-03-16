@@ -37,8 +37,7 @@ define(["jquery"], function($){
 				this.createImage(element, img);
 			}
 			var that = this;
-			console.log(element);
-			$(element).find(".img").click(function() {
+			$(element).find("img").click(function() {
 				console.log($(this))
 				$(".grosseImage img").attr("src", $(this).attr("src"));
 				$(".grosseImage img").attr("alt", $(this).attr("alt"));

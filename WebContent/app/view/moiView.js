@@ -27,8 +27,8 @@ function($, _, Utils, MediaUtils, page) {
 			var moi = this.moi;
 			$(".moi .titre").html(moi.titre);
 			
-			this.mediaUtils.renderImage($(".moi"), moi.image);
-			this.mediaUtils.renderVideo($(".moi"), moi.video);
+			this.mediaUtils.renderImage(".moi", moi.image);
+			this.mediaUtils.renderVideo(".moi", moi.video);
 			
 			$(".moi .resume").html(moi.texte);
 		};

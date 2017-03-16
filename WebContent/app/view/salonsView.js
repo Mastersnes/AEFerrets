@@ -30,8 +30,8 @@ function($, _, Utils, MediaUtils, page, SalonsModel) {
 			$(".salons .date").html(Utils.formatDate(salon.date));
 			$(".salons .titre").html(salon.titre);
 			
-			this.mediaUtils.renderImage($(".salons"), salon.image);
-			this.mediaUtils.renderVideo($(".salons"), salon.video);
+			this.mediaUtils.renderImage(".salons", salon.image);
+			this.mediaUtils.renderVideo(".salons", salon.video);
 			
 			$(".salons .resume").html(salon.texte);
 			

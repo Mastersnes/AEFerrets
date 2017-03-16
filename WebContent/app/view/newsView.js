@@ -32,8 +32,8 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 			$(".news .date").html(this.model.getDate());
 			$(".news .titre").html(news.titre);
 			
-			this.mediaUtils.renderImage($(".news"), news.image);
-			this.mediaUtils.renderVideo($(".news"), news.video);
+			this.mediaUtils.renderImage(".news", news.image);
+			this.mediaUtils.renderVideo(".news", news.video);
 			
 			$(".news .resume").html(news.texte);
 			
