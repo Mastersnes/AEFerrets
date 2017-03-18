@@ -21,7 +21,7 @@ define(["jquery"], function($){
 				$(".grosseImage img").attr("alt", next.attr("alt"));
 				that.checkGrosseImg();
 			});
-		}
+		};
 		
 		/**
 		* Permet d'afficher les images
@@ -38,7 +38,6 @@ define(["jquery"], function($){
 			}
 			var that = this;
 			$(element).find("img").click(function() {
-				console.log($(this))
 				$(".grosseImage img").attr("src", $(this).attr("src"));
 				$(".grosseImage img").attr("alt", $(this).attr("alt"));
 				$(".grosseImage").show("slow");
@@ -50,6 +49,7 @@ define(["jquery"], function($){
 		 * Permet de creer une image dans le dom
 		 */
 		this.createImage = function(element, image) {
+			if (image == null || image == undefined || image == "") return null;
 			var imageDom = document.createElement("img");
 			$(imageDom).attr("alt", image);
 			$(imageDom).attr("src", image);
@@ -81,6 +81,7 @@ define(["jquery"], function($){
 		 * Permet de creer une video dans le dom
 		 */
 		this.createVideo = function(element, video) {
+			if (video == null || video == undefined || video == "") return null;
 			var videoDom = document.createElement("video");
 			$(videoDom).attr("controls", "true");
 			
@@ -98,7 +99,7 @@ define(["jquery"], function($){
 		};
 		
 		/**
-		 * Renvoi l'image actuellement zoomée
+		 * Renvoi l'image actuellement zoomï¿½e
 		 */
 		this.getCurrentImg = function() {
 			var src = $(".grosseImage img").attr("src");
