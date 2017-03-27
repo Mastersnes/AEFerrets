@@ -72,7 +72,11 @@ function($, _, Utils, MediaUtils, page, SalonsModel) {
 			var that = this;
 			this.listSalons.forEach(function(salon, index) {
 				var li = document.createElement("li");
-				$(li).html(Utils.formatDate(salon.date) + " - " + salon.titre);
+				
+				var dateDom = document.createElement("strong");
+				$(dateDom).html(Utils.formatDate(salon.date));
+				$(li).append(dateDom);
+				$(li).append(" - " + salon.titre);
 				$(li).attr("key", index);
 				$(ul).append(li);
 				
