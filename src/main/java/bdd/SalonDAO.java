@@ -1,6 +1,5 @@
 package bdd;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,12 +57,6 @@ public class SalonDAO {
      * @return
      */
     public List<Salon> getSalons(final String date) {
-        final List<Salon> salons = mapSalons.get(date);
-
-        if ("next".equals(date)) {
-            Collections.reverse(salons);
-        }
-
-        return salons;
+        return mapSalons.get(date);
     }
 }

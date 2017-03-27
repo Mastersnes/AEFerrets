@@ -136,7 +136,8 @@ public abstract class AbstractServlet<REQ, RESP> extends HttpServlet {
 	 * @param response
 	 */
 	protected void setResponse(final HttpServletResponse resp, final RESP response) {
-		PrintWriter writer = null;
+        resp.setContentType("application/json");
+        PrintWriter writer = null;
 		try {
 			writer = resp.getWriter();
 			writer.append(Constantes.GSON.toJson(response));

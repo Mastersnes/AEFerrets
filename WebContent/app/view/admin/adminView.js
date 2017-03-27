@@ -41,7 +41,6 @@ function($, _, Utils, page, AdminModel, CheckTrackView) {
 				that.model.setMdp($("#mdp").val());
 				Utils.load("admin/clear", that.model.data, function(data) {
 					$("#message").text(data.message);
-					console.log(data.codeRetour);
 					if (data.codeRetour != 0) {
 						$("#message").attr("class", "error");
 					}else {
@@ -53,7 +52,6 @@ function($, _, Utils, page, AdminModel, CheckTrackView) {
 				that.model.setMdp($("#mdp").val());
 				Utils.load("admin/refresh", that.model.data, function(data) {
 					$("#message").text(data.message);
-					console.log(data.codeRetour);
 					if (data.codeRetour != 0) {
 						$("#message").attr("class", "error");
 					}else {

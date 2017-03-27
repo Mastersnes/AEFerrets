@@ -16,7 +16,6 @@ function($, _, Utils, page) {
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
 			var that = this;
-			console.log(data);
 			var templateData = {
 					"tracks" : data.connexions,
 					"nbrConnexion" : data.nbrConnexion

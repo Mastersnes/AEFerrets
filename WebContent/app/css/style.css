@@ -306,25 +306,6 @@ body {
 	margin-left: 2%;
 }
 
-.article.liste ul {
-	width: 100%;
-	overflow-x: hidden;
-	overflow-y: auto;
-	text-align : center;
-	list-style-type: none;
-	
-	padding: 0;
-	margin: 0;
-	margin-top: 5%;
-}
-.article.liste li {
-	cursor: pointer;
-	transition: all .2s ease-in-out;
-}
-.article.liste li:hover {
-	background-color: #222222;
-	color: white;
-}
 .article .contenu .texte .video {
     margin-left: auto;
     margin-right: auto;
@@ -343,6 +324,29 @@ body {
     max-height: 20vh;
     display: inline-block;
     margin: 0.1%;
+}
+
+/**
+* Menu de navigation
+**/
+ul.menu-liste {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align : center;
+    list-style-type: none;
+    
+    padding: 0;
+    margin: 0;
+    margin-top: 5%;
+}
+ul.menu-liste li {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+ul.menu-liste li:hover {
+    background-color: #222222;
+    color: white;
 }
 
 /**

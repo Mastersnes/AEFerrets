@@ -6,7 +6,6 @@ define(["jquery"], function($){
 		**/
 		load : function(url, params, successC, type) {
 			if (!type) type = "POST";
-			console.log("load : " + url);
 			$.ajax({
 	            type: type,
 	            url: url,
@@ -16,7 +15,7 @@ define(["jquery"], function($){
 	            dataType: "json",
 	            success: successC,
 	            error: function (request, status, errorThrown) {
-	            	console.log("Erreur lors de l'appel Ã  : " + url);
+	            	console.log("Erreur lors de l'appel a  : " + url);
 	            }
 	        });
 		},

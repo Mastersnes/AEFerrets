@@ -23,7 +23,6 @@ function($, _, page) {
 			var templateData = {
 				livre: that.livre
 			};
-			console.log(that.livre);
 			this.el.html(template(templateData));
 			
 			this.makeEvents();
