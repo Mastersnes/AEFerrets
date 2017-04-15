@@ -14,6 +14,16 @@
 		<servlet-name>ListServlet</servlet-name>
 		<url-pattern>/list</url-pattern>
 	</servlet-mapping>
+
+	<!-- Liste des livres gratuit -->
+	<servlet>
+	    <servlet-name>ListFreeServlet</servlet-name>
+	    <servlet-class>servlet.list.ListFreeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListFreeServlet</servlet-name>
+		<url-pattern>/listFree</url-pattern>
+	</servlet-mapping>
 	
 	<!-- Liste des news -->
 	<servlet>

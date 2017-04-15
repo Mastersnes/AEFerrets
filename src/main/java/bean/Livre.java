@@ -10,6 +10,7 @@ public class Livre {
 	private String titre;
 	private String premiere;
 	private String quatrieme;
+	private String resume;
 
 	/**
 	 * @return the titre
@@ -54,5 +55,20 @@ public class Livre {
 	 */
 	public void setQuatrieme(final String quatrieme) {
 		this.quatrieme = quatrieme;
+	}
+
+	/**
+	 * @return the resume
+	 */
+	public String getResume() {
+		return resume;
+	}
+
+	/**
+	 * @param resume
+	 *            the resume to set
+	 */
+	public void setResume(final String resume) {
+		this.resume = resume;
 	}
 }

@@ -9,8 +9,11 @@ define(["jquery",
         "app/view/livresView",
         "app/view/salonsView",
         "app/view/moiView",
-        "app/view/consultView"], 
-function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, ConsultView) {
+        "app/view/consultView",
+        "app/view/liseuseView"], 
+function($, _, Utils, page, 
+		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
+		ConsultView, LiseuseView) {
 	'use strict';
 
 	return function() {
@@ -35,6 +38,7 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 			this.chargeAccueil();
 			this.gereMenu();
 			this.consultation = new ConsultView();
+			this.liseuse = new LiseuseView();
 		};
 		
 		this.chargeAccueil = function() {
@@ -54,6 +58,12 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 				this.listLivre = new LivresView(this);
 			}
 			this.listLivre.show();
+		};
+		this.chargeGratuits = function() {
+			if (!this.listGratuit) {
+				this.listGratuit = new LivresView(this, true);
+			}
+			this.listGratuit.show();
 		};
 		this.chargeSalons = function() {
 			if (!this.salons) {
@@ -91,6 +101,9 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 			$("#livres").click(function() {
 				that.chargeLivres();
 			});
+			$("#gratuit").click(function() {
+				that.chargeGratuits();
+			});
 			$("#salons").click(function() {
 				that.chargeSalons();
 			});
@@ -107,6 +120,9 @@ function($, _, Utils, page, AccueilView, ContactView, NewsView, LivresView, Salo
 		
 		this.consult = function(livre) {
 			this.consultation.show(livre);
+		};
+		this.lecture = function(livre) {
+			this.liseuse.show(livre);
 		};
 		
 		this.init();

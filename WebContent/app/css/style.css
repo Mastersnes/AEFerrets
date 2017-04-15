@@ -10,7 +10,7 @@ body {
 	overflow: hidden;
 }
 .hidden {
-	display: none;
+	display: none !important;
 }
 /**
 * Header + Menu
@@ -435,6 +435,7 @@ ul.menu-liste li:hover {
 	margin-top: 1%;
 	margin-bottom: 1%;
 	cursor: pointer;
+	border: 1px solid black;
 }
 .listLivre .livre .premiere {
 	display: inline-block;
@@ -447,6 +448,19 @@ ul.menu-liste li:hover {
     left: 0;
     top: 0;
     display: none;
+}
+.listLivre .livre div {
+	position: relative;
+	display: inline-block;
+}
+.listLivre .livre .livre-image {
+	vertical-align: middle;
+}
+.listLivre .livre .livre-texte {
+	vertical-align: top;
+	width: 85%;
+	word-wrap: break-word;
+	margin-left: 1%;
 }
 
 /**
@@ -561,6 +575,29 @@ ul.menu-liste li:hover {
 }
 .consultPage .bottom .right div {
 	right: 0;
+}
+
+/**
+* Consultation specifique liseuse
+**/
+.consultPage .liseuse.contenu {
+	height: 100%;
+	border: none;
+}
+.consultPage .liseuse .texte {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.consultPage .liseuse .texte .titre {
+	margin-bottom: 4%;
+}
+.consultPage .liseuse .texte .end {
+	text-align: right;
+}
+.consultPage .liseuse p {
+	text-indent: 4%;
+	margin-bottom: -1%;
 }
 
 /**

@@ -6,9 +6,21 @@ define(["jquery",
 function($, _, Utils, page) {
 	'use strict';
 
-	return function(parent) {
-		this.init = function(parent) {
+	return function(parent, free) {
+		this.init = function(parent, free) {
 			this.parent = parent;
+			this.free = free;
+			if (this.free) {
+				var that = this;
+				Utils.load("listFree", "", function(data) {
+					var codeRetour = data.codeRetour;
+					if (codeRetour === 0) {
+						that.model = data.livres;
+					}
+				}, "GET");
+			}else {
+				this.model = this.parent.livres;				
+			}
 			this.el = $(".corps");
 		};
 
@@ -17,7 +29,7 @@ function($, _, Utils, page) {
 			var template = _.template(page);
 			var that = this;
 			var templateData = {
-					"livres" : that.parent.livres
+					"livres" : that.model
 			};
 			this.el.html(template(templateData));
 			
@@ -33,10 +45,14 @@ function($, _, Utils, page) {
 			});
 			var that = this;
 			$(".livre").click(function() {
-				var livres = that.parent.livres;
+				var livres = that.model;
 				var key = $(this).attr("key");
 				if (key && livres[key]) {
-					that.parent.consult(livres[key]);
+					if (that.free) {
+						that.parent.lecture(livres[key]);
+					}else {
+						that.parent.consult(livres[key]);
+					}
 				}
 			});
 		};
@@ -45,6 +61,6 @@ function($, _, Utils, page) {
 			this.render();
 		};
 		
-		this.init(parent);
+		this.init(parent, free);
 	};
 });

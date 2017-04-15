@@ -5,8 +5,14 @@
 			var select = data.livres[index];
 		%>
 			<div class="livre" key="<%=index%>">
-				<img class="premiere" alt='<%=select.titre%>' src='<%=select.premiere%>' />
-				<img class="loupe" alt="Loupe" src="http://www.quaidesseniors.com/media/g_vignette/11322" />
+				<div class="livre-image">
+					<img class="premiere" alt='<%=select.titre%>' src='<%=select.premiere%>' />
+					<img class="loupe" alt="Loupe" src="http://www.quaidesseniors.com/media/g_vignette/11322" />
+				</div>
+				<div class="livre-texte">
+					<h2 class="livre-titre"><%= select.titre %></h2>
+					<p class="livre-texte"><%= select.resume %></p>
+				</div>
 			</div>
 		<% } %>
 	</div>
