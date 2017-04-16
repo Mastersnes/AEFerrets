@@ -462,6 +462,9 @@ ul.menu-liste li:hover {
 	word-wrap: break-word;
 	margin-left: 1%;
 }
+.listLivre .livre .livre-resume {
+	text-indent: 3%;
+}
 
 /**
 * Consultation
