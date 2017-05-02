@@ -166,7 +166,8 @@ body {
 **/
 .accueil img {
 	float: left;
-	height: 100%;
+	height: auto;
+	max-width: 50%;
 	image-rendering: crisp-edges;
 	display: none;
 	position: absolute;
@@ -186,21 +187,17 @@ body {
 .accueil .contenu .texte {
 	position: absolute;
 	width: auto;
+	overflow-y: auto;
 }
 .accueil .contenu .texte .titre {
 	text-align: left;
 	margin-bottom: -2%;
 }
 .accueil .contenu .texte .resume {
-	max-height: 60%;
 	margin-top: 5%;
 	
 	text-align: left;
 	text-indent: 6%;
-	
-	overflow-y: auto;
-	overflow-x: hidden;
-	
 }
 .accueil .contenu .texte .plus {
 	text-align: center;

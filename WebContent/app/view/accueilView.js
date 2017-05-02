@@ -26,6 +26,11 @@ function($, _, page) {
 		this.makeEvents = function() {
 			var that = this;
 			$(".accueil img").on("load", function() {
+				$(".accueil img#premiere").height($(".accueil img#premiere").height());
+				$(".accueil img#quatrieme").height($(".accueil img#premiere").height());
+				$(".accueil .contenu").height($(".accueil img#premiere").height());
+				$(".accueil .texte").height($(".accueil img#premiere").height());
+				
 				$(".accueil .texte").css("margin-left", $(".accueil img#quatrieme").width()+20);
 				$(".accueil img#premiere").fadeIn("slow", function() {
 					$(".accueil img#premiere").width($(".accueil img#quatrieme").width());
