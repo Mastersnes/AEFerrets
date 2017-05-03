@@ -92,6 +92,10 @@ define(["jquery",
 	            var id = Utils.getUrlParameter(src)["v"];
 	            src = "https://www.youtube.com/embed/" + id.toString();
 	        }
+	        var isFacebook = video && video.match(/(?:facebook)(?:\.com|\.fr)\/([\w\W]+)/i);
+	        if (isFacebook) {
+	            src = "https://www.facebook.com/plugins/video.php?href=" + src;
+	        }
 			$(videoDom).attr("src", src);
 			
 			$(element).find(".video").append($(videoDom));
