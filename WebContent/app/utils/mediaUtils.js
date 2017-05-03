@@ -89,7 +89,6 @@ define(["jquery",
 			var src = video;
 			var isYoutube = video && video.match(/(?:youtu|youtube)(?:\.com|\.be)\/([\w\W]+)/i);
 	        if (isYoutube) {
-	        	console.log(src);
 	            var id = Utils.getUrlParameter(src)["v"];
 	            src = "https://www.youtube.com/embed/" + id.toString();
 	        }
