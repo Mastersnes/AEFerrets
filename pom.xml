@@ -8,7 +8,7 @@
 	<name>AEFerrets</name>
 	<description>Site professionnel de A.E Ferrets</description>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

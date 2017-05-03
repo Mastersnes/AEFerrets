@@ -4,5 +4,6 @@ require.config({
         "jquery": "lib/jquery-3.1.1.min",
         "underscore": "lib/underscore.min",
         "text": "lib/text.min"
-    }
+    },
+    urlArgs: "version=" + (new Date()).getTime()
 });
