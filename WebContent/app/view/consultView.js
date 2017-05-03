@@ -11,6 +11,7 @@ function($, _, page) {
 		};
 
 		this.show = function(livre) {
+			this.width = 0;
 			this.livre = livre;
 			this.render();
 			this.el.show();
@@ -25,19 +26,35 @@ function($, _, page) {
 			};
 			this.el.html(template(templateData));
 			
+			this.manageRender();
+			
 			this.makeEvents();
+		};
+		
+		this.manageRender = function() {
+			$(".consultPage img").on("load", function() {
+				$(".consultPage img#premiere").width($(".consultPage img#quatrieme").width());
+				$(".consultPage .texte").css("margin-left", $(".consultPage img#quatrieme").width()+20);
+				
+				$(".consultPage img#premiere").fadeIn("slow", function() {
+					$(".consultPage img#quatrieme").show();
+				});
+			});
+			
+			if(!this.livre.ebooks || this.livre.ebooks.length == 0) {
+				$(".right.member").hide();
+				$(".left.member").width("100%");
+			}
+			if(!this.livre.papiers || this.livre.papiers.length == 0) {
+				$(".left.member").hide();
+				$(".right.member").width("100%");
+			}
 		};
 		
 		this.makeEvents = function() {
 			var that = this;
 			$(".consultPage .close").click(function() {
 				$(".consultPage").hide();
-			});
-			$(".consultPage img").on("load", function() {
-				$(".consultPage img#premiere").fadeIn("slow", function() {
-					$(".consultPage img#premiere").width($(".consultPage img#quatrieme").width());
-					$(".consultPage img#quatrieme").show();
-				});
 			});
 			$(".couverture").mouseenter(function() {
 				if (!that.width || that.width == 0) {

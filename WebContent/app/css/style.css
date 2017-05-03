@@ -497,6 +497,9 @@ ul.menu-liste li:hover {
 	border: 1px solid;
 	overflow: hidden;
 }
+.consultPage .couverture {
+	width: 0;
+}
 .consultPage .contenu img {
 	height: 100%;
 }
