@@ -19,7 +19,16 @@ define(["jquery"], function($){
 	            }
 	        });
 		},
-	
+		getUrlParameter : function getUrlParameter(url) {
+			var first = url.indexOf("?");
+			var t = url.substring(first+1).split('&');
+			var f = [];
+			for (var i=0; i<t.length; i++){
+				var x = t[ i ].split('=');
+				f[x[0]]=x[1];
+			}
+			return f;
+		},
 		formatDate : function(date) {
 			var listeMois = new Array("Janvier", "F&eacute;vrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Ao&ucirc;t", "Septembre", "Octobre", "Novembre", "D&eacute;cembre");
 			var mois = date.substr(0, date.indexOf("/"));

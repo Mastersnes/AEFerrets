@@ -1,5 +1,6 @@
 'use strict';
-define(["jquery"], function($){
+define(["jquery",
+        "app/utils/utils"], function($, Utils){
 	return function(){
 		this.makeEvents = function() {
 			var that = this;
@@ -82,18 +83,17 @@ define(["jquery"], function($){
 		 */
 		this.createVideo = function(element, video) {
 			if (video == null || video == undefined || video == "") return null;
-			var videoDom = document.createElement("video");
+			var videoDom = document.createElement("iframe");
 			$(videoDom).attr("controls", "true");
 			
 			var src = video;
 			var isYoutube = video && video.match(/(?:youtu|youtube)(?:\.com|\.be)\/([\w\W]+)/i);
 	        if (isYoutube) {
-	            var id = isYoutube[1].match(/watch\?v=|[\w\W]+/gi);
-	            id = (id.length > 1) ? id.splice(1) : id;
-	            src = "http://www.youtubeinmp4.com/redirect.php?video=" + id.toString();
+	        	console.log(src);
+	            var id = Utils.getUrlParameter(src)["v"];
+	            src = "https://www.youtube.com/embed/" + id.toString();
 	        }
 			$(videoDom).attr("src", src);
-			$(videoDom).attr("type", "video/mp4");
 			
 			$(element).find(".video").append($(videoDom));
 		};
