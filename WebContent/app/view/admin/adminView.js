@@ -21,14 +21,26 @@ function($, _, Utils, page, AdminModel, CheckTrackView) {
 			var templateData = {};
 			this.el.html(template(templateData));
 			
-			this.gereMenu();
+			this.makeEvents();
 		};
 		
-		this.chargeCheck = function() {
-			if (!this.check) {
-				this.check = new CheckTrackView();
-			}
-			this.check.show(this.model.data);
+		this.makeEvents = function() {
+			var that = this;
+			$("#connexion").click(function() {
+				that.model.setMdp($("#mdp").val());
+				Utils.load("admin/check", that.model.data, function(data) {
+					if (data.codeRetour != 0) {
+						$("#message").show();
+						$("#message").text(data.message);
+						$("#message").attr("class", "error");
+					}else {
+						$("#message").hide();
+						$(".admin-connexion").hide();
+						$(".admin-menu").show();
+					}
+				});
+			});
+			this.gereMenu();
 		};
 		
 		this.gereMenu = function() {
