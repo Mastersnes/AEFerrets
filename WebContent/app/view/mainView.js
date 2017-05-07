@@ -2,6 +2,7 @@
 define(["jquery",
         'underscore', 
         "app/utils/utils", 
+        "app/utils/tracking",
         "text!app/template/main.html",
         "app/view/accueilView",
         "app/view/contactView",
@@ -11,13 +12,15 @@ define(["jquery",
         "app/view/moiView",
         "app/view/consultView",
         "app/view/liseuseView"], 
-function($, _, Utils, page, 
+function($, _, Utils, tracker, page, 
 		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
 		ConsultView, LiseuseView) {
 	'use strict';
 
 	return function() {
 		this.init = function() {
+			tracker.push(['trackPageView', 'Connexion au site']);
+			
 			this.el = $("#app");
 			var that = this;
 			Utils.load("list", "", function(data) {
@@ -48,46 +51,46 @@ function($, _, Utils, page,
 			this.accueil.show();
 		};
 		this.chargeNews = function() {
+			tracker.push(['trackPageView', 'Chargement des news']);
 			if (!this.news) {
 				this.news = new NewsView(this);
 			}
 			this.news.show();
 		};
 		this.chargeLivres = function() {
+			tracker.push(['trackPageView', 'Chargement des livres']);
 			if (!this.listLivre) {
 				this.listLivre = new LivresView(this);
 			}
 			this.listLivre.show();
 		};
 		this.chargeGratuits = function() {
+			tracker.push(['trackPageView', 'Chargement des oeuvres gratuites']);
 			if (!this.listGratuit) {
 				this.listGratuit = new LivresView(this, true);
 			}
 			this.listGratuit.show();
 		};
 		this.chargeSalons = function() {
+			tracker.push(['trackPageView', 'Chargement des salons']);
 			if (!this.salons) {
 				this.salons = new SalonsView(this);
 			}
 			this.salons.show();
 		};
 		this.chargeMoi = function() {
+			tracker.push(['trackPageView', 'Chargement de la biographie']);
 			if (!this.moi) {
 				this.moi = new MoiView(this);
 			}
 			this.moi.show();
 		};
 		this.chargeContact = function() {
+			tracker.push(['trackPageView', 'Chargement des contacts']);
 			if (!this.contact) {
 				this.contact = new ContactView(this);
 			}
 			this.contact.show();
-		};
-		this.chargeSouvenirs = function() {
-			if (!this.souvenirs) {
-				this.souvenirs = new AccueilView(this);
-			}
-			this.souvenirs.show();
 		};
 		
 		this.gereMenu = function() {
@@ -113,15 +116,14 @@ function($, _, Utils, page,
 			$("#contact").click(function() {
 				that.chargeContact();
 			});
-			$("#souvenirs").click(function() {
-				that.chargeSouvenirs();
-			});
 		};
 		
 		this.consult = function(livre) {
+			tracker.push(['trackPageView', 'Consultation du livre : ' + livre.titre]);
 			this.consultation.show(livre);
 		};
 		this.lecture = function(livre) {
+			tracker.push(['trackPageView', 'Lecture du livre gratuit : ' + livre.titre]);
 			this.liseuse.show(livre);
 		};
 		

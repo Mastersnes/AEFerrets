@@ -1,8 +1,9 @@
 /*global define */
 define(["jquery",
         'underscore',
+        'app/utils/tracking',
         "text!app/template/consultation.html"], 
-function($, _, page) {
+function($, _, tracker, page) {
 	'use strict';
 
 	return function() {
@@ -82,6 +83,7 @@ function($, _, page) {
 			});
 			$(".bottom .link").click(function() {
 				var link = $(this).attr("href");
+				tracker.push(['trackPageView', "Click sur l'achat de  : " + link]);
 				if (link) {
 					window.open(link, "_blank");
 				}

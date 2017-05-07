@@ -3,7 +3,8 @@ require.config({
     paths: {
         "jquery": "lib/jquery-3.1.1.min",
         "underscore": "lib/underscore.min",
-        "text": "lib/text.min"
+        "text": "lib/text.min",
+        "piwik" : "//piwik-applines.herokuapp.com/piwik"
     },
     urlArgs: "version=" + (new Date()).getTime()
 });
