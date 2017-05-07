@@ -103,7 +103,6 @@ function($, _, Utils, tracker, MediaUtils, page, NewsModel) {
 		};
 		
 		this.load = function(makeLast) {
-			tracker.push(['trackPageView', 'Chargement des news de ' + makeLast]);
 			var that = this;
 			Utils.load("news", this.model.data, function(data) {
 				var codeRetour = data.codeRetour;
