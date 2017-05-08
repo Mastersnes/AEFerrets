@@ -91,14 +91,10 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 					that.renderNews();
 				}
 			});
-			$(document).click(function(e) {
-				if ($(".img img").has(e.target)) {
-					console.log("OK");
-					$("#menu-media").show();
-				}else {
-					console.log("NOK");
-					$("#menu-media").hide();
-				}
+			$(".img img").click(function(e) {
+				console.log("here");
+				that.imgSelect = $(this);
+				$("#menu-media").show();
 			});
 		};
 		
