@@ -24,12 +24,12 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
-.header-menu {
+.header-menu, .admin-menu {
 	width: 100%;
 	height: 5%;
 	margin-top: 0.5%;
 }
-.header-menu > ul {
+.header-menu > ul, .admin-menu > ul {
 	display: table;
 	width: 100%;
 	height: 100%;
@@ -38,7 +38,7 @@ body {
 	border-top: 1px solid;
 	border-bottom: 1px solid;
 }
-.header-menu > ul > li {
+.header-menu > ul > li, .admin-menu > ul > li {
 	display: table-cell;
 	list-style: none;
 	cursor: pointer;
@@ -53,7 +53,7 @@ body {
 	
 	transition: all .2s ease-in-out;
 }
-.header-menu > ul > li:hover {
+.header-menu > ul > li:hover, .admin-menu > ul > li:hover {
 	background-color: #222222;
 	color: white;
 }
@@ -609,6 +609,9 @@ ul.menu-liste li:hover {
 .admin-menu {
 	display: none;
 }
+.admin-connexion {
+	z-index: 1000;
+}
 
 /**
 * Utils
@@ -626,6 +629,9 @@ ul.menu-liste li:hover {
 }
 .text-center {
 	text-align: center;
+}
+.collapse {
+	display: none;
 }
 
 /**

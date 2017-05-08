@@ -4,8 +4,8 @@ define(["jquery",
         "app/utils/utils", 
         "text!app/template/admin/adminMain.html",
         "app/model/admin/adminModel",
-        "app/view/admin/checkTrackView"], 
-function($, _, Utils, page, AdminModel, CheckTrackView) {
+        "app/view/admin/adminNewsView"], 
+function($, _, Utils, page, AdminModel, AdminNewsView) {
 	'use strict';
 
 	return function() {
@@ -45,31 +45,11 @@ function($, _, Utils, page, AdminModel, CheckTrackView) {
 		
 		this.gereMenu = function() {
 			var that = this;
-			$("#checkTrack").click(function() {
-				that.model.setMdp($("#mdp").val());
-				that.chargeCheck();
-			});
-			$("#clearTrack").click(function() {
-				that.model.setMdp($("#mdp").val());
-				Utils.load("admin/clear", that.model.data, function(data) {
-					$("#message").text(data.message);
-					if (data.codeRetour != 0) {
-						$("#message").attr("class", "error");
-					}else {
-						$("#message").attr("class", "info");
-					}
-				}, "POST");
-			});
-			$("#refresh").click(function() {
-				that.model.setMdp($("#mdp").val());
-				Utils.load("admin/refresh", that.model.data, function(data) {
-					$("#message").text(data.message);
-					if (data.codeRetour != 0) {
-						$("#message").attr("class", "error");
-					}else {
-						$("#message").attr("class", "info");
-					}
-				}, "POST");
+			$("#setNews").click(function() {
+				if (!this.adminNews) {
+					this.adminNews = new AdminNewsView(this);
+				}
+				this.adminNews.show();
 			});
 		};
 		
