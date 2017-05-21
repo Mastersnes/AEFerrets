@@ -1,4 +1,4 @@
-package servlet.images;
+package servlet.content;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

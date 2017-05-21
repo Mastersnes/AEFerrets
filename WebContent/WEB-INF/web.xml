@@ -58,11 +58,21 @@
 	<!-- Redirection d'image -->
 	<servlet>
 		<servlet-name>ImageServlet</servlet-name>
-		<servlet-class>servlet.images.ImageServlet</servlet-class>
+		<servlet-class>servlet.content.ImageServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ImageServlet</servlet-name>
 		<url-pattern>/img/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Redirection pdf -->
+	<servlet>
+		<servlet-name>PdfServlet</servlet-name>
+		<servlet-class>servlet.content.PdfServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PdfServlet</servlet-name>
+		<url-pattern>/pdf/*</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Tracking -->
