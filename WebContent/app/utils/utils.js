@@ -15,7 +15,7 @@ define(["jquery"], function($){
 	            dataType: "json",
 	            success: successC,
 	            error: function (request, status, errorThrown) {
-	            	console.log("Erreur lors de l'appel a  : " + url);
+	            	console.log("Erreur lors de l'appel a : " + url);
 	            }
 	        });
 		},

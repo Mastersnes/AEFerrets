@@ -2,10 +2,11 @@
 define(["jquery", 
         'underscore', 
         "app/utils/utils", 
+        "app/utils/tracking",
         "app/utils/mediaUtils", 
         "text!app/template/news.html",
         "app/model/newsModel"], 
-function($, _, Utils, MediaUtils, page, NewsModel) {
+function($, _, Utils, tracker, MediaUtils, page, NewsModel) {
 	'use strict';
 
 	return function(parent) {
@@ -30,6 +31,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 		this.renderNews = function() {
 			var news = this.listNews[this.select];
 			$(".news .date").html(this.model.getDate());
+			tracker.push('Affichage de la news ' + news.titre);
 			$(".news .titre").html(news.titre);
 			
 			this.mediaUtils.renderImage(".news", news.image);
