@@ -31,7 +31,7 @@ function($, _, Utils, tracker, MediaUtils, page, NewsModel) {
 		this.renderNews = function() {
 			var news = this.listNews[this.select];
 			$(".news .date").html(this.model.getDate());
-			tracker.push(['trackPageView', 'Affichage de la news ' + news.titre]);
+			tracker.push('Affichage de la news ' + news.titre);
 			$(".news .titre").html(news.titre);
 			
 			this.mediaUtils.renderImage(".news", news.image);

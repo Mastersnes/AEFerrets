@@ -19,7 +19,7 @@ function($, _, Utils, tracker, page,
 
 	return function() {
 		this.init = function() {
-			tracker.push(['trackPageView', 'Connexion au site']);
+			tracker.push('Connexion au site');
 			
 			this.el = $("#app");
 			var that = this;
@@ -42,6 +42,8 @@ function($, _, Utils, tracker, page,
 			this.gereMenu();
 			this.consultation = new ConsultView();
 			this.liseuse = new LiseuseView();
+			
+			this.makeEvents();
 		};
 		
 		this.chargeAccueil = function() {
@@ -51,42 +53,42 @@ function($, _, Utils, tracker, page,
 			this.accueil.show();
 		};
 		this.chargeNews = function() {
-			tracker.push(['trackPageView', 'Chargement des news']);
+			tracker.push('Chargement des news');
 			if (!this.news) {
 				this.news = new NewsView(this);
 			}
 			this.news.show();
 		};
 		this.chargeLivres = function() {
-			tracker.push(['trackPageView', 'Chargement des livres']);
+			tracker.push('Chargement des livres');
 			if (!this.listLivre) {
 				this.listLivre = new LivresView(this);
 			}
 			this.listLivre.show();
 		};
 		this.chargeGratuits = function() {
-			tracker.push(['trackPageView', 'Chargement des oeuvres gratuites']);
+			tracker.push('Chargement des oeuvres gratuites');
 			if (!this.listGratuit) {
 				this.listGratuit = new LivresView(this, true);
 			}
 			this.listGratuit.show();
 		};
 		this.chargeSalons = function() {
-			tracker.push(['trackPageView', 'Chargement des salons']);
+			tracker.push('Chargement des salons');
 			if (!this.salons) {
 				this.salons = new SalonsView(this);
 			}
 			this.salons.show();
 		};
 		this.chargeMoi = function() {
-			tracker.push(['trackPageView', 'Chargement de la biographie']);
+			tracker.push('Chargement de la biographie');
 			if (!this.moi) {
 				this.moi = new MoiView(this);
 			}
 			this.moi.show();
 		};
 		this.chargeContact = function() {
-			tracker.push(['trackPageView', 'Chargement des contacts']);
+			tracker.push('Chargement des contacts');
 			if (!this.contact) {
 				this.contact = new ContactView(this);
 			}
@@ -119,12 +121,18 @@ function($, _, Utils, tracker, page,
 		};
 		
 		this.consult = function(livre) {
-			tracker.push(['trackPageView', 'Consultation du livre : ' + livre.titre]);
+			tracker.push('Consultation du livre : ' + livre.titre);
 			this.consultation.show(livre);
 		};
 		this.lecture = function(livre) {
-			tracker.push(['trackPageView', 'Lecture du livre gratuit : ' + livre.titre]);
+			tracker.push('Lecture du livre gratuit : ' + livre.titre);
 			this.liseuse.show(livre);
+		};
+		
+		this.makeEvents = function() {
+			$(".link").click(function() {
+				tracker.push('Click sur le lien : ' + $(this).attr("title"));
+			});
 		};
 		
 		this.init();

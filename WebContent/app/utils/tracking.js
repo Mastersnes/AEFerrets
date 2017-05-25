@@ -1,10 +1,8 @@
-define(['piwik'], function (piwik) {
+define(["app/utils/utils"], function (Utils) {
     "use strict";
-    var u;
-    _paq.push(['trackPageView']);
-	_paq.push(['enableLinkTracking']);
-	var u="//piwik-applines.herokuapp.com/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 1]);
-    return _paq;
+    return {
+    	push : function(marker) {
+    		Utils.load("connect", {where : marker});
+    	}
+    };
 });

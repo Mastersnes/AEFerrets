@@ -1,9 +1,8 @@
 /*global define */
 define(["jquery", 
-        "app/utils/utils", 
         'underscore', 
         "text!app/template/contact.html"], 
-function($, Utils, _, page) {
+function($, _, page) {
 	'use strict';
 
 	return function() {

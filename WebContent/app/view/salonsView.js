@@ -29,7 +29,7 @@ function($, _, Utils, tracker, MediaUtils, page, SalonsModel) {
 		this.renderSalons = function() {
 			var salon = this.listSalons[this.select];
 			$(".salons .date").html(Utils.formatDate(salon.date));
-			tracker.push(['trackPageView', 'Affichage du salons ' + salon.titre]);
+			tracker.push('Affichage du salons ' + salon.titre);
 			$(".salons .titre").html(salon.titre);
 			
 			this.mediaUtils.renderImage(".salons", salon.image);
