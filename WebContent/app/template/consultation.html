@@ -18,7 +18,7 @@
 						for (var index in data.livre.papiers) {
 						var buy = data.livre.papiers[index];
 					%>
-						<span class="link" href="<%=buy.link%>"><%= buy.titre%></span>
+						<span title="Achat <%= buy.titre%> de <%= data.livre.titre %>" class="link" href="<%=buy.link%>"><%= buy.titre%></span>
 					<% } %>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 						for (var index in data.livre.ebooks) {
 						var buy = data.livre.ebooks[index];
 					%>
-						<span class="link" href="<%=buy.link%>"><%= buy.titre%></span>
+						<span title="Achat <%= buy.titre%> de <%= data.livre.titre %>" class="link" href="<%=buy.link%>"><%= buy.titre%></span>
 					<% } %>
 				</div>
 			</div>

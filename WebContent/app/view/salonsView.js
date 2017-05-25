@@ -2,10 +2,11 @@
 define(["jquery", 
         'underscore', 
         "app/utils/utils", 
+        "app/utils/tracking",
         "app/utils/mediaUtils", 
         "text!app/template/salons.html",
         "app/model/salonsModel"], 
-function($, _, Utils, MediaUtils, page, SalonsModel) {
+function($, _, Utils, tracker, MediaUtils, page, SalonsModel) {
 	'use strict';
 
 	return function(parent) {
@@ -28,6 +29,7 @@ function($, _, Utils, MediaUtils, page, SalonsModel) {
 		this.renderSalons = function() {
 			var salon = this.listSalons[this.select];
 			$(".salons .date").html(Utils.formatDate(salon.date));
+			tracker.push('Affichage du salons ' + salon.titre);
 			$(".salons .titre").html(salon.titre);
 			
 			this.mediaUtils.renderImage(".salons", salon.image);
