@@ -2,7 +2,7 @@
 define(["jquery", 
         'underscore', 
         "app/utils/utils", 
-        "app/utils/mediaUtils", 
+        "app/utils/admin/adminMediaUtils", 
         "text!app/template/admin/adminNews.html",
         "app/model/newsModel"], 
 function($, _, Utils, MediaUtils, page, NewsModel) {
@@ -11,7 +11,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 	return function(parent) {
 		this.init = function(parent) {
 			this.parent = parent;
-			this.el = $(".corps");
+			this.el = $(".adminCorps");
 			this.mediaUtils = new MediaUtils();
 			this.model = new NewsModel();
 			this.select = 0;
@@ -99,6 +99,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 		};
 		
 		this.show = function() {
+			console.log("here2");
 			this.model.setDate("last");
 			this.select = 0;
 			this.render();

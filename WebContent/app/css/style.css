@@ -614,6 +614,9 @@ ul.menu-liste li:hover {
 .admin-connexion {
 	z-index: 1000;
 }
+img.admin-img:hover {
+	filter: grayscale(100%);
+}
 
 /**
 * Utils
