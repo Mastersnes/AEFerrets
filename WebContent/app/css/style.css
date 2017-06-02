@@ -608,6 +608,14 @@ ul.menu-liste li:hover {
 /**
 * Admin
 **/
+.adminPage {
+	height: 100%;
+	overflow: auto;
+}
+.adminPage .listTrack {
+	height: 50%;
+    overflow: auto;
+}
 .adminPage li {
 	list-style: none;
 }
@@ -618,6 +626,7 @@ ul.menu-liste li:hover {
 }
 .adminPage table {
 	border-collapse: collapse;
+	margin: auto;
 }
 .adminPage th {
 	background-color: blue;
