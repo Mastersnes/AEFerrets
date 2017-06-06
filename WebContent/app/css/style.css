@@ -304,6 +304,10 @@ body {
 	margin-top: 1%;
 	margin-left: 2%;
 }
+.article.droite {
+    left: auto;
+    right: 0;
+}
 
 .article .contenu .texte .video {
     margin-left: auto;
@@ -616,6 +620,13 @@ ul.menu-liste li:hover {
 }
 img.admin-img:hover {
 	filter: grayscale(100%);
+}
+.admin-button {
+	width: 20%;
+}
+.article.liste-admin {
+    width: 19%;
+    height: 45%;
 }
 
 /**

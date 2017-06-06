@@ -7,82 +7,104 @@ define(["jquery",
 		};
 		
 		/**
-		* Permet d'afficher les images
+		* Permet d'afficher les images ainsi que la liste permettant de les supprimer
 		**/
 		this.renderImage = function(element, img) {
-			$(element).find(".img").empty();
-			if (!img) return;
-			if (img instanceof Array) {
-				for (var index in img) {
-					this.createImage(element, img[index]);
+			$(element).find("#liste-img").empty();
+			if (img) {
+				if (img instanceof Array) {
+					for (var index in img) {
+						this.createImage(element, img[index]);
+					}
+				}else {
+					this.createImage(element, img);
 				}
-			}else {
-				this.createImage(element, img);
 			}
-			
-			var that = this;
-			$(element).find("img").click(function() {
-				$(this).remove();
-			});
-			$(element).find(".button").click(function() {
-				$(this).remove();
-			});
+			this.createImage(element, "Nouvelle Image", true);
 		};
 		
 		/**
 		 * Permet de creer une image dans le dom
 		 */
-		this.createImage = function(element, image) {
+		this.createImage = function(element, image, isNew) {
 			if (image == null || image == undefined || image == "") return null;
-			var imageDom = document.createElement("img");
-			$(imageDom).attr("alt", image);
-			$(imageDom).attr("src", image);
-			$(imageDom).attr("class", "admin-img");
-			$(element).find(".img").append($(imageDom));
-			$(imageDom).on("load", function() {
-				$(this).animate({
-					"opacity": "1",
-					"filter": "alpha(opacity=100)"
-				});
+			
+			var li = document.createElement("li");
+			
+			var imgName = document.createElement("a");
+			$(imgName).text(image);
+			$(imgName).click(function() {
+				if (isNew) {
+					
+				}else {
+					window.open(image, "_blank");
+				}
 			});
+			
+			$(li).append(imgName);
+			
+			if (!isNew) {
+				var del = document.createElement("button");
+				$(del).text("X");
+				$(del).click(function() {
+					$(li).remove();
+				});
+				
+				$(li).append(del);
+			}
+			
+			$(element).find("#liste-img").append(li);
 		};
 		
 		/**
 		 * permet d'afficher une video
 		 */
 		this.renderVideo = function (element, video) {
-			$(element).find(".video").empty();
-			if (!video) return;
-			if (video instanceof Array) {
-				for (var index in video) {
-					this.createVideo(element, video[index]);
+			$(element).find("#liste-video").empty();
+			if (video) {
+				if (video instanceof Array) {
+					for (var index in video) {
+						this.createVideo(element, video[index]);
+					}
+				}else {
+					this.createVideo(element, video);
 				}
-			}else {
-				this.createVideo(element, video);
 			}
+			
+			this.createVideo(element, "Nouvelle Video", true);
 		};
 		
 		/**
 		 * Permet de creer une video dans le dom
 		 */
-		this.createVideo = function(element, video) {
+		this.createVideo = function(element, video, isNew) {
 			if (video == null || video == undefined || video == "") return null;
-			var videoDom = document.createElement("iframe");
-			$(videoDom).attr("controls", "true");
 			
-			var src = video;
-			var isYoutube = video && video.match(/(?:youtu|youtube)(?:\.com|\.be)\/([\w\W]+)/i);
-	        if (isYoutube) {
-	            var id = Utils.getUrlParameter(src)["v"];
-	            src = "https://www.youtube.com/embed/" + id.toString();
-	        }
-	        var isFacebook = video && video.match(/(?:facebook)(?:\.com|\.fr)\/([\w\W]+)/i);
-	        if (isFacebook) {
-	            src = "https://www.facebook.com/plugins/video.php?href=" + src;
-	        }
-			$(videoDom).attr("src", src);
+			var li = document.createElement("li");
 			
-			$(element).find(".video").append($(videoDom));
+			var videoName = document.createElement("a");
+			$(videoName).text(video);
+			$(videoName).click(function() {
+				if (isNew) {
+					
+				}else {
+					window.open(video, "_blank");
+				}
+			});
+			
+			$(li).append(videoName);
+			
+			if (!isNew) {
+				var del = document.createElement("button");
+				$(del).text("X");
+				$(del).click(function() {
+					$(li).remove();
+				});
+				
+				$(li).append(del);
+			}
+			
+			$(element).find("#liste-video").append(li);
 		};
 	};
 });

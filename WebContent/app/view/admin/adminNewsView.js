@@ -56,7 +56,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 		
 		this.renderDate = function(listDate) {
 			var that = this;
-			$(".news.liste ul").html("");
+			$(".news.liste.date ul").html("");
 			for (var i=0; i<listDate.length; i++) {
 				var date = listDate[i];
 				var domDate = document.createElement("li");
@@ -66,7 +66,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 					that.model.setDate($(this).attr("key"));
 					that.load();
 				});
-				$(".news.liste ul").append(domDate);
+				$(".news.liste.date ul").append(domDate);
 			}
 		};
 		
@@ -99,7 +99,6 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 		};
 		
 		this.show = function() {
-			console.log("here2");
 			this.model.setDate("last");
 			this.select = 0;
 			this.render();

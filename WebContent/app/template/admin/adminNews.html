@@ -1,29 +1,33 @@
-<div class="news article liste">
+<div class="news article liste date">
 	<div class="contenu">
 		<ul class="menu-liste">
 		</ul>
 	</div>
 </div>
 <div class="news article centralBloc">
+	<div class="text-center">
+       <button class="admin-button">Enregistrer</button>
+       <button class="admin-button">Nouvelle news</button>
+    </div>
 	<div class="contenu">
 		<div class="texte">
 			<div class="date"></div>
 			<div contenteditable='true' class="titre"></div>
-			<div class="video">
-			</div>
-			<div class="img">
-			</div>
-			<div class="button close">X</div>
 			<div contenteditable='true' class="resume"></div>
 		</div>
 	</div>
 	<div class="next plus" style="display: none; width: 50%;">&lt;&lt; Suivant</div>
 	<div class="preview plus" style="width: 100%;">Pr&eacute;c&eacute;dent &gt;&gt;</div>
 </div>
-<div id="menu-media" class="popup">
-	<div class="button close">X</div>
-	
-	
-	
-	<div class="mask popup"></div>
+<div class="news article liste droite liste-admin">
+   <div class="contenu">
+       <ul id="liste-img" class="menu-liste">
+	       <li>Nouvelle image</li>
+	   </ul>
+   </div>
+   <div class="contenu">
+       <ul id="liste-video" class="menu-liste">
+           <li>Nouvelle video</li>
+       </ul>
+   </div>
 </div>
