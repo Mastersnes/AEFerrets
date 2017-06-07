@@ -78,7 +78,7 @@ public class NewsDAO {
         final NewsGroup newsGroup = new NewsGroup();
         newsGroup.setDate(dateSearch);
         newsGroup.setNews(mapNews.get(dateSearch));
-        
+
         return newsGroup;
     }
 }

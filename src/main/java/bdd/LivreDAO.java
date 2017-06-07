@@ -1,5 +1,6 @@
 package bdd;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import utils.JsonUtil;
 import bean.Livre;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * DAO D'acces aux News
@@ -42,8 +44,9 @@ public class LivreDAO {
         final String json = JsonUtil.load(JsonUtil.LIVRE_PATH);
         final Gson gson = Constantes.GSON;
         listLivre.clear();
-        @SuppressWarnings("unchecked")
-        final List<Livre> livres = gson.fromJson(json, List.class);
+
+        final Type type = new TypeToken<List<Livre>>(){}.getType();
+        final List<Livre> livres = gson.fromJson(json, type);
         if (livres != null) {
             listLivre.addAll(livres);
         }

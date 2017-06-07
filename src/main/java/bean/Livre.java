@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 /**
  * Classe representant un livre
  * 
@@ -11,6 +13,8 @@ public class Livre {
 	private String premiere;
 	private String quatrieme;
 	private String resume;
+    private List<Article> papiers;
+    private List<Article> ebooks;
 
 	/**
 	 * @return the titre
@@ -71,4 +75,34 @@ public class Livre {
 	public void setResume(final String resume) {
 		this.resume = resume;
 	}
+
+    /**
+     * @return the papiers
+     */
+    public List<Article> getPapiers() {
+        return papiers;
+    }
+
+    /**
+     * @param papiers
+     *            the papiers to set
+     */
+    public void setPapiers(final List<Article> papiers) {
+        this.papiers = papiers;
+    }
+
+    /**
+     * @return the ebooks
+     */
+    public List<Article> getEbooks() {
+        return ebooks;
+    }
+
+    /**
+     * @param ebooks
+     *            the ebooks to set
+     */
+    public void setEbooks(final List<Article> ebooks) {
+        this.ebooks = ebooks;
+    }
 }
