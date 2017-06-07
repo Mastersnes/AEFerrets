@@ -11,6 +11,7 @@ function($, _, page) {
 		};
 
 		this.show = function(livre) {
+			console.log(livre);
 			this.width = 0;
 			this.livre = livre;
 			this.render();
@@ -85,6 +86,12 @@ function($, _, page) {
 				if (link) {
 					window.open(link, "_blank");
 				}
+			});
+			$("#paypal-button").click(function() {
+				$("#paypal #item_name").val($(this).attr("name"));
+				$("#paypal #amount").val($(this).attr("price"));
+				
+				$("#paypal").submit();
 			});
 		};
 		

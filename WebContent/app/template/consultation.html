@@ -20,6 +20,7 @@
 					%>
 						<span title="Achat <%= buy.titre%> de <%= data.livre.titre %>" class="link" href="<%=buy.link%>"><%= buy.titre%></span>
 					<% } %>
+					<span id="paypal-button" title="Acheter directement <%= data.livre.titre %> &agrave; A.E Ferrets" class="link" name="<%= data.livre.titre %>" price="<%= buy.price %>">Acheter directement &agrave; A.E Ferrets</span>
 				</div>
 			</div>
 		</div>
@@ -49,3 +50,12 @@
 		</div>
 	</div>
 </div>
+
+<!-- Achat paypal -->
+<form id="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<input type="hidden" name="cmd" value="_xclick">
+	<input type="hidden" name="business" value="aeferrets@gmail.com">
+	<input type="hidden" id="item_name" name="item_name" value="">
+	<input type="hidden" name="currency_code" value="EUR">
+	<input type="hidden" id="amount" name="amount" value="7.80">
+</form>
