@@ -11,7 +11,27 @@
     </div>
 	<div class="contenu">
 		<div class="texte">
-			<div class="date"></div>
+			<div class="date">
+			    <select class="mois">
+				    <% 
+			            for (var index=1; index<=12; index++) {
+			        %>
+			            <option value="<%=index%>"><%=index%></option>
+			        <%
+			          }
+			        %>
+		        </select>
+		        <select class="annee">
+                    <% 
+                        var annee = new Date().getFullYear();
+                        for (var index=annee-5; index<=annee+5; index++) {
+                    %>
+                        <option value="<%=index%>"><%=index%></option>
+                    <%
+                      }
+                    %>
+                </select>
+			</div>
 			<div contenteditable='true' class="titre"></div>
 			<div contenteditable='true' class="resume"></div>
 		</div>
@@ -22,12 +42,21 @@
 <div class="news article liste droite liste-admin">
    <div class="contenu">
        <ul id="liste-img" class="menu-liste">
-	       <li>Nouvelle image</li>
 	   </ul>
    </div>
    <div class="contenu">
        <ul id="liste-video" class="menu-liste">
-           <li>Nouvelle video</li>
        </ul>
    </div>
+</div>
+<div id="newObject" class="popup">
+    <div class="popup-content">
+	    <input class="url" type="text" placeholder="URL du fichier" />
+	    <div>
+		    <button class="ok">OK</button>
+		    <button class="annuler">Annuler</button>
+	    </div>
+    </div>
+    <div class="mask popup">
+    </div>
 </div>

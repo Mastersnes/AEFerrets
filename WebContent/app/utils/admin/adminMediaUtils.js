@@ -35,7 +35,7 @@ define(["jquery",
 			$(imgName).text(image);
 			$(imgName).click(function() {
 				if (isNew) {
-					
+					$("#newObject").show();
 				}else {
 					window.open(image, "_blank");
 				}
@@ -86,7 +86,7 @@ define(["jquery",
 			$(videoName).text(video);
 			$(videoName).click(function() {
 				if (isNew) {
-					
+					$("#newObject").show();
 				}else {
 					window.open(video, "_blank");
 				}

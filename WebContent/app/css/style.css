@@ -411,6 +411,19 @@ ul.menu-liste li:hover {
 	transform: translateY(-50%);
 }
 
+.popup .popup-content {
+	position: relative;
+	display: inline-block;
+	width: 30%;
+	overflow: hidden;
+	z-index: 1;
+	margin-top: 13vh;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	border: 1px solid;
+}
+
 /**
 * Liste des livres
 **/

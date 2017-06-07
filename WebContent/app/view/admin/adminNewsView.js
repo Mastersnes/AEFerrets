@@ -29,7 +29,15 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 		
 		this.renderNews = function() {
 			var news = this.listNews[this.select];
-			$(".news .date").html(this.model.getDate());
+			
+			var date = this.model.data.date;
+			var mois = parseInt(date.split("/")[0]);
+			var annee = parseInt(date.split("/")[1]);
+			
+			$(".news .mois option[value="+mois+"]").prop("selected", true);
+			console.log(annee);
+			$(".news .annee option[value="+annee+"]").prop("selected", true);
+			
 			$(".news .titre").html(news.titre);
 			
 			this.mediaUtils.renderImage(".news", news.image);
