@@ -424,6 +424,10 @@ ul.menu-liste li:hover {
 	border: 1px solid;
 }
 
+.url-popup {
+	width: 90%;
+}
+
 /**
 * Liste des livres
 **/
