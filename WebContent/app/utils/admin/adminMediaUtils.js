@@ -7,11 +7,15 @@ define(["jquery",
 			
 			$("#newImg").click(function() {
 				that.popup = "img";
+				$(".url-popup").val("");
 				$("#newObject").show();
+				$(".url-popup").focus();
 			});
 			$("#newVideo").click(function() {
 				that.popup = "video";
+				$(".url-popup").val("");
 				$("#newObject").show();
+				$(".url-popup").focus();
 			});
 			
 			$(".popup .annuler").click(function(){
