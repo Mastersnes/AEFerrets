@@ -35,7 +35,6 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 			var annee = parseInt(date.split("/")[1]);
 			
 			$(".news .mois option[value="+mois+"]").prop("selected", true);
-			console.log(annee);
 			$(".news .annee option[value="+annee+"]").prop("selected", true);
 			
 			$(".news .titre").html(news.titre);

@@ -4,6 +4,28 @@ define(["jquery",
 	return function(){
 		this.makeEvents = function() {
 			var that = this;
+			
+			$("#newImg").click(function() {
+				that.popup = "img";
+				$("#newObject").show();
+			});
+			$("#newVideo").click(function() {
+				that.popup = "video";
+				$("#newObject").show();
+			});
+			
+			$(".popup .annuler").click(function(){
+				$(this).closest(".popup").hide();
+			});
+			$(".popup .ok").click(function(){
+				var url = $(".url-popup").val();
+				if (that.popup == "img") {
+					that.createImage(".news", url);
+				}else {
+					that.createVideo(".news", url);
+				}
+				$(this).closest(".popup").hide();
+			});
 		};
 		
 		/**
@@ -20,38 +42,32 @@ define(["jquery",
 					this.createImage(element, img);
 				}
 			}
-			this.createImage(element, "Nouvelle Image", true);
 		};
 		
 		/**
 		 * Permet de creer une image dans le dom
 		 */
-		this.createImage = function(element, image, isNew) {
+		this.createImage = function(element, image) {
 			if (image == null || image == undefined || image == "") return null;
 			
 			var li = document.createElement("li");
 			
 			var imgName = document.createElement("a");
 			$(imgName).text(image);
+			var that = this;
 			$(imgName).click(function() {
-				if (isNew) {
-					$("#newObject").show();
-				}else {
-					window.open(image, "_blank");
-				}
+				window.open(image, "_blank");
 			});
 			
 			$(li).append(imgName);
 			
-			if (!isNew) {
-				var del = document.createElement("button");
-				$(del).text("X");
-				$(del).click(function() {
-					$(li).remove();
-				});
-				
-				$(li).append(del);
-			}
+			var del = document.createElement("button");
+			$(del).text("X");
+			$(del).click(function() {
+				$(li).remove();
+			});
+			
+			$(li).append(del);
 			
 			$(element).find("#liste-img").append(li);
 		};
@@ -70,39 +86,32 @@ define(["jquery",
 					this.createVideo(element, video);
 				}
 			}
-			
-			this.createVideo(element, "Nouvelle Video", true);
 		};
 		
 		/**
 		 * Permet de creer une video dans le dom
 		 */
-		this.createVideo = function(element, video, isNew) {
+		this.createVideo = function(element, video) {
 			if (video == null || video == undefined || video == "") return null;
 			
 			var li = document.createElement("li");
 			
 			var videoName = document.createElement("a");
 			$(videoName).text(video);
+			var that = this;
 			$(videoName).click(function() {
-				if (isNew) {
-					$("#newObject").show();
-				}else {
-					window.open(video, "_blank");
-				}
+				window.open(video, "_blank");
 			});
 			
 			$(li).append(videoName);
 			
-			if (!isNew) {
-				var del = document.createElement("button");
-				$(del).text("X");
-				$(del).click(function() {
-					$(li).remove();
-				});
-				
-				$(li).append(del);
-			}
+			var del = document.createElement("button");
+			$(del).text("X");
+			$(del).click(function() {
+				$(li).remove();
+			});
+			
+			$(li).append(del);
 			
 			$(element).find("#liste-video").append(li);
 		};
