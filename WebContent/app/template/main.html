@@ -1,4 +1,11 @@
 <div class="mainPage">
+	<div class="panier" id="panier">
+        <i class="fa fa-shopping-cart fa-5x"></i>
+        <span class="panier-new fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
+        </span>
+	</div>
 	<div class="header"></div>
 	<div class="header-menu">
 		<ul>
@@ -48,6 +55,8 @@
 	Veuillez placer votre appareil en mode paysage.<br/>
 	Merci
 </div>
+
+<!-- Zoom sur une image -->
 <div class="grosseImage popup">
 	<div class="button preview">&lt;</div>
 	<img alt="" src="">
@@ -55,4 +64,15 @@
 	<div class="button next">&gt;</div>
 	<div class="mask popup">
 	</div>
+</div>
+
+<!-- Popup listant les articles du panier -->
+<div id="panier-popup" class="popup">
+    <div class="panier-popup-content">
+        <div class="button close panier-close">X</div>
+        <ul class="panier-articles">
+        </ul>
+    </div>
+    <div class="mask popup">
+    </div>
 </div>

@@ -5,13 +5,13 @@ define(["jquery",
 function($, _, page) {
 	'use strict';
 
-	return function() {
-		this.init = function() {
+	return function(parent) {
+		this.init = function(parent) {
+			this.panier = parent.panier;
 			this.el = $(".consultPage");
 		};
 
 		this.show = function(livre) {
-			console.log(livre);
 			this.width = 0;
 			this.livre = livre;
 			this.render();
@@ -87,14 +87,11 @@ function($, _, page) {
 					window.open(link, "_blank");
 				}
 			});
-			$("#paypal-button").click(function() {
-				$("#paypal #item_name").val($(this).attr("name"));
-				$("#paypal #amount").val($(this).attr("price"));
-				
-				$("#paypal").submit();
+			$("#add-panier-button").click(function() {
+				that.panier.addArticle($(this).attr("name"), $(this).attr("price"));
 			});
 		};
 		
-		this.init();
+		this.init(parent);
 	};
 });

@@ -606,6 +606,42 @@ ul.menu-liste li:hover {
 }
 
 /**
+* Panier
+**/
+.panier {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	right: 1%;
+}
+.panier-new {
+	position: absolute !important;
+	color: red;
+	right: 10%;
+	top: 0%;
+}
+.panier-popup-content {
+	position: relative;
+	z-index: 2;
+	
+	background-color: white;
+	border: 1px solid;
+	height: 50%;
+	width: 50%;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	margin-top: 50vh;
+    transform: translateY(-50%);
+}
+.panier-close {
+	right: -1%;
+	top: -3%;
+	width: 4% !important;
+}
+
+/**
 * Admin
 **/
 .adminPage {
