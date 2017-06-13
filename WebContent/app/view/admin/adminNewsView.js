@@ -4,8 +4,9 @@ define(["jquery",
         "app/utils/utils", 
         "app/utils/admin/adminMediaUtils", 
         "text!app/template/admin/adminNews.html",
-        "app/model/newsModel"], 
-function($, _, Utils, MediaUtils, page, NewsModel) {
+        "app/model/newsModel",
+        "app/model/admin/saveNewsModel"], 
+function($, _, Utils, MediaUtils, page, NewsModel, SaveNewsModel) {
 	'use strict';
 
 	return function(parent) {
@@ -14,6 +15,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 			this.el = $(".adminCorps");
 			this.mediaUtils = new MediaUtils();
 			this.model = new NewsModel();
+			this.saveModel = new SaveNewsModel();
 			this.select = 0;
 		};
 
@@ -27,8 +29,13 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 			this.makeEvents();
 		};
 		
-		this.renderNews = function() {
-			var news = this.listNews[this.select];
+		this.renderNews = function(newsVierge) {
+			var news;
+			if (newsVierge) {
+				news = newsVierge;
+			}else {
+				news = this.listNews[this.select];
+			}
 			
 			var date = this.model.data.date;
 			var mois = parseInt(date.split("/")[0]);
@@ -52,7 +59,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 				$(".news .preview").css("width", "100%");
 			}
 			
-			if (this.select < this.listNews.length-1 || this.preview) {
+			if ((this.select >= 0 && this.select < this.listNews.length-1) || this.preview) {
 				$(".news .preview").show();
 				$(".news .next").css("width", "50%");
 			}else {
@@ -99,9 +106,14 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 				}
 			});
 			$(".img img").click(function(e) {
-				console.log("here");
 				that.imgSelect = $(this);
 				$("#menu-media").show();
+			});
+			$("#new-news").click(function(e) {
+				that.resetAll();
+			});
+			$("#save-news").click(function(e) {
+				that.saveAndSend();
 			});
 		};
 		
@@ -113,6 +125,7 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 		};
 		
 		this.load = function(makeLast) {
+			this.newNews = false;
 			var that = this;
 			Utils.load("news", this.model.data, function(data) {
 				var codeRetour = data.codeRetour;
@@ -130,6 +143,48 @@ function($, _, Utils, MediaUtils, page, NewsModel) {
 					that.renderDate(data.date);
 				}
 			}, "POST");
+		};
+		
+		this.resetAll = function() {
+			var today = new Date();
+			
+			this.model.data.date = (today.getMonth()+1) + "/" + today.getFullYear();
+			
+			var newsVierge = {
+					titre : "Titre de la nouvelle news",
+					texte : "Texte de la nouvelle news",
+					image : "",
+					video : ""
+			};
+			
+			this.newNews = true;
+			this.preview = false;
+			this.next = false;
+			this.select = -1;
+			this.renderNews(newsVierge);
+		};
+		
+		this.saveAndSend = function() {
+			this.saveModel.data.mdp = this.parent.model.data.mdp;
+			this.saveModel.data.index = this.select;
+			this.saveModel.data.date = $(".date .mois option:selected").text() + "/" + $(".date .annee option:selected").text();
+			this.saveModel.data.titre = $(".titre").text();
+			this.saveModel.data.texte = $(".resume").text();
+			
+			var that = this;
+			this.saveModel.data.image = [];
+			$("#liste-img li").each(function(index, element) {
+				that.saveModel.data.image.push($(element).find("a").text());
+			});
+			this.saveModel.data.video = [];
+			$("#liste-video li").each(function(index, element) {
+				that.saveModel.data.video.push($(element).find("a").text());
+			});
+			console.log(this.saveModel.data)
+			Utils.load("admin/saveNews", this.saveModel.data, function(data) {
+				that.model.setDate(that.saveModel.data.date);
+				that.load();
+			});
 		};
 		
 		this.init(parent);

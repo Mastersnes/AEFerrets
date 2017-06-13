@@ -123,6 +123,15 @@
         <servlet-name>RefreshServlet</servlet-name>
         <url-pattern>/admin/refresh</url-pattern>
     </servlet-mapping>
+	<!-- SaveNews -->
+    <servlet>
+        <servlet-name>SaveNewsServlet</servlet-name>
+        <servlet-class>servlet.admin.save.news.SaveNewsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveNewsServlet</servlet-name>
+        <url-pattern>/admin/saveNews</url-pattern>
+    </servlet-mapping>
     
     
     <filter>

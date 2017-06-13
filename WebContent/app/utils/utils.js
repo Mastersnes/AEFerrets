@@ -6,6 +6,7 @@ define(["jquery"], function($){
 		**/
 		load : function(url, params, successC, type) {
 			if (!type) type = "POST";
+			console.log("appel de : " + url + " avec : " + JSON.stringify(params))
 			$.ajax({
 	            type: type,
 	            url: url,

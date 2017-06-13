@@ -47,7 +47,7 @@ function($, _, Utils, page, AdminModel, AdminNewsView) {
 			var that = this;
 			$("#setNews").click(function() {
 				if (!this.adminNews) {
-					this.adminNews = new AdminNewsView(this);
+					this.adminNews = new AdminNewsView(that);
 				}
 				this.adminNews.show();
 			});
