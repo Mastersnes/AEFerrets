@@ -15,7 +15,6 @@ define(["jquery",
 		
 		this.render = function() {
 			_.templateSettings.variable = "data";
-			console.log(page);
 			var template = _.template(page);
 			var templateData = {};
 			this.el.html(template(templateData));
@@ -49,11 +48,6 @@ define(["jquery",
 			if (this.listArticle.length == 0) $(".panier").hide("slow");
 		};
 		
-		this.removeAll = function(article) {
-			this.listArticle.length = 0;
-			$(".panier").hide("slow");
-		};
-		
 		this.showArticles = function() {
 			this.refreshArticles();
 			$("#panier-popup").show();
@@ -62,18 +56,29 @@ define(["jquery",
 		this.refreshArticles = function() {
 			$(".panier-articles").empty();
 			var total = 0;
+			var that = this;
 			for (var index in this.listArticle) {
 				var article = this.listArticle[index];
 				var li = $("<li/>");
-				li.text(article.name + " : " + article.price);
+				li.attr("index", index);
+				li.text(article.name + " : " + article.price + " euros");
 				$(".panier-articles").append(li);
-				total += parseFloat(article.price);
+				
+				total = ((total*100000) + (parseFloat(article.price) * 100000)) / 100000;
 			}
+			
+			$(".panier-articles li").click(function(e) {
+				var index = $(this).attr("index");
+				that.listArticle.splice(index, 1);
+				that.refreshArticles();
+			});
+			
 			// Si on a au moins un element, on affiche le total
 			if (total > 0) {
-				var li = $("<li/>");
-				li.text("Total : " + total);
-				$(".panier-articles").append(li);
+				$(".panier-popup-content .total").text("Total : " + total.toFixed(2) + " euros + frais de livraison");
+			}else {
+				$("#panier-popup").hide();
+				$(".panier").hide("slow");
 			}
 		};
 		
