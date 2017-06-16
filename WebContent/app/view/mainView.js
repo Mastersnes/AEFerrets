@@ -2,7 +2,6 @@
 define(["jquery",
         'underscore', 
         "app/utils/utils", 
-        "app/utils/panier", 
         "app/utils/tracking",
         "text!app/template/main.html",
         "app/view/accueilView",
@@ -12,10 +11,11 @@ define(["jquery",
         "app/view/salonsView",
         "app/view/moiView",
         "app/view/consultView",
-        "app/view/liseuseView"], 
-function($, _, Utils, Panier, tracker, page, 
+        "app/view/liseuseView",
+        "app/view/panierView"], 
+function($, _, Utils, tracker, page, 
 		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
-		ConsultView, LiseuseView) {
+		ConsultView, LiseuseView, PanierView) {
 	'use strict';
 
 	return function() {
@@ -41,7 +41,7 @@ function($, _, Utils, Panier, tracker, page,
 			
 			this.chargeAccueil();
 			this.gereMenu();
-			this.panier = new Panier();
+			this.panier = new PanierView();
 			this.consultation = new ConsultView(this);
 			this.liseuse = new LiseuseView();
 			
@@ -135,9 +135,6 @@ function($, _, Utils, Panier, tracker, page,
 			var that = this;
 			$(".link").click(function() {
 				tracker.push('Click sur le lien : ' + $(this).attr("title"));
-			});
-			$(".panier").click(function() {
-				that.panier.showArticles();
 			});
 		};
 		

@@ -489,7 +489,7 @@ ul.menu-liste li:hover {
     transform: scale(1.5);
     text-align: center;
     line-height: 160%;
-    z-index: 99;
+    z-index: 10;
     cursor: pointer;
 }
 .consultPage .contenu {
@@ -610,9 +610,11 @@ ul.menu-liste li:hover {
 **/
 .panier {
 	position: absolute;
+	display: none;
 	cursor: pointer;
-	top: 0;
-	right: 1%;
+	top: 1%;
+	right: 3%;
+	z-index: 20;
 }
 .panier-new {
 	position: absolute !important;
@@ -622,7 +624,7 @@ ul.menu-liste li:hover {
 }
 .panier-popup-content {
 	position: relative;
-	z-index: 2;
+	z-index: 20;
 	
 	background-color: white;
 	border: 1px solid;
@@ -639,6 +641,9 @@ ul.menu-liste li:hover {
 	right: -1%;
 	top: -3%;
 	width: 4% !important;
+}
+.panier-articles {
+	list-style-type: none;
 }
 
 /**
