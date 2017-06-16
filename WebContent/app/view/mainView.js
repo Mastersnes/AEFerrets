@@ -15,7 +15,7 @@ define(["jquery",
         "app/view/panierView"], 
 function($, _, Utils, tracker, page, 
 		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
-		ConsultView, LiseuseView, PanierView) {
+		ConsultView, LiseuseView, PanierView, LivraisonView) {
 	'use strict';
 
 	return function() {
