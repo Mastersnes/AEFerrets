@@ -91,3 +91,4 @@ define(["jquery",
 		
 		this.init();
 	};
+});
