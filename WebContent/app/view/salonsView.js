@@ -12,7 +12,7 @@ function($, _, Utils, tracker, MediaUtils, page, SalonsModel) {
 	return function(parent) {
 		this.init = function(parent) {
 			this.parent = parent;
-			this.el = $(".corps");
+			this.el = $(".mainPage .corps");
 			this.model = new SalonsModel();
 			this.mediaUtils = new MediaUtils();
 		};

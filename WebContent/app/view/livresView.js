@@ -21,7 +21,7 @@ function($, _, Utils, page) {
 			}else {
 				this.model = this.parent.livres;				
 			}
-			this.el = $(".corps");
+			this.el = $(".mainPage .corps");
 		};
 
 		this.render = function() {

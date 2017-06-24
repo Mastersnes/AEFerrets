@@ -7,7 +7,7 @@ function($, _, page) {
 
 	return function() {
 		this.init = function() {
-			this.el = $(".corps");
+			this.el = $(".mainPage .corps");
 		};
 
 		this.render = function() {

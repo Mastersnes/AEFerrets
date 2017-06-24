@@ -12,7 +12,7 @@ function($, _, Utils, tracker, MediaUtils, page, NewsModel) {
 	return function(parent) {
 		this.init = function(parent) {
 			this.parent = parent;
-			this.el = $(".corps");
+			this.el = $(".mainPage .corps");
 			this.mediaUtils = new MediaUtils();
 			this.model = new NewsModel();
 			this.select = 0;

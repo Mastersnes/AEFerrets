@@ -10,7 +10,7 @@ function($, _, Utils, MediaUtils, page) {
 	return function(parent) {
 		this.init = function(parent) {
 			this.parent = parent;
-			this.el = $(".corps");
+			this.el = $(".mainPage .corps");
 			this.mediaUtils = new MediaUtils();
 		};
 

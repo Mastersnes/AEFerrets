@@ -1,25 +1,34 @@
 <!-- Formulaire de livraison redirigeant vers paypal -->
 <div class="formulaire">
-	<div class="form-item">
-		<label for="nom">Nom : </label>
-		<input type="text" name="nom" id="nom" placeholder="Nom"/>
-	</div>
-	<div class="form-item">
-		<label for="prenom">Prenom : </label>
-		<input type="text" name="prenom" id="prenom" placeholder="Prenom"/>
-	</div>
-	<div class="form-item">
-		<label for="prenom">Adresse : </label>
-		<input type="text" name="adresse" id="adresse" placeholder="Adresse"/>
-	</div>
-	<div class="form-item">
-		<div class="form-inline">
-			<label for="prenom">Code Postal : </label>
-			<input type="text" name="cp" id="cp" placeholder="00000"/>
+	<div class="header"></div>
+	<div class="content">
+		<div class="left"></div>
+		<div class="corps centralBloc">
+			<div class="form-item">
+				<label for="nom">Nom : </label>
+				<input type="text" name="nom" id="nom" placeholder="Nom"/>
+			</div>
+			<div class="form-item">
+				<label for="prenom">Prenom : </label>
+				<input type="text" name="prenom" id="prenom" placeholder="Prenom"/>
+			</div>
+			<div class="form-item">
+				<label for="adresse">Adresse : </label>
+				<input type="text" name="adresse" id="adresse" placeholder="Adresse"/>
+			</div>
+			<div class="form-item">
+				<label for="cp">Code Postal : </label>
+				<input type="text" name="cp" id="cp" placeholder="00000"/>
+			</div>
+			<div class="form-item">
+				<label for="ville">Ville : </label>
+				<input type="text" name="ville" id="ville" placeholder="Ville"/>
+			</div>
+			<div class="form-item">
+				<span class="form-link" href="#">Annuler la commande</span>
+				<span title="Paiement via paypal sans inscription" class="form-link" href="#">Payer par carte bancaire</span>
+			</div>
 		</div>
-		<div class="form-inline">
-			<label for="prenom">Ville : </label>
-			<input type="text" name="ville" id="ville" placeholder="Ville"/>
-		</div>
+		<div class="right"></div>
 	</div>
 </div>
