@@ -737,7 +737,7 @@ ul.menu-liste li:hover {
 .form-link {
 	font-size: 1.3em;
 	cursor: pointer;
-	padding-right: 2;
+	padding-right: 2%;
 	padding-left: 2%;
 	
 	border-left: 1px solid;

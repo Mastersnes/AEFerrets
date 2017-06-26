@@ -22,6 +22,9 @@ define(["jquery",
 		
 		this.makeEvents = function() {
 			var that = this;
+			$("#formulaire-livraison .close").click(function() {
+				$("#formulaire-livraison").hide();
+			});
 		};
 		
 		this.show = function() {
