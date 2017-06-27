@@ -9,7 +9,13 @@ define(["jquery",
 	return function(){
 		this.init = function() {
 			this.el = $("#panier-popup");
-			this.listArticle = [];
+			this.listArticle = JSON.parse(sessionStorage.getItem("aeferrets.panier"));
+			console.log(this.listArticle);
+			if (!this.listArticle) {
+				this.listArticle = [];
+			}else {
+				$(".panier").show("slow");
+			}
 			
 			this.render();
 		};
@@ -46,13 +52,21 @@ define(["jquery",
 					price : price
 			};
 			this.listArticle.push(article);
+			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
+			
 			$(".panier").show("slow");
 		};
 		
 		this.removeArticle = function(id) {
 			this.listArticle.slice(id, 1);
+			
+			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
+			
 			this.refreshArticles();
-			if (this.listArticle.length == 0) $(".panier").hide("slow");
+			if (this.listArticle.length == 0) {
+				sessionStorage.removeItem("aeferrets.panier");
+				$(".panier").hide("slow");
+			}
 		};
 		
 		this.showArticles = function() {
