@@ -3,12 +3,14 @@ define(["jquery",
         'underscore',
         "app/utils/utils", 
         "app/utils/tracking",
-        "text!app/template/livraison.html"
-        ], function($, _, Utils, tracker, page){
+        "text!app/template/livraison.html",
+        "app/validator/livraisonValidator"
+        ], function($, _, Utils, tracker, page, LivraisonValidator){
 	return function(){
 		this.init = function() {
 			this.el = $("#formulaire-livraison");
 			this.panier = null;
+			this.validator = new LivraisonValidator();
 		};
 		
 		this.render = function(panier) {
@@ -20,10 +22,10 @@ define(["jquery",
 			this.el.html(template(templateData));
 			
 			this.makeEvents();
+			this.validator.makeEvents();
 			
 			this.el.show();
 			
-			console.log("scrollTop");
 			this.el.find(".corps").scrollTop(0);
 		};
 		
