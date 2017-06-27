@@ -10,7 +10,6 @@ define(["jquery",
 		this.init = function() {
 			this.el = $("#panier-popup");
 			this.listArticle = JSON.parse(sessionStorage.getItem("aeferrets.panier"));
-			console.log(this.listArticle);
 			if (!this.listArticle) {
 				this.listArticle = [];
 			}else {
@@ -42,7 +41,7 @@ define(["jquery",
 			});
 			
 			$("#panier-popup .next").click(function() {
-				that.livraison.show();
+				that.livraison.render(that.listArticle);
 			});
 		};
 		

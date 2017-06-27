@@ -1,30 +1,58 @@
 <!-- Formulaire de livraison redirigeant vers paypal -->
 <div class="formulaire">
 	<div class="header"></div>
-	<div class="content">
+	<div class="header-menu"></div>
+	<div class="content flottant">
 		<div class="left"></div>
 		<div class="corps centralBloc">
-			<div class="form-item">
-				<label for="nom">Nom : </label>
-				<input type="text" name="nom" id="nom" placeholder="Nom"/>
-			</div>
-			<div class="form-item">
-				<label for="prenom">Prenom : </label>
-				<input type="text" name="prenom" id="prenom" placeholder="Prenom"/>
-			</div>
-			<div class="form-item">
-				<label for="adresse">Adresse : </label>
-				<input type="text" name="adresse" id="adresse" placeholder="Adresse"/>
-			</div>
-			<div class="form-item">
-				<label for="cp">Code Postal : </label>
-				<input type="text" name="cp" id="cp" placeholder="00000"/>
-			</div>
-			<div class="form-item">
-				<label for="ville">Ville : </label>
-				<input type="text" name="ville" id="ville" placeholder="Ville"/>
-			</div>
-			<div class="form-item">
+			<fieldset>
+			    <legend>Informations de livraison</legend>
+				<div class="form-item">
+					<label for="nom">Nom : </label>
+					<input type="text" name="nom" id="nom" placeholder="Nom"/>
+				</div>
+				<div class="form-item">
+					<label for="prenom">Pr&eacute;nom : </label>
+					<input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom"/>
+				</div>
+				<div class="form-item">
+					<label for="adresse">Adresse : </label>
+					<input type="text" name="adresse" id="adresse" placeholder="Adresse"/>
+				</div>
+				<div class="form-item">
+					<label for="cp">Code Postal : </label>
+					<input type="text" name="cp" id="cp" placeholder="00000"/>
+				</div>
+				<div class="form-item">
+					<label for="ville">Ville : </label>
+					<input type="text" name="ville" id="ville" placeholder="Ville"/>
+				</div>
+			</fieldset>
+			<fieldset>
+			    <legend>Informations de commande</legend>
+				<div id="dedicaces">
+					<% 
+			            for (var index in data.panier) {
+			            var article = data.panier[index];
+			        %>
+						<div class="form-item">
+							<label for="dedicace<%=index%>">D&eacute;dicace pour <%=article.name%> : </label>
+							<% if (index == 0) { %>
+							    <input type="text" name="dedicace<%=index%>" id="dedicace<%=index%>" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison"/>
+							<% } else { %>
+							    <input type="text" name="dedicace<%=index%>" id="dedicace<%=index%>" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace"/>
+							<% } %>
+						</div>
+					<%
+					   }
+					%>
+				</div>
+				<div class="form-item">
+					<label for="commentaire">Commentaire : </label>
+					<textarea name="commentaire" id="commentaire" placeholder="Veuillez indiquer ici toutes informations n&eacute;cessaire au bon d&eacute;roulement de la livraison (Volont&eacute; particuli&eacute;re pour un cadeau, etc...)"/>
+				</div>
+			</fieldset>
+			<div class="form-button">
 				<span class="form-link close" href="#">Annuler la commande</span>
 				<span title="Paiement via paypal sans inscription" class="form-link" href="#">Payer par carte bancaire</span>
 			</div>

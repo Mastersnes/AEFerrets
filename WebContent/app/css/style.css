@@ -693,13 +693,13 @@ ul.menu-liste li:hover {
 	width: 100%;
 	height: 100%;
 }
-.form-item:first-of-type {
-	padding-top: 3%;
+.formulaire .corps {
+	overflow: auto;
 }
-.form-item {
+.formulaire .form-item {
 	padding-bottom: 1%;
 }
-.form-item:last-of-type {
+.formulaire .form-button {
 	padding-top: 3%;
 }
 .form-item label {
@@ -709,8 +709,9 @@ ul.menu-liste li:hover {
     font-weight: 700;
     width: 15%;
     text-align: left;
+    vertical-align: top;
 }
-.form-item input {
+.form-item input, .form-item textarea {
 	display: inline-block;
     width: 80%;
     height: 34px;
@@ -727,6 +728,9 @@ ul.menu-liste li:hover {
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-item textarea {
+	height: 10%;
 }
 .form-item input:focus {
 	border-color: #66afe9;
