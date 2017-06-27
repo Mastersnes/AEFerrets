@@ -40,11 +40,12 @@
 			            var article = data.panier[index];
 			        %>
 						<div class="form-item">
+							<input id="active-dedicace" key="<%=index%>" type="checkbox" title="dedicace" checked="checked" />
 							<label for="dedicace<%=index%>">D&eacute;dicace pour <%=article.name%> : </label>
 							<% if (index == 0) { %>
-							    <input type="text" name="dedicace<%=index%>" id="dedicace<%=index%>" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison"/>
+							    <input type="text"  name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison"/>
 							<% } else { %>
-							    <input type="text" name="dedicace<%=index%>" id="dedicace<%=index%>" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace"/>
+							    <input type="text" name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace"/>
 							<% } %>
 						</div>
 					<%
@@ -52,8 +53,9 @@
 					%>
 				</div>
 				<div class="form-item">
-					<label for="commentaire">Commentaire : </label>
-					<textarea name="commentaire" id="commentaire" placeholder="Veuillez indiquer ici toutes informations n&eacute;cessaire au bon d&eacute;roulement de la livraison (Volont&eacute; particuli&eacute;re pour un cadeau, etc...)"/>
+					<label for="commentaire">Message &agrave; l'auteure : </label>
+					<textarea name="commentaire" id="commentaire">
+					</textarea>
 				</div>
 			</fieldset>
 			<div class="form-button">
