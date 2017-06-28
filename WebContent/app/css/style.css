@@ -694,7 +694,8 @@ ul.menu-liste li:hover {
 	height: 100%;
 }
 .formulaire .corps {
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 .formulaire .form-item {
 	padding-bottom: 1%;
@@ -711,7 +712,7 @@ ul.menu-liste li:hover {
     text-align: left;
     vertical-align: top;
 }
-.form-item input[type="text"], .form-item textarea {
+.form-item input, .form-item textarea {
 	display: inline-block;
 	text-align: left;
     width: 80%;
@@ -737,6 +738,13 @@ ul.menu-liste li:hover {
 }
 .form-item input[type="checkbox"] {
     margin-left: -20px;
+    width: auto;
+    min-width: inherit;
+    max-width: inherit;
+    padding: 0;
+    text-align: inherit;
+    line-height: inherit;
+    height: auto;
 }
 .form-item input:focus {
 	border-color: #66afe9;

@@ -22,7 +22,7 @@
 					</div>
 					<div class="form-item">
 						<label for="cp">Code Postal* : </label>
-						<input type="number" name="cp" id="cp" placeholder="00000" autocomplete="on" required maxlength="5"/>
+						<input type="number" name="cp" id="cp" placeholder="00000" autocomplete="on" required maxlength="5" minlength="5"/>
 					</div>
 					<div class="form-item">
 						<label for="ville">Ville* : </label>
@@ -67,3 +67,15 @@
 		<div class="right"></div>
 	</div>
 </div>
+<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<!-- Parametres generaux -->
+	<input type="hidden" name="cmd" value="_cart">
+	<input type="hidden" name="upload" value="1">
+	<input type="hidden" name="business" value="aeferrets@gmail.com">
+	<input type="hidden" name="currency_code" value="EUR">
+	      
+	<!-- Parametre de redirection -->
+	<input type="hidden" name="return" value="">
+	<input type="hidden" name="cancel_return" value="">
+	<input type="hidden" name="image_url" value="">
+</form>

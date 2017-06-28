@@ -14,6 +14,7 @@ define(["jquery",
 		};
 		
 		this.render = function(panier) {
+			this.panier = panier;
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
 			var templateData = {
@@ -22,7 +23,7 @@ define(["jquery",
 			this.el.html(template(templateData));
 			
 			this.makeEvents();
-			this.validator.makeEvents();
+			this.validator.makeEvents(this);
 			
 			this.el.show();
 			
@@ -43,6 +44,34 @@ define(["jquery",
 					nextInput.attr("disabled", "true");
 				}
 			});
+		};
+		
+		this.submit = function() {
+			for (var index in this.panier) {
+				var id = parseInt(index)+1;
+	            var article = this.panier[index];
+	            this.addToCart(id, article.name, article.price);
+			}
+			
+			this.addToCart(this.panier.length+1, "Frais de livraison", "4.50");
+			
+			$("#paypal-form").submit();
+		};
+		
+		this.addToCart = function(index, name, price) {
+			var articleName = $("<input />");
+            articleName.attr("id", "item_name_"+index);
+            articleName.attr("name", "item_name_"+index);
+            articleName.attr("value", name);
+            articleName.hide();
+            $("#paypal-form").append(articleName);
+            
+            var articlePrice = $("<input />");
+            articlePrice.attr("id", "amount_"+index);
+            articlePrice.attr("name", "amount_"+index);
+            articlePrice.attr("value", price);
+            articlePrice.hide();
+            $("#paypal-form").append(articlePrice);
 		};
 		
 		this.init();
