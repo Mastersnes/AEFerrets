@@ -34,6 +34,15 @@ define(["jquery",
 			$("#formulaire-livraison .close").click(function() {
 				that.el.hide();
 			});
+			$(".form-item #active-dedicace").change(function() {
+				var nextInput = $(this).nextAll("input[type=text]:first");
+				if ($(this).is(":checked")) {
+					nextInput.removeAttr("disabled");
+				}else {
+					console.log(nextInput);
+					nextInput.attr("disabled", "true");
+				}
+			});
 		};
 		
 		this.init();

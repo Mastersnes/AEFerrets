@@ -5,63 +5,64 @@
 	<div class="content flottant">
 		<div class="left"></div>
 		<div class="corps centralBloc">
-			<fieldset>
-			    <legend>Informations de livraison</legend>
-				<div class="form-item">
-					<label for="nom">Nom : </label>
-					<input type="text" name="nom" id="nom" placeholder="Nom" autocomplete="on" autofocus="autofocus"/>
+			<form id="livraison-form">
+				<fieldset>
+				    <legend>Informations de livraison</legend>
+					<div class="form-item">
+						<label for="nom">Nom* : </label>
+						<input type="text" name="nom" id="nom" placeholder="Nom" autocomplete="on" autofocus="autofocus" required/>
+					</div>
+					<div class="form-item">
+						<label for="prenom">Pr&eacute;nom* : </label>
+						<input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" autocomplete="on" required/>
+					</div>
+					<div class="form-item">
+						<label for="adresse">Adresse* : </label>
+						<input type="text" name="adresse" id="adresse" placeholder="Adresse" autocomplete="on" required/>
+					</div>
+					<div class="form-item">
+						<label for="cp">Code Postal* : </label>
+						<input type="number" name="cp" id="cp" placeholder="00000" autocomplete="on" required maxlength="5"/>
+					</div>
+					<div class="form-item">
+						<label for="ville">Ville* : </label>
+						<input type="text" name="ville" id="ville" placeholder="Ville" autocomplete="on" required/>
+					</div>
+					<div class="form-item">
+						<label for="email">Email* : </label>
+						<input type="email" name="email" id="email" placeholder="Email" autocomplete="on" required/>
+					</div>
+				</fieldset>
+				<fieldset>
+				    <legend>Informations de commande</legend>
+					<div id="dedicaces">
+						<% 
+				            for (var index in data.panier) {
+				            var article = data.panier[index];
+				        %>
+							<div class="form-item">
+								<input id="active-dedicace" key="<%=index%>" type="checkbox" title="dedicace" checked="checked" />
+								<label for="dedicace<%=index%>">D&eacute;dicace pour <%=article.name%> : </label>
+								<% if (index == 0) { %>
+								    <input type="text"  name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison"/>
+								<% } else { %>
+								    <input type="text" name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace"/>
+								<% } %>
+							</div>
+						<%
+						   }
+						%>
+					</div>
+					<div class="form-item">
+						<label for="commentaire">Informations compl&eacute;mentaires : </label>
+						<textarea name="commentaire" id="commentaire" placeholder="Vous pouvez noter ici tous compl&eacute;ments concernant la livraison ou encore un petit mot pour l'auteur."></textarea>
+					</div>
+				</fieldset>
+				<div class="form-button">
+					<span class="form-link close">Annuler la commande</span>
+					<span title="Paiement via paypal sans inscription" class="form-link validate">Payer par carte bancaire</span>
 				</div>
-				<div class="form-item">
-					<label for="prenom">Pr&eacute;nom : </label>
-					<input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" autocomplete="on"/>
-				</div>
-				<div class="form-item">
-					<label for="adresse">Adresse : </label>
-					<input type="text" name="adresse" id="adresse" placeholder="Adresse" autocomplete="on"/>
-				</div>
-				<div class="form-item">
-					<label for="cp">Code Postal : </label>
-					<input type="number" name="cp" id="cp" placeholder="00000" autocomplete="on"/>
-				</div>
-				<div class="form-item">
-					<label for="ville">Ville : </label>
-					<input type="text" name="ville" id="ville" placeholder="Ville" autocomplete="on"/>
-				</div>
-				<div class="form-item">
-					<label for="email">Email : </label>
-					<input type="email" name="email" id="email" placeholder="Email" autocomplete="on"/>
-				</div>
-			</fieldset>
-			<fieldset>
-			    <legend>Informations de commande</legend>
-				<div id="dedicaces">
-					<% 
-			            for (var index in data.panier) {
-			            var article = data.panier[index];
-			        %>
-						<div class="form-item">
-							<input id="active-dedicace" key="<%=index%>" type="checkbox" title="dedicace" checked="checked" />
-							<label for="dedicace<%=index%>">D&eacute;dicace pour <%=article.name%> : </label>
-							<% if (index == 0) { %>
-							    <input type="text"  name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison"/>
-							<% } else { %>
-							    <input type="text" name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace"/>
-							<% } %>
-						</div>
-					<%
-					   }
-					%>
-				</div>
-				<div class="form-item">
-					<label for="commentaire">Message &agrave; l'auteure : </label>
-					<textarea name="commentaire" id="commentaire">
-					</textarea>
-				</div>
-			</fieldset>
-			<div class="form-button">
-				<span class="form-link close" href="#">Annuler la commande</span>
-				<span title="Paiement via paypal sans inscription" class="form-link" href="#">Payer par carte bancaire</span>
-			</div>
+			</form>
 		</div>
 		<div class="right"></div>
 	</div>
