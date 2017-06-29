@@ -10,27 +10,27 @@
 				    <legend>Informations de livraison</legend>
 					<div class="form-item">
 						<label for="nom">Nom* : </label>
-						<input type="text" name="nom" id="nom" placeholder="Nom" autocomplete="on" autofocus="autofocus" required/>
+						<input type="text" name="nom" id="nom" placeholder="Nom" autocomplete="on" autofocus="autofocus" required value="<%=data.sessionFormulaire.nom%>"/>
 					</div>
 					<div class="form-item">
 						<label for="prenom">Pr&eacute;nom* : </label>
-						<input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" autocomplete="on" required/>
+						<input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" autocomplete="on" required value="<%=data.sessionFormulaire.prenom%>"/>
 					</div>
 					<div class="form-item">
 						<label for="adresse">Adresse* : </label>
-						<input type="text" name="adresse" id="adresse" placeholder="Adresse" autocomplete="on" required/>
+						<input type="text" name="adresse" id="adresse" placeholder="Adresse" autocomplete="on" required value="<%=data.sessionFormulaire.adresse%>"/>
 					</div>
 					<div class="form-item">
 						<label for="cp">Code Postal* : </label>
-						<input type="number" name="cp" id="cp" placeholder="00000" autocomplete="on" required maxlength="5" minlength="5"/>
+						<input type="number" name="cp" id="cp" placeholder="00000" autocomplete="on" required maxlength="5" minlength="5" value="<%=data.sessionFormulaire.cp%>"/>
 					</div>
 					<div class="form-item">
 						<label for="ville">Ville* : </label>
-						<input type="text" name="ville" id="ville" placeholder="Ville" autocomplete="on" required/>
+						<input type="text" name="ville" id="ville" placeholder="Ville" autocomplete="on" required value="<%=data.sessionFormulaire.ville%>"/>
 					</div>
 					<div class="form-item">
 						<label for="email">Email* : </label>
-						<input type="email" name="email" id="email" placeholder="Email" autocomplete="on" required/>
+						<input type="email" name="email" id="email" placeholder="Email" autocomplete="on" required value="<%=data.sessionFormulaire.email%>"/>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -40,14 +40,22 @@
 				            for (var index in data.panier) {
 					           var article = data.panier[index];
 					           if (article.needDedicace) {
+					               var articleDedicaceChecked = data.sessionFormulaire["active-dedicace"+index];
+					               console.log("article " + index + " : " + articleDedicaceChecked);
+					               
+					               var dedicaceValue = data.sessionFormulaire["dedicace"+index];
+					               console.log("articleVal " + index + " : " + dedicaceValue);
+					               
+					               if (articleDedicaceChecked == null) articleDedicaceChecked = true;
+					               if (dedicaceValue == null) dedicaceValue = "";
 				        %>
 							<div class="form-item">
-								<input id="active-dedicace" key="<%=index%>" type="checkbox" title="dedicace" checked="checked" />
-								<label for="dedicace<%=index%>">D&eacute;dicace pour <%=article.name%> : </label>
+								<input id="active-dedicace" key="<%=index%>" type="checkbox" title="dedicace" checked='<%=articleDedicaceChecked%>' />
+								<label for="dedicace">D&eacute;dicace pour <%=article.name%> : </label>
 								<% if (index == 0) { %>
-								    <input type="text"  name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison"/>
+								    <input type="text"  name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison" value="<%=dedicaceValue%>"/>
 								<% } else { %>
-								    <input type="text" name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace"/>
+								    <input type="text" name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace" value="<%=dedicaceValue%>"/>
 								<% } %>
 							</div>
 						<%
@@ -57,7 +65,7 @@
 					</div>
 					<div class="form-item">
 						<label for="commentaire">Informations compl&eacute;mentaires : </label>
-						<textarea name="commentaire" id="commentaire" placeholder="Vous pouvez noter ici tous compl&eacute;ments concernant la livraison ou encore un petit mot pour l'auteur."></textarea>
+						<textarea name="commentaire" id="commentaire" placeholder="Vous pouvez noter ici tous compl&eacute;ments concernant la livraison ou encore un petit mot pour l'auteur."><%=data.sessionFormulaire.commentaire%></textarea>
 					</div>
 				</fieldset>
 				<div class="form-button">
