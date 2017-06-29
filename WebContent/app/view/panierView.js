@@ -45,10 +45,11 @@ define(["jquery",
 			});
 		};
 		
-		this.addArticle = function(name, price) {
+		this.addArticle = function(name, price, needDedicace) {
 			var article = {
 					name : name,
-					price : price
+					price : price,
+					needDedicace : needDedicace
 			};
 			this.listArticle.push(article);
 			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
