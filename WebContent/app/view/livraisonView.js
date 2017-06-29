@@ -129,13 +129,13 @@ define(["jquery",
 			for (var index in this.panier) {
 				var id = parseInt(index)+1;
 	            var article = this.panier[index];
-	            this.addToCart(id, article.name, article.price);
+	            this.addToCart(id, article.name, article.price, article.livraison);
 			}
 			
 			/**
 			 * On ajoute les frais de livraison
 			 */
-			this.addToCart(this.panier.length+1, "Frais de livraison", "4.50");
+//			this.addToCart(this.panier.length+1, "Frais de livraison", "4.50");
 			
 			/**
 			 * Puis les informations de livraison
@@ -146,7 +146,7 @@ define(["jquery",
 			this.addVar("first_name", this.model.data.prenom);
 			this.addVar("last_name", this.model.data.nom);
 			this.addVar("zip", this.model.data.cp);
-			this.addVar("image_url", "https://www.babelio.com/users/AVT_AE-Ferrets_672.jpg");
+			this.addVar("image_url", "http://aeferrets.fr.nf/app/img/favicon.png");
 			
 			/**
 			 * Enfin on soumet le formulaire
@@ -157,9 +157,10 @@ define(["jquery",
 		/**
 		 * Permet d'ajouter un article au formulaire paypal
 		 */
-		this.addToCart = function(index, articleName, articlePrice) {
+		this.addToCart = function(index, articleName, articlePrice, articleLivraison) {
 			this.addVar("item_name_"+index, articleName);
 			this.addVar("amount_"+index, articlePrice);
+			this.addVar("shipping_"+index, "1");
 		};
 		
 		/**
