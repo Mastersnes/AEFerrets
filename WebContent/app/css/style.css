@@ -820,7 +820,6 @@ ul.menu-liste li:hover {
 **/
 .error, .info {
 	text-align: center;
-    font-size: -webkit-xxx-large;
     word-wrap: break-word;
 }
 .error {
