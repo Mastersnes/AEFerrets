@@ -146,6 +146,7 @@ define(["jquery",
 			this.addVar("first_name", this.model.data.prenom);
 			this.addVar("last_name", this.model.data.nom);
 			this.addVar("zip", this.model.data.cp);
+			this.addVar("image_url", "https://www.babelio.com/users/AVT_AE-Ferrets_672.jpg");
 			
 			/**
 			 * Enfin on soumet le formulaire

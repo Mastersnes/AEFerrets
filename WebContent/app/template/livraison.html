@@ -36,32 +36,6 @@
 				<fieldset>
 				    <legend>Informations de commande</legend>
 					<div id="dedicaces">
-						<% 
-				            for (var index in data.panier) {
-					           var article = data.panier[index];
-					           if (article.needDedicace) {
-					               var articleDedicaceChecked = data.sessionFormulaire["active-dedicace"+index];
-					               console.log("article " + index + " : " + articleDedicaceChecked);
-					               
-					               var dedicaceValue = data.sessionFormulaire["dedicace"+index];
-					               console.log("articleVal " + index + " : " + dedicaceValue);
-					               
-					               if (articleDedicaceChecked == null) articleDedicaceChecked = true;
-					               if (dedicaceValue == null) dedicaceValue = "";
-				        %>
-							<div class="form-item">
-								<input id="active-dedicace" key="<%=index%>" type="checkbox" title="dedicace" checked='<%=articleDedicaceChecked%>' />
-								<label for="dedicace">D&eacute;dicace pour <%=article.name%> : </label>
-								<% if (index == 0) { %>
-								    <input type="text"  name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le pr&eacute;nom de la livraison" value="<%=dedicaceValue%>"/>
-								<% } else { %>
-								    <input type="text" name="dedicace" key="<%=index%>" id="dedicace" placeholder="Laissez vide pour reprendre le contenu de la premiere d&eacute;dicace" value="<%=dedicaceValue%>"/>
-								<% } %>
-							</div>
-						<%
-						      }
-						  }
-						%>
 					</div>
 					<div class="form-item">
 						<label for="commentaire">Informations compl&eacute;mentaires : </label>
@@ -88,9 +62,4 @@
 	<!-- parametres regionaux -->
 	<input type="hidden" name="country" value="FR">
 	<input type="hidden" name="lc" value="FR">
-	      
-	<!-- Parametre de redirection -->
-	<input type="hidden" name="return" value="">
-	<input type="hidden" name="cancel_return" value="">
-	<input type="hidden" name="image_url" value="app/img/favicon.png">
 </form>
