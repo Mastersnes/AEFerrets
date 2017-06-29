@@ -55,23 +55,28 @@ define(["jquery",
 			
 			this.addToCart(this.panier.length+1, "Frais de livraison", "4.50");
 			
+			this.addVar("address1", $("#livraison-form #adresse").val());
+			this.addVar("city", $("#livraison-form #ville").val());
+			this.addVar("email", $("#livraison-form #email").val());
+			this.addVar("first_name", $("#livraison-form #prenom").val());
+			this.addVar("last_name", $("#livraison-form #nom").val());
+			this.addVar("zip", $("#livraison-form #cp").val());
+			
 			$("#paypal-form").submit();
 		};
 		
-		this.addToCart = function(index, name, price) {
-			var articleName = $("<input />");
-            articleName.attr("id", "item_name_"+index);
-            articleName.attr("name", "item_name_"+index);
-            articleName.attr("value", name);
-            articleName.hide();
-            $("#paypal-form").append(articleName);
-            
-            var articlePrice = $("<input />");
-            articlePrice.attr("id", "amount_"+index);
-            articlePrice.attr("name", "amount_"+index);
-            articlePrice.attr("value", price);
-            articlePrice.hide();
-            $("#paypal-form").append(articlePrice);
+		this.addToCart = function(index, articleName, articlePrice) {
+			this.addVar("item_name_"+index, articleName);
+			this.addVar("amount_"+index, articlePrice);
+		};
+		
+		this.addVar = function(name, value) {
+			var paypalVar = $("<input />");
+			paypalVar.attr("id", name);
+			paypalVar.attr("name", name);
+			paypalVar.attr("value", value);
+			paypalVar.hide();
+            $("#paypal-form").append(paypalVar);
 		};
 		
 		this.init();
