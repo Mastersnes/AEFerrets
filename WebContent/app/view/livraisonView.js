@@ -123,6 +123,8 @@ define(["jquery",
 		 * Soumet le formulaire paypal, si tout se passe bien on envoi un mail
 		 */
 		this.submit = function() {
+			$("#paypal-form #variables").empty();
+			
 			/**
 			 * On remplie ensuite le formulaire paypal avec les articles
 			 */
@@ -172,7 +174,7 @@ define(["jquery",
 			paypalVar.attr("name", name);
 			paypalVar.attr("value", value);
 			paypalVar.hide();
-            $("#paypal-form").append(paypalVar);
+            $("#paypal-form #variables").append(paypalVar);
 		};
 		
 		this.init();
