@@ -69,8 +69,14 @@ function(Utils) {
 			this.data.email = $("#livraison-form #email").val();
 			this.data.commentaire = $("#livraison-form #commentaire").val();
 			$("#livraison-form #active-dedicace").each(function(element) {
-				
+				var index = $(this).attr("key");
+				this.data["active-dedicace"+index] = $(this).prop("checked");
 			});
+			$("#livraison-form #dedicace").each(function(element) {
+				var index = $(this).attr("key");
+				this.data["dedicace"+index] = $(this).val();
+			});
+			sessionStorage.setItem(this.sessionName, JSON.stringify(this.data));
 		};
 		
 		/**
