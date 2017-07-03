@@ -60,6 +60,19 @@ function(Utils) {
 			});
 		}
 		
+		this.bind = function() {
+			this.data.nom = $("#livraison-form #nom").val();
+			this.data.prenom = $("#livraison-form #prenom").val();
+			this.data.adresse = $("#livraison-form #adresse").val();
+			this.data.cp = $("#livraison-form #cp").val();
+			this.data.ville = $("#livraison-form #ville").val();
+			this.data.email = $("#livraison-form #email").val();
+			this.data.commentaire = $("#livraison-form #commentaire").val();
+			$("#livraison-form #active-dedicace").each(function(element) {
+				
+			});
+		};
+		
 		/**
 		 * Sauvegarde une variable du formulaire en session
 		 */

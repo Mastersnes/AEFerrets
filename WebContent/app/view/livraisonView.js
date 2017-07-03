@@ -123,6 +123,8 @@ define(["jquery",
 		 * Soumet le formulaire paypal, si tout se passe bien on envoi un mail
 		 */
 		this.submit = function() {
+			tracker.push('Lancement dun achat');
+			
 			$("#paypal-form #variables").empty();
 			
 			/**
@@ -149,6 +151,11 @@ define(["jquery",
 			this.addVar("last_name", this.model.data.nom);
 			this.addVar("zip", this.model.data.cp);
 			this.addVar("image_url", "http://aeferrets.fr.nf/app/img/favicon.png");
+			
+			
+			Utils.load("achat", this.model.data, function(data) {
+				console.log("Mail envoyé");
+			});
 			
 			/**
 			 * Enfin on soumet le formulaire

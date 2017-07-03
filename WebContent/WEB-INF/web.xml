@@ -55,6 +55,16 @@
 		<url-pattern>/moi</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Achat -->
+    <servlet>
+        <servlet-name>AchatServlet</servlet-name>
+        <servlet-class>servlet.achat.AchatServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AchatServlet</servlet-name>
+        <url-pattern>/achat</url-pattern>
+    </servlet-mapping>
+	
 	<!-- Redirection d'image -->
 	<servlet>
 		<servlet-name>ImageServlet</servlet-name>
@@ -123,7 +133,6 @@
         <servlet-name>RefreshServlet</servlet-name>
         <url-pattern>/admin/refresh</url-pattern>
     </servlet-mapping>
-    
     
     <filter>
         <filter-name>CheckMdp</filter-name>
