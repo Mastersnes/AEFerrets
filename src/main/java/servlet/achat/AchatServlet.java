@@ -68,7 +68,8 @@ public class AchatServlet extends AbstractServlet<AchatServletRequest, GeneralRe
 
         LOGGER.log(Level.INFO, message.toString());
 
-        MailUtils.sendMail("ae.ferrets@gmail.com", subject, message.toString());
+        final MailUtils mailUtils = new MailUtils();
+        mailUtils.sendMail("ae.ferrets@gmail.com", subject, message.toString());
 
 		return response;
 	}

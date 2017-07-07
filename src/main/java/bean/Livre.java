@@ -11,6 +11,8 @@ public class Livre {
 	private String premiere;
 	private String quatrieme;
 	private String resume;
+    private Float price;
+    private Float poids;
 
 	/**
 	 * @return the titre
@@ -71,4 +73,34 @@ public class Livre {
 	public void setResume(final String resume) {
 		this.resume = resume;
 	}
+
+    /**
+     * @return the price
+     */
+    public Float getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price
+     *            the price to set
+     */
+    public void setPrice(final Float price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the poids
+     */
+    public Float getPoids() {
+        return poids;
+    }
+
+    /**
+     * @param poids
+     *            the poids to set
+     */
+    public void setPoids(final Float poids) {
+        this.poids = poids;
+    }
 }

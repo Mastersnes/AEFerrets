@@ -668,6 +668,7 @@ ul.menu-liste li:hover {
 }
 .panier-popup-content .total {
     float: left;
+    text-align: left;
 }
 .panier-popup-content .next {
 	cursor: pointer;

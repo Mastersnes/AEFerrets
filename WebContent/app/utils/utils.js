@@ -4,12 +4,13 @@ define(["jquery"], function($){
 		/**
 		* Permet d'appeler un WS
 		**/
-		load : function(url, params, successC, type) {
+		load : function(url, params, successC, type, async) {
 			if (!type) type = "POST";
+			if (!async) async = false;
 			$.ajax({
 	            type: type,
 	            url: url,
-	            async : false,
+	            async : async,
 	            data: JSON.stringify(params),
 	            contentType: "application/json; charset=utf-8",
 	            dataType: "json",

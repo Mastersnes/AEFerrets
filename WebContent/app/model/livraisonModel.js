@@ -121,7 +121,6 @@ function(Utils) {
 			if (varName) {
 				this.data[varName] = varVal;
 			}
-			console.log(this.data);
 			sessionStorage.setItem(this.sessionName, JSON.stringify(this.data));
 		};
 	};

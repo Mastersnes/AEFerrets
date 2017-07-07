@@ -15,8 +15,9 @@ define(["jquery",
 			this.model = new LivraisonModel();
 		};
 		
-		this.render = function(panier) {
+		this.render = function(panier, fdp) {
 			this.panier = panier;
+			this.fdp = fdp;
 			this.model.init(panier);
 			
 			_.templateSettings.variable = "data";
@@ -130,13 +131,13 @@ define(["jquery",
 			for (var index in this.panier) {
 				var id = parseInt(index)+1;
 	            var article = this.panier[index];
-	            this.addToCart(id, article.name, article.price, article.livraison);
+	            this.addToCart(id, article.name, article.price);
 			}
 			
 			/**
 			 * On ajoute les frais de livraison
 			 */
-//			this.addToCart(this.panier.length+1, "Frais de livraison", "4.50");
+			this.addVar("shipping_1", this.fdp);
 			
 			/**
 			 * Puis les informations de livraison
@@ -150,6 +151,7 @@ define(["jquery",
 			this.addVar("image_url", "http://aeferrets.fr.nf/app/img/favicon.png");
 			
 			this.model.data.commande = this.panier;
+			
 			Utils.load("achat", this.model.data, function(data) {
 				console.log("Mail envoyé");
 			});
@@ -163,10 +165,9 @@ define(["jquery",
 		/**
 		 * Permet d'ajouter un article au formulaire paypal
 		 */
-		this.addToCart = function(index, articleName, articlePrice, articleLivraison) {
+		this.addToCart = function(index, articleName, articlePrice) {
 			this.addVar("item_name_"+index, articleName);
 			this.addVar("amount_"+index, articlePrice);
-			this.addVar("shipping_"+index, "1");
 		};
 		
 		/**

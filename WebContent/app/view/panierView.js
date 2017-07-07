@@ -10,6 +10,7 @@ define(["jquery",
 		this.init = function() {
 			this.el = $("#panier-popup");
 			this.listArticle = JSON.parse(sessionStorage.getItem("aeferrets.panier"));
+			this.fdp = 0;
 			if (!this.listArticle) {
 				this.listArticle = [];
 			}else {
@@ -41,15 +42,16 @@ define(["jquery",
 			});
 			
 			$("#panier-popup .next").click(function() {
-				that.livraison.render(that.listArticle);
+				that.livraison.render(that.listArticle, that.fdp);
 			});
 		};
 		
-		this.addArticle = function(name, price, needDedicace) {
+		this.addArticle = function(name, price, poids, needDedicace) {
 			var article = {
 					id : new Date().valueOf(),
 					name : name,
 					price : price,
+					poids : poids,
 					needDedicace : needDedicace
 			};
 			this.listArticle.push(article);
@@ -78,6 +80,7 @@ define(["jquery",
 		this.refreshArticles = function() {
 			$(".panier-articles").empty();
 			var total = 0;
+			var poidsTotal = 0;
 			var that = this;
 			for (var index in this.listArticle) {
 				var article = this.listArticle[index];
@@ -87,6 +90,7 @@ define(["jquery",
 				$(".panier-articles").append(li);
 				
 				total = ((total*100000) + (parseFloat(article.price) * 100000)) / 100000;
+				poidsTotal = ((poidsTotal*100000) + (parseFloat(article.poids) * 100000)) / 100000
 			}
 			
 			$(".panier-articles li").click(function(e) {
@@ -96,12 +100,33 @@ define(["jquery",
 			});
 			
 			// Si on a au moins un element, on affiche le total
+			total = total.toFixed(2);
+			poidsTotal = poidsTotal.toFixed(2);
 			if (total > 0) {
-				$(".panier-popup-content .total").text("Total : " + total.toFixed(2) + " euros + frais de livraison");
+				this.fdp = this.calculerFdp(poidsTotal, total);
+				var msgTotal = "Total : " + total + " euros<br/>";
+				if (this.fdp == 0) {
+					msgTotal += "Frais de livraison Offerts";
+				}else {
+					msgTotal += "+ " + this.fdp + " euros de frais de livraison<br/>";
+					msgTotal += "(offerts &agrave; partir de 50 euros d'achat)";
+				}
+				$(".panier-popup-content .total").html(msgTotal);
 			}else {
 				$("#panier-popup").hide();
 				$(".panier").hide("slow");
 			}
+		};
+		
+		this.calculerFdp = function(poidsTotal, prixTotal) {
+			if (prixTotal >= 50) return 0;
+			
+			var fdp = 4.80;
+			if (poidsTotal > 500) {
+				fdp = 6.20;
+			}
+			
+			return fdp;
 		};
 		
 		this.init();

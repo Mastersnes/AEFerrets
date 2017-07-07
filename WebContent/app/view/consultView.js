@@ -88,7 +88,7 @@ function($, _, page) {
 				}
 			});
 			$("#add-panier-button").click(function() {
-				that.panier.addArticle($(this).attr("name"), $(this).attr("price"), true);
+				that.panier.addArticle($(this).attr("name"), $(this).attr("price"), $(this).attr("poids"), true);
 			});
 		};
 		
