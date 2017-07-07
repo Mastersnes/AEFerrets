@@ -1,5 +1,10 @@
 package servlet.achat;
 
+import java.util.List;
+
+import bean.Article;
+import bean.Dedicace;
+
 /**
  * requete du controller AchatServlet
  * 
@@ -14,6 +19,8 @@ public class AchatServletRequest {
     private String ville;
     private String email;
     private String commentaire;
+    private List<Dedicace> dedicaces;
+    private List<Article> commande;
 
     /**
      * @return the nom
@@ -118,5 +125,33 @@ public class AchatServletRequest {
      */
     public void setCommentaire(final String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    /**
+     * @return the dedicace
+     */
+    public List<Dedicace> getDedicaces() {
+        return dedicaces;
+    }
+
+    /**
+     * @param dedicace the dedicace to set
+     */
+    public void setDedicaces(final List<Dedicace> dedicaces) {
+        this.dedicaces = dedicaces;
+    }
+
+    /**
+     * @return the commande
+     */
+    public List<Article> getCommande() {
+        return commande;
+    }
+
+    /**
+     * @param commande the commande to set
+     */
+    public void setCommande(List<Article> commande) {
+        this.commande = commande;
     }
 }

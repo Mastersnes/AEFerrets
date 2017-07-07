@@ -17,6 +17,7 @@ define(["jquery",
 		
 		this.render = function(panier) {
 			this.panier = panier;
+			this.model.init(panier);
 			
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
@@ -25,7 +26,7 @@ define(["jquery",
 			};
 			this.el.html(template(templateData));
 			
-			this.renderDedicaceList(panier);
+			this.renderDedicaceList(this.model.data.dedicaces);
 			
 			this.makeEvents();
 			this.validator.makeEvents(this);
@@ -36,30 +37,27 @@ define(["jquery",
 			this.el.find(".corps").scrollTop(0);
 		};
 		
-		this.renderDedicaceList = function(panier) {
-			for (var index in panier) {
-				var article = panier[index];
-				if (article.needDedicace) {
-					$("#dedicaces").append(this.renderDedicace(index, article));
-				}
+		this.renderDedicaceList = function(dedicaces) {
+			for (var index in dedicaces) {
+				$("#dedicaces").append(this.renderDedicace(index, dedicaces[index]));
 			}
 		};
 		
-		this.renderDedicace = function(index, article) {
+		this.renderDedicace = function(index, dedicace) {
 			var dedicaceDom = $("<div></div>");
 			dedicaceDom.addClass("form-item");
-			var isChecked = this.model.data["active-dedicace"+index];
+			var isChecked = dedicace.activeDedicace;
 			if (isChecked || isChecked == null) {
 				isChecked = true;
 			}
 			
 			dedicaceDom.append(this.renderDedicaceCheck(index, isChecked));
-			dedicaceDom.append(this.renderDedicaceLabel(article.name));
-			dedicaceDom.append(this.renderDedicaceInput(index, isChecked));
+			dedicaceDom.append(this.renderDedicaceLabel(dedicace.titre));
+			dedicaceDom.append(this.renderDedicaceInput(index, isChecked, dedicace.dedicace));
 			return dedicaceDom;
 		};
 		
-		this.renderDedicaceCheck = function(index, isChecked) {
+		this.renderDedicaceCheck = function(index, isChecked, value) {
 			var checkDom = $("<input/>")
 			checkDom.attr("id", "active-dedicace");
 			checkDom.attr("key", index);
@@ -69,13 +67,13 @@ define(["jquery",
 			}
 			return checkDom;
 		};
-		this.renderDedicaceLabel = function(name) {
+		this.renderDedicaceLabel = function(titre) {
 			var labelDom = $("<label/>")
 			labelDom.attr("for", "dedicace");
-			labelDom.html("D&eacute;dicace pour " + name);
+			labelDom.html("D&eacute;dicace pour " + titre);
 			return labelDom;
 		};
-		this.renderDedicaceInput = function(index, isChecked) {
+		this.renderDedicaceInput = function(index, isChecked, value) {
 			var inputDom = $("<input/>")
 			inputDom.attr("id", "dedicace");
 			inputDom.attr("key", index);
@@ -88,7 +86,6 @@ define(["jquery",
 			}
 			
 			if (isChecked) {
-				var value = this.model.data["dedicace"+index];
 				if (value) {
 					inputDom.val(value);
 				}
@@ -152,7 +149,7 @@ define(["jquery",
 			this.addVar("zip", this.model.data.cp);
 			this.addVar("image_url", "http://aeferrets.fr.nf/app/img/favicon.png");
 			
-			
+			this.model.data.commande = this.panier;
 			Utils.load("achat", this.model.data, function(data) {
 				console.log("Mail envoyé");
 			});

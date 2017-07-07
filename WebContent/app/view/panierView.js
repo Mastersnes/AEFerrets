@@ -47,6 +47,7 @@ define(["jquery",
 		
 		this.addArticle = function(name, price, needDedicace) {
 			var article = {
+					id : new Date().valueOf(),
 					name : name,
 					price : price,
 					needDedicace : needDedicace

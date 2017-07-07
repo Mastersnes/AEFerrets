@@ -11,7 +11,6 @@ function($, _, page) {
 		};
 
 		this.show = function(livre) {
-			console.log(livre);
 			this.livre = livre;
 			this.render();
 			this.el.show();
