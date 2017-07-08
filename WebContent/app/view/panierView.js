@@ -4,7 +4,8 @@ define(["jquery",
         "app/utils/utils", 
         "app/utils/tracking",
         "text!app/template/panier.html",
-        "app/view/livraisonView"
+        "app/view/livraisonView",
+        "jqueryui"
         ], function($, _, Utils, tracker, page, LivraisonView){
 	return function(){
 		this.init = function() {
@@ -57,7 +58,11 @@ define(["jquery",
 			this.listArticle.push(article);
 			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
 			
-			$(".panier").show("slow");
+			if ($(".panier:visible").length > 0) {
+				$(".panier").effect("shake", {distance: 5}, "slow");
+			}else {
+				$(".panier").show("slow");
+			}
 		};
 		
 		this.removeArticle = function(id) {
@@ -90,7 +95,7 @@ define(["jquery",
 				$(".panier-articles").append(li);
 				
 				total = ((total*100000) + (parseFloat(article.price) * 100000)) / 100000;
-				poidsTotal = ((poidsTotal*100000) + (parseFloat(article.poids) * 100000)) / 100000
+				poidsTotal = ((poidsTotal*100000) + (parseFloat(article.poids) * 100000)) / 100000;
 			}
 			
 			$(".panier-articles li").click(function(e) {
@@ -104,12 +109,12 @@ define(["jquery",
 			poidsTotal = poidsTotal.toFixed(2);
 			if (total > 0) {
 				this.fdp = this.calculerFdp(poidsTotal, total);
-				var msgTotal = "Total : " + total + " euros<br/>";
+				var msgTotal = "<b>Total</b> : " + total + " euros<br/>";
 				if (this.fdp == 0) {
-					msgTotal += "Frais de livraison Offerts";
+					msgTotal += "Frais de livraison offerts";
 				}else {
-					msgTotal += "+ " + this.fdp + " euros de frais de livraison<br/>";
-					msgTotal += "(offerts &agrave; partir de 50 euros d'achat)";
+					msgTotal += "+ " + this.fdp + " euros de frais de livraison*<br/>";
+					msgTotal += "*(offerts &agrave; partir de 50 euros d'achat)";
 				}
 				$(".panier-popup-content .total").html(msgTotal);
 			}else {
