@@ -66,7 +66,7 @@ define(["jquery",
 		};
 		
 		this.removeArticle = function(id) {
-			this.listArticle.slice(id, 1);
+			this.listArticle.splice(id, 1);
 			
 			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
 			
@@ -100,8 +100,7 @@ define(["jquery",
 			
 			$(".panier-articles li").click(function(e) {
 				var index = $(this).attr("index");
-				that.listArticle.splice(index, 1);
-				that.refreshArticles();
+				that.removeArticle(index);
 			});
 			
 			// Si on a au moins un element, on affiche le total

@@ -786,6 +786,33 @@ ul.menu-liste li:hover {
     margin-left: 18%;
 }
 
+/**
+* Marques Page
+**/
+.marquesPageList {
+	width: 100%;
+    height: 100%;
+	overflow-y: auto;
+}
+.marquePage {
+    height: 100%;
+    display: inline-block;
+}
+.marquePage img {
+    height: 90%;
+    width: auto;
+}
+.marquePage .button {
+    text-align: center;
+}
+.marquePage .link {
+    font-size: 2em;
+	cursor: pointer;
+}
+.marquePage .link:hover {
+	text-decoration: underline;
+}
+
 
 /**
 * Admin

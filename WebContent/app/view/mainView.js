@@ -12,10 +12,11 @@ define(["jquery",
         "app/view/moiView",
         "app/view/consultView",
         "app/view/liseuseView",
-        "app/view/panierView"], 
+        "app/view/panierView",
+        "app/view/marquesPageView"], 
 function($, _, Utils, tracker, page, 
 		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
-		ConsultView, LiseuseView, PanierView, LivraisonView) {
+		ConsultView, LiseuseView, PanierView, MarquesPageView) {
 	'use strict';
 
 	return function() {
@@ -89,6 +90,13 @@ function($, _, Utils, tracker, page,
 			}
 			this.moi.show();
 		};
+		this.chargeMarquesPage = function() {
+			tracker.push('Chargement des marques page');
+			if (!this.marquesPage) {
+				this.marquesPage = new MarquesPageView(this);
+			}
+			this.marquesPage.show();
+		};
 		this.chargeContact = function() {
 			tracker.push('Chargement des contacts');
 			if (!this.contact) {
@@ -116,6 +124,9 @@ function($, _, Utils, tracker, page,
 			});
 			$("#qui").click(function() {
 				that.chargeMoi();
+			});
+			$("#marquesPage").click(function() {
+				that.chargeMarquesPage();
 			});
 			$("#contact").click(function() {
 				that.chargeContact();

@@ -59,7 +59,7 @@ define(["jquery",
 		};
 		
 		this.renderDedicaceCheck = function(index, isChecked, value) {
-			var checkDom = $("<input/>")
+			var checkDom = $("<input/>");
 			checkDom.attr("id", "active-dedicace");
 			checkDom.attr("key", index);
 			checkDom.attr("type", "checkbox");
@@ -69,13 +69,13 @@ define(["jquery",
 			return checkDom;
 		};
 		this.renderDedicaceLabel = function(titre) {
-			var labelDom = $("<label/>")
+			var labelDom = $("<label/>");
 			labelDom.attr("for", "dedicace");
 			labelDom.html("D&eacute;dicace pour " + titre);
 			return labelDom;
 		};
 		this.renderDedicaceInput = function(index, isChecked, value) {
-			var inputDom = $("<input/>")
+			var inputDom = $("<input/>");
 			inputDom.attr("id", "dedicace");
 			inputDom.attr("key", index);
 			inputDom.attr("type", "text");
@@ -153,7 +153,7 @@ define(["jquery",
 			this.model.data.commande = this.panier;
 			
 			Utils.load("achat", this.model.data, function(data) {
-				console.log("Mail envoyé");
+				console.log("Mail envoye");
 			});
 			
 			/**

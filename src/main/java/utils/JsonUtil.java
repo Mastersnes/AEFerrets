@@ -12,6 +12,7 @@ public class JsonUtil {
 	public static final String NEWS_PATH = "./AEFerrets/news.json";
 	public static final String SALONS_PATH = "./AEFerrets/salons.json";
 	public static final String MOI_PATH = "./AEFerrets/biographie.json";
+	public static final String MARQUES_PAGE_PATH = "./AEFerrets/marquesPage.json";
 	private static Logger LOGGER = new Logger(JsonUtil.class.getName());
 
 	/**

@@ -19,33 +19,39 @@ function(Utils) {
 		};
 		
 		/**
-		 * Initialise le model avec les données en session
+		 * Initialise le model avec les donnï¿½es en session
 		 */
 		this.init = function(panier) {
 			var data = JSON.parse(sessionStorage.getItem(this.sessionName));
 			if (data) {
 				this.data = data;
 				var oldDedicaces = this.data.dedicaces;
+				console.log("old : ");
+				console.log(oldDedicaces);
 				this.data.dedicaces = [];
 			}
 			
 			/**
 			 * Pour chaque element du panier, on regarde si il existe un element de dedicace en session correspondant
 			 */
+			console.log("panier : ");
+			console.log(panier);
 			for (var index in panier) {
 				var article = panier[index];
-				var dedicace = this.getById(article.id, oldDedicaces);
-				
-				// Si aucun element de dedicace n'existe pour cet article on l'initialise a vide
-				if (!dedicace && article.needDedicace) {
-					var dedicace = {
-							"id" : article.id,
-							"titre" : article.name,
-							"activeDedicace" : true,
-							"dedicace" : ""
-					};
+				if (article.needDedicace) {
+					var dedicace = this.getById(article.id, oldDedicaces);
+					
+					// Si aucun element de dedicace n'existe pour cet article on l'initialise a vide
+					if (!dedicace) {
+						var dedicace = {
+								"id" : article.id,
+								"titre" : article.name,
+								"activeDedicace" : true,
+								"dedicace" : ""
+						};
+					}
+					this.data.dedicaces.push(dedicace);
 				}
-				this.data.dedicaces[index] = dedicace;
 			}
 		};
 		
@@ -55,13 +61,13 @@ function(Utils) {
 		this.getById = function(id, oldDedicaces) {
 			for (var index in oldDedicaces) {
 				var dedicace = oldDedicaces[index];
-				if (dedicace.id == id) return dedicace;
+				if (dedicace && dedicace.id == id) return dedicace;
 			}
 			return null;
 		};
 		
 		/**
-		 * Evenements de persistence des données du model
+		 * Evenements de persistence des donnï¿½es du model
 		 */
 		this.makeEvents = function() {
 			var that = this;

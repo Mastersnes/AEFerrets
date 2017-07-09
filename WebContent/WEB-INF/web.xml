@@ -54,6 +54,16 @@
 		<servlet-name>MoiServlet</servlet-name>
 		<url-pattern>/moi</url-pattern>
 	</servlet-mapping>
+
+	<!-- Marques Page -->
+	<servlet>
+	    <servlet-name>MarquesPageServlet</servlet-name>
+	    <servlet-class>servlet.marquesPage.MarquesPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MarquesPageServlet</servlet-name>
+		<url-pattern>/marquesPage</url-pattern>
+	</servlet-mapping>
 	
 	<!-- Achat -->
     <servlet>
