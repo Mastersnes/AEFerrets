@@ -8,6 +8,7 @@ import servlet.abstrait.AbstractServlet;
 import servlet.abstrait.GeneralResponse;
 import bdd.LivreDAO;
 import bdd.LivreFreeDAO;
+import bdd.MarquesPageDAO;
 import bdd.MoiDAO;
 import bdd.NewsDAO;
 import bdd.SalonDAO;
@@ -31,6 +32,7 @@ public class RefreshServlet extends AbstractServlet<String, GeneralResponse> {
 	protected GeneralResponse doPost(final String request) throws ServletException, IOException {
 		LivreDAO.getInstance().refresh();
 		LivreFreeDAO.getInstance().refresh();
+        MarquesPageDAO.getInstance().refresh();
 		MoiDAO.getInstance().refresh();
 		NewsDAO.getInstance().refresh();
 		SalonDAO.getInstance().refresh();
