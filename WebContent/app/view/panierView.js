@@ -12,6 +12,7 @@ define(["jquery",
 			this.el = $("#panier-popup");
 			this.listArticle = JSON.parse(sessionStorage.getItem("aeferrets.panier"));
 			this.fdp = 0;
+			this.nbrLivre = 0;
 			if (!this.listArticle) {
 				this.listArticle = [];
 			}else {
@@ -48,7 +49,8 @@ define(["jquery",
 		};
 		
 		this.addArticle = function(name, price, poids, needDedicace) {
-			var article = {
+		    if (needDedicace) this.nbrLivre++;
+		    var article = {
 					id : new Date().valueOf(),
 					name : name,
 					price : price,
@@ -66,7 +68,9 @@ define(["jquery",
 		};
 		
 		this.removeArticle = function(id) {
-			this.listArticle.splice(id, 1);
+			var article = this.listArticle.splice(id, 1)[0];
+			console.log("suppression de : ", article);
+			if (article.needDedicace) this.nbrLivre--;
 			
 			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
 			
@@ -87,14 +91,23 @@ define(["jquery",
 			var total = 0;
 			var poidsTotal = 0;
 			var that = this;
+			var offreAFaire = parseInt(this.nbrLivre / 2);
+			
 			for (var index in this.listArticle) {
 				var article = this.listArticle[index];
+				var articlePrice = article.price;
+				
+				if (offreAFaire > 0 && article.name.indexOf("Marque Page") > -1) {
+				    articlePrice = 0;
+				    offreAFaire--;
+				}
+				
 				var li = $("<li/>");
 				li.attr("index", index);
-				li.text(article.name + " : " + article.price + " euros");
+				li.text(article.name + " : " + articlePrice + " euros");
 				$(".panier-articles").append(li);
 				
-				total = ((total*100000) + (parseFloat(article.price) * 100000)) / 100000;
+				total = ((total*100000) + (parseFloat(articlePrice) * 100000)) / 100000;
 				poidsTotal = ((poidsTotal*100000) + (parseFloat(article.poids) * 100000)) / 100000;
 			}
 			
@@ -114,6 +127,13 @@ define(["jquery",
 				}else {
 					msgTotal += "+ " + this.fdp + " euros de frais de livraison*<br/>";
 					msgTotal += "*(offerts &agrave; partir de 50 euros d'achat)";
+					if (offreAFaire > 0) {
+					    msgTotal += "<br/>";
+					    msgTotal += "(Vous pouvez choisir "+offreAFaire+" marque page gratuit)";
+					}else {
+					    msgTotal += "<br/>";
+                        msgTotal += "(1 marque page gratuit pour 2 livres achet&eacute;s)";
+					}
 				}
 				$(".panier-popup-content .total").html(msgTotal);
 			}else {
