@@ -44,7 +44,7 @@ define(["jquery",
 			});
 			
 			$("#panier-popup .next").click(function() {
-				that.livraison.render(that.listArticle, that.fdp);
+				that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
 			});
 		};
 		
@@ -69,9 +69,7 @@ define(["jquery",
 		
 		this.removeArticle = function(id) {
 			var article = this.listArticle.splice(id, 1)[0];
-			console.log("suppression de : ", article);
 			if (article.needDedicace) this.nbrLivre--;
-			
 			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
 			
 			this.refreshArticles();
@@ -127,14 +125,21 @@ define(["jquery",
 				}else {
 					msgTotal += "+ " + this.fdp + " euros de frais de livraison*<br/>";
 					msgTotal += "*(offerts &agrave; partir de 50 euros d'achat)";
-					if (offreAFaire > 0) {
-					    msgTotal += "<br/>";
-					    msgTotal += "(Vous pouvez choisir "+offreAFaire+" marque page gratuit)";
-					}else {
-					    msgTotal += "<br/>";
-                        msgTotal += "(1 marque page gratuit pour 2 livres achet&eacute;s)";
-					}
 				}
+				
+				/**
+				 * Affichage de l'offre promotionnelle
+				 */
+				if (offreAFaire == 1) {
+                    msgTotal += "<br/>";
+                    msgTotal += "(Vous pouvez choisir "+offreAFaire+" marque-page gratuit)";
+                }else if (offreAFaire > 1) {
+                    msgTotal += "<br/>";
+                    msgTotal += "(Vous pouvez choisir "+offreAFaire+" marque-pages gratuits)";
+                }else {
+                    msgTotal += "<br/>";
+                    msgTotal += "(1 marque-page gratuit pour 2 livres achet&eacute;s)";
+                }
 				$(".panier-popup-content .total").html(msgTotal);
 			}else {
 				$("#panier-popup").hide();

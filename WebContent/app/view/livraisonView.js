@@ -15,9 +15,10 @@ define(["jquery",
 			this.model = new LivraisonModel();
 		};
 		
-		this.render = function(panier, fdp) {
-			this.panier = panier;
+		this.render = function(panier, fdp, nbrLivre) {
+		    this.panier = panier;
 			this.fdp = fdp;
+			this.nbrLivre = nbrLivre;
 			this.model.init(panier);
 			
 			_.templateSettings.variable = "data";
@@ -39,7 +40,8 @@ define(["jquery",
 		};
 		
 		this.renderDedicaceList = function(dedicaces) {
-			for (var index in dedicaces) {
+		    $("#dedicaces").empty();
+		    for (var index in dedicaces) {
 				$("#dedicaces").append(this.renderDedicace(index, dedicaces[index]));
 			}
 		};
@@ -121,17 +123,24 @@ define(["jquery",
 		 * Soumet le formulaire paypal, si tout se passe bien on envoi un mail
 		 */
 		this.submit = function() {
-			tracker.push('Lancement dun achat');
+		    tracker.push('Lancement dun achat');
 			
 			$("#paypal-form #variables").empty();
 			
 			/**
 			 * On remplie ensuite le formulaire paypal avec les articles
 			 */
+			var offreAFaire = parseInt(this.nbrLivre / 2);
 			for (var index in this.panier) {
 				var id = parseInt(index)+1;
 	            var article = this.panier[index];
-	            this.addToCart(id, article.name, article.price);
+	            var articlePrice = article.price;
+	            if (offreAFaire > 0 && article.name.indexOf("Marque Page") > -1) {
+                    articlePrice = 0;
+                    offreAFaire--;
+                }
+	            
+	            this.addToCart(id, article.name, articlePrice);
 			}
 			
 			/**
@@ -166,7 +175,7 @@ define(["jquery",
 		 * Permet d'ajouter un article au formulaire paypal
 		 */
 		this.addToCart = function(index, articleName, articlePrice) {
-			this.addVar("item_name_"+index, articleName);
+		    this.addVar("item_name_"+index, articleName);
 			this.addVar("amount_"+index, articlePrice);
 		};
 		

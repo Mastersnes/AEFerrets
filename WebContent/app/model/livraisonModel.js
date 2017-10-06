@@ -26,16 +26,12 @@ function(Utils) {
 			if (data) {
 				this.data = data;
 				var oldDedicaces = this.data.dedicaces;
-				console.log("old : ");
-				console.log(oldDedicaces);
-				this.data.dedicaces = [];
 			}
+			this.data.dedicaces = [];
 			
 			/**
 			 * Pour chaque element du panier, on regarde si il existe un element de dedicace en session correspondant
 			 */
-			console.log("panier : ");
-			console.log(panier);
 			for (var index in panier) {
 				var article = panier[index];
 				if (article.needDedicace) {
