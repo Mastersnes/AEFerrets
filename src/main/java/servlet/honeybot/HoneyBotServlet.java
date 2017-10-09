@@ -22,7 +22,7 @@ public class HoneyBotServlet extends AbstractServlet<String, HoneyBotServletResp
 	protected HoneyBotServletResponse doGet(final String request) throws ServletException, IOException {
 		final HoneyBotServletResponse response = new HoneyBotServletResponse();
 
-		final Map<String, User> connexions = Connexion.getConnexions();
+        final Map<String, User> connexions = Connexion.getInstance().getConnexions();
 		final String ip = getClientIpAddr();
 		if (connexions.get(ip) != null) {
 			connexions.get(ip).setIp("Robot");

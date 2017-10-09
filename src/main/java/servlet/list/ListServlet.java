@@ -26,7 +26,7 @@ public class ListServlet extends AbstractServlet<String, ListServletResponse> {
         final List<Livre> listLivre = LivreDAO.getInstance().listLivre();
         response.getLivres().addAll(listLivre);
 
-        Connexion.addNew(getClientIpAddr(), "Connexion");
+        Connexion.getInstance().addNew(getClientIpAddr(), "Connexion");
 
         return response;
     }

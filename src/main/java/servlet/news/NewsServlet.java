@@ -56,7 +56,7 @@ public class NewsServlet extends AbstractServlet<NewsServletRequest, NewsServlet
             response.setPreview(listDate.get(index + 1));
 		}
 		
-        Connexion.addNew(getClientIpAddr(), "Chargement des news : " + search);
+        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des news : " + search);
 
 		return response;
 	}

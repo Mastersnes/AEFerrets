@@ -26,7 +26,7 @@ public class ListFreeServlet extends AbstractServlet<String, ListServletResponse
 		final List<Livre> listLivre = LivreFreeDAO.getInstance().listLivreFree();
 		response.getLivres().addAll(listLivre);
 
-		Connexion.addNew(getClientIpAddr(), "Chargement des livres gratuit");
+        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des livres gratuit");
 
 		return response;
 	}

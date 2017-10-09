@@ -39,7 +39,7 @@ public class SalonsServlet extends AbstractServlet<SalonsServletRequest, SalonsS
         final List<Salon> salons = dao.getSalons(search);
         response.getSalons().addAll(salons);
 
-        Connexion.addNew(getClientIpAddr(), "Chargement des salons : " + search);
+        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des salons : " + search);
 
         return response;
     }

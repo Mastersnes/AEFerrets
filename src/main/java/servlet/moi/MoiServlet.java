@@ -33,7 +33,7 @@ public class MoiServlet extends AbstractServlet<String, MoiServletResponse> {
          */
         response.setMoi(dao.getMoi());
 
-        Connexion.addNew(getClientIpAddr(), "Chargement de la biographie");
+        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement de la biographie");
 
         return response;
     }

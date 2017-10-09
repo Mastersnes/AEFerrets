@@ -26,7 +26,7 @@ public class TrackServlet extends AbstractServlet<TrackServletRequest, TrackServ
 	protected TrackServletResponse doPost(final TrackServletRequest request) throws ServletException, IOException {
 		final TrackServletResponse response = new TrackServletResponse();
 
-		Connexion.addNew(getClientIpAddr(), request.getWhere());
+        Connexion.getInstance().addNew(getClientIpAddr(), request.getWhere());
 
 		return response;
 	}

@@ -28,7 +28,7 @@ public class CheckServlet extends AbstractServlet<String, CheckServletResponse> 
         final CheckServletResponse response = new CheckServletResponse();
 
         final String ip = getClientIpAddr();
-        final Map<String, User> connexions = Connexion.getConnexions();
+        final Map<String, User> connexions = Connexion.getInstance().getConnexions();
         if (connexions.get(ip) != null) {
             connexions.get(ip).setIp("Moi");
         }

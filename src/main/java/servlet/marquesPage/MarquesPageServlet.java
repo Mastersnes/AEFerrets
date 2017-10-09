@@ -33,7 +33,7 @@ public class MarquesPageServlet extends AbstractServlet<String, MarquesPageServl
 		 */
 		response.setMarquesPage(dao.getListMarquesPage());
 
-		Connexion.addNew(getClientIpAddr(), "Chargement des marques page");
+        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des marques page");
 
 		return response;
 	}
