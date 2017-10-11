@@ -1,5 +1,6 @@
 package bdd;
 
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import bean.Action;
 import bean.User;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Connexion {
     private static Connexion instance;
@@ -38,10 +40,11 @@ public class Connexion {
         final String json = JsonUtil.load(JsonUtil.CONNEXION_PATH);
         final Gson gson = Constantes.GSON;
         connexions.clear();
-        @SuppressWarnings("unchecked")
-        final Map<String, User> listConnexions = gson.fromJson(json, Map.class);
-        if (listConnexions != null) {
-            connexions.putAll(listConnexions);
+        final Type listType = new TypeToken<Map<String, User>>() {
+        }.getType();
+        final Map<String, User> listConnexion = gson.fromJson(json, listType);
+        if (listConnexion != null) {
+            connexions.putAll(listConnexion);
         }
     }
 
