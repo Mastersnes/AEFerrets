@@ -152,6 +152,15 @@
         <filter-name>CheckMdp</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>CheckHttps</filter-name>
+        <filter-class>filter.secur.CheckHttps</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CheckHttps</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     
 	<!-- Index -->
 	<welcome-file-list>
