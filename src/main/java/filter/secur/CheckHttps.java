@@ -29,11 +29,15 @@ public class CheckHttps implements Filter {
 		final HttpServletRequest request = (HttpServletRequest) servletRequest;
 		final HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-		if (request.getHeader(X_FORWARDED_PROTO) != null) {
-			if (request.getHeader(X_FORWARDED_PROTO).indexOf("https") != 0) {
-				response.sendRedirect("https://" + request.getServerName()
-						+ (request.getPathInfo() == null ? "" : request.getPathInfo()));
-				return;
+		final boolean isLocal = "localhost".equals(request.getServerName());
+
+		if (!isLocal) {
+			if (request.getHeader(X_FORWARDED_PROTO) != null) {
+				if (request.getHeader(X_FORWARDED_PROTO).indexOf("https") != 0) {
+					response.sendRedirect("https://" + request.getServerName()
+							+ (request.getPathInfo() == null ? "" : request.getPathInfo()));
+					return;
+				}
 			}
 		}
 

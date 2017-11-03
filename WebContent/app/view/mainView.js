@@ -10,13 +10,14 @@ define(["jquery",
         "app/view/livresView",
         "app/view/salonsView",
         "app/view/moiView",
+        "app/view/partenaireView",
         "app/view/consultView",
         "app/view/liseuseView",
         "app/view/panierView",
         "app/view/marquesPageView"], 
 function($, _, Utils, tracker, page, 
 		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
-		ConsultView, LiseuseView, PanierView, MarquesPageView) {
+		PartenaireView, ConsultView, LiseuseView, PanierView, MarquesPageView) {
 	'use strict';
 
 	return function() {
@@ -90,6 +91,13 @@ function($, _, Utils, tracker, page,
 			}
 			this.moi.show();
 		};
+		this.chargePartenaire = function() {
+			tracker.push('Chargement des partenaires');
+			if (!this.partenaire) {
+				this.partenaire = new PartenaireView(this);
+			}
+			this.partenaire.show();
+		};
 		this.chargeMarquesPage = function() {
 			tracker.push('Chargement des marques page');
 			if (!this.marquesPage) {
@@ -124,6 +132,9 @@ function($, _, Utils, tracker, page,
 			});
 			$("#qui").click(function() {
 				that.chargeMoi();
+			});
+			$("#partenaire").click(function() {
+				that.chargePartenaire();
 			});
 			$("#marquesPage").click(function() {
 				that.chargeMarquesPage();

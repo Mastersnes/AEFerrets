@@ -59,6 +59,20 @@ body {
 }
 
 /**
+* Partenaires
+**/
+.partenaire {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.partenaire:hover {
+	background-color: #222222;
+	color: white;
+}
+
+/**
 * Content
 **/
 .content {
