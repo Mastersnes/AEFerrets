@@ -7,18 +7,32 @@ define(["jquery"], function($){
 		load : function(url, params, successC, type, async) {
 			if (!type) type = "POST";
 			if (!async) async = false;
-			$.ajax({
-	            type: type,
-	            url: url,
-	            async : async,
-	            data: JSON.stringify(params),
-	            contentType: "application/json; charset=utf-8",
-	            dataType: "json",
-	            success: successC,
-	            error: function (request, status, errorThrown) {
-	            	console.log("Erreur lors de l'appel a : " + url);
-	            }
-	        });
+			if (params) {
+    			$.ajax({
+    	            type: type,
+    	            url: url,
+    	            async : async,
+    	            data: JSON.stringify(params),
+    	            contentType: "application/json; charset=utf-8",
+    	            dataType: "json",
+    	            success: successC,
+    	            error: function (request, status, errorThrown) {
+    	            	console.log("Erreur lors de l'appel a : " + url);
+    	            }
+    	        });
+			}else {
+			    $.ajax({
+                    type: type,
+                    url: url,
+                    async : async,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: successC,
+                    error: function (request, status, errorThrown) {
+                        console.log("Erreur lors de l'appel a : " + url);
+                    }
+                });
+			}
 		},
 		getUrlParameter : function getUrlParameter(url) {
 			var first = url.indexOf("?");
