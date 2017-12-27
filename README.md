@@ -1,7 +1,7 @@
 # AEFerrets
 Site vitrine de A.E Ferrets Permettant de visionner les nouvelles de l'auteur et acheter ses livres.
 
-Adresse du site web : http://aeferrets.fr.nf
+Adresse du site web : https://www.aeferrets.fr/
 
 Decouvrez egalement A.E Ferrets sur 
 - Facebook : https://fr-fr.facebook.com/AEFerrets/
