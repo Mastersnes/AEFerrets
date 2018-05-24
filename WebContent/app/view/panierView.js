@@ -13,6 +13,7 @@ define(["jquery",
 			this.listArticle = JSON.parse(sessionStorage.getItem("aeferrets.panier"));
 			this.fdp = 0;
 			this.nbrLivre = 0;
+			this.offreAFaire = 0;
 			if (!this.listArticle) {
 				this.listArticle = [];
 			}else {
@@ -44,7 +45,25 @@ define(["jquery",
 			});
 			
 			$("#panier-popup .next").click(function() {
-				that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
+			    var offreAFaire = that.offreAFaire;
+			    if (offreAFaire == 0) {
+			        that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
+			    }else {
+			        var msgTotal = "Attention, "
+	                if (offreAFaire == 1) {
+	                    msgTotal += "vous n'avez pas choisi votre marque-page gratuit. ";
+	                }else if (offreAFaire > 1) {
+	                    msgTotal += "vous n'avez pas choisi vos "+offreAFaire+" marque-pages gratuits. ";
+	                }
+	                
+	                msgTotal += "Êtes-vous sûr de vouloir valider votre commande ?"
+	                    
+			        if (confirm(msgTotal)) {
+			            that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
+			        }else {
+			            $("#panier-popup").hide();
+			        }
+			    }
 			});
 		};
 		
@@ -124,7 +143,7 @@ define(["jquery",
 					msgTotal += "Frais de livraison offerts";
 				}else {
 					msgTotal += "+ " + this.fdp + " euros de frais de livraison*<br/>";
-					msgTotal += "*(offerts &agrave; partir de 50 euros d'achat)";
+					msgTotal += "*(offerts à partir de 50 euros d'achat)";
 				}
 				
 				/**
@@ -138,13 +157,15 @@ define(["jquery",
                     msgTotal += "(Vous pouvez choisir "+offreAFaire+" marque-pages gratuits)";
                 }else {
                     msgTotal += "<br/>";
-                    msgTotal += "(1 marque-page gratuit pour 2 livres achet&eacute;s)";
+                    msgTotal += "(1 marque-page gratuit pour 2 livres achetés)";
                 }
 				$(".panier-popup-content .total").html(msgTotal);
 			}else {
 				$("#panier-popup").hide();
 				$(".panier").hide("slow");
 			}
+			
+			this.offreAFaire = offreAFaire;
 		};
 		
 		this.calculerFdp = function(poidsTotal, prixTotal) {
