@@ -57,7 +57,10 @@ public class AchatServlet extends AbstractServlet<AchatServletRequest, GeneralRe
 			message.append("---------------------<br/>");
 			if (dedicace.isActiveDedicace()) {
 				message.append("Dedicace du livre : ").append(dedicace.getTitre()).append("<br/>");
-				message.append("Dedicace Pour : ").append(dedicace.getDedicace()).append("<br/>");
+                String dedicaceOwner = dedicace.getDedicace();
+                if (dedicaceOwner == null || dedicaceOwner.isEmpty())
+                    dedicaceOwner = request.getPrenom();
+                message.append("Dedicace Pour : ").append(dedicaceOwner).append("<br/>");
 			} else {
 				message.append("Ne pas faire de dedicace pour : ").append(dedicace.getTitre()).append("<br/>");
 			}
