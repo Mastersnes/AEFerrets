@@ -458,7 +458,7 @@ ul.menu-liste li:hover {
 .listLivre .livre .loupe {
     display: inline-block;
     position: absolute;
-	width: 30%;
+	width: 3em;
     left: 0;
     top: 0;
     display: none;
