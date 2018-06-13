@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bean.User;
 
 /**
@@ -28,7 +28,7 @@ public class CheckServlet extends AbstractServlet<String, CheckServletResponse> 
         final CheckServletResponse response = new CheckServletResponse();
 
         final String ip = getClientIpAddr();
-        final Map<String, User> connexions = Connexion.getInstance().getConnexions();
+        final Map<String, User> connexions = UserActionDao.getInstance().getConnexions();
         if (connexions.get(ip) != null) {
             connexions.get(ip).setIp("Moi");
         }

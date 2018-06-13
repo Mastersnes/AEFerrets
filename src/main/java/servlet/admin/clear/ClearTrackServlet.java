@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
 import servlet.abstrait.GeneralResponse;
-import bdd.Connexion;
 
 /**
  * Controller d'administration permettant de supprimer le tracking
@@ -25,8 +24,6 @@ public class ClearTrackServlet extends AbstractServlet<String, GeneralResponse> 
     @Override
     protected GeneralResponse doPost(final String request) throws ServletException, IOException {
         final GeneralResponse response = new GeneralResponse();
-        Connexion.getInstance().getConnexions().clear();
-        Connexion.getInstance().save();
         response.setCodeRetour(0);
         response.setMessage("Les connexions ont ete reinitialisees");
         return response;

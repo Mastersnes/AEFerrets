@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bdd.MarquesPageDAO;
 
 /**
@@ -33,7 +33,7 @@ public class MarquesPageServlet extends AbstractServlet<String, MarquesPageServl
 		 */
 		response.setMarquesPage(dao.getListMarquesPage());
 
-        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des marques page");
+        UserActionDao.getInstance().addNew(getClientIpAddr(), "Chargement des marques page");
 
 		return response;
 	}

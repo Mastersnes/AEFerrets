@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bdd.LivreFreeDAO;
 import bean.Livre;
 
@@ -26,7 +26,7 @@ public class ListFreeServlet extends AbstractServlet<String, ListServletResponse
 		final List<Livre> listLivre = LivreFreeDAO.getInstance().listLivreFree();
 		response.getLivres().addAll(listLivre);
 
-        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des livres gratuit");
+        UserActionDao.getInstance().addNew(getClientIpAddr(), "Chargement des livres gratuit");
 
 		return response;
 	}

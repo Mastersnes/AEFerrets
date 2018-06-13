@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bdd.LivreDAO;
 import bean.Livre;
 
@@ -26,7 +26,7 @@ public class ListServlet extends AbstractServlet<String, ListServletResponse> {
         final List<Livre> listLivre = LivreDAO.getInstance().listLivre();
         response.getLivres().addAll(listLivre);
 
-        Connexion.getInstance().addNew(getClientIpAddr(), "Connexion");
+        UserActionDao.getInstance().addNew(getClientIpAddr(), "Connexion");
 
         return response;
     }

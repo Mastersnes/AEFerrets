@@ -7,6 +7,7 @@ package bean;
  * 
  */
 public class Action {
+    private String name;
 	private String date;
 	private int nombre;
 
@@ -39,4 +40,19 @@ public class Action {
 	public final void setNombre(final int nombre) {
 		this.nombre = nombre;
 	}
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
 }

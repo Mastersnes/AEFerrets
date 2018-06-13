@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bdd.MoiDAO;
 
 /**
@@ -33,7 +33,7 @@ public class MoiServlet extends AbstractServlet<String, MoiServletResponse> {
          */
         response.setMoi(dao.getMoi());
 
-        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement de la biographie");
+        UserActionDao.getInstance().addNew(getClientIpAddr(), "Chargement de la biographie");
 
         return response;
     }

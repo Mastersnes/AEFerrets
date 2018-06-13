@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
 import utils.Constantes;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bdd.SalonDAO;
 import bean.Salon;
 
@@ -39,7 +39,7 @@ public class SalonsServlet extends AbstractServlet<SalonsServletRequest, SalonsS
         final List<Salon> salons = dao.getSalons(search);
         response.getSalons().addAll(salons);
 
-        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des salons : " + search);
+        UserActionDao.getInstance().addNew(getClientIpAddr(), "Chargement des salons : " + search);
 
         return response;
     }

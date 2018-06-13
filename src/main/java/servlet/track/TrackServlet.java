@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
 import utils.Constantes;
-import bdd.Connexion;
+import bdd.UserActionDao;
 
 /**
  * Controller permettant de tracker une action
@@ -26,7 +26,7 @@ public class TrackServlet extends AbstractServlet<TrackServletRequest, TrackServ
 	protected TrackServletResponse doPost(final TrackServletRequest request) throws ServletException, IOException {
 		final TrackServletResponse response = new TrackServletResponse();
 
-        Connexion.getInstance().addNew(getClientIpAddr(), request.getWhere());
+        UserActionDao.getInstance().addNew(getClientIpAddr(), request.getWhere());
 
 		return response;
 	}

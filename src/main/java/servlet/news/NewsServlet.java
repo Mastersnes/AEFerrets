@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 
 import servlet.abstrait.AbstractServlet;
 import utils.Constantes;
-import bdd.Connexion;
+import bdd.UserActionDao;
 import bdd.NewsDAO;
 import bean.NewsGroup;
 
@@ -56,7 +56,7 @@ public class NewsServlet extends AbstractServlet<NewsServletRequest, NewsServlet
             response.setPreview(listDate.get(index + 1));
 		}
 		
-        Connexion.getInstance().addNew(getClientIpAddr(), "Chargement des news : " + search);
+        UserActionDao.getInstance().addNew(getClientIpAddr(), "Chargement des news : " + search);
 
 		return response;
 	}
