@@ -509,7 +509,7 @@ ul.menu-liste li:hover {
 }
 .consultPage .contenu {
 	position: relative;
-	height: 70%;
+	height: 80%;
 	
 	border: 1px solid;
 	overflow: hidden;
@@ -539,7 +539,7 @@ ul.menu-liste li:hover {
 }
 .consultPage .bottom {
 	position: relative;
-	height: 30%;
+	height: 20%;
 }
 .consultPage .bottom .member {
 	position: absolute;
@@ -596,10 +596,17 @@ ul.menu-liste li:hover {
 .consultPage .bottom .right div {
 	right: 0;
 }
+.consultPage .infos ul {
+    padding-left: 0;
+    margin-left: 15%;
+}
 .consultPage .infos li {
     list-style: none;
     display: inline-block;
     width: 45%;
+}
+.consultPage .infos li .key {
+    font-weight: bold;
 }
 
 /**
