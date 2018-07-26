@@ -596,6 +596,11 @@ ul.menu-liste li:hover {
 .consultPage .bottom .right div {
 	right: 0;
 }
+.consultPage .infos li {
+    list-style: none;
+    display: inline-block;
+    width: 45%;
+}
 
 /**
 * Consultation specifique liseuse

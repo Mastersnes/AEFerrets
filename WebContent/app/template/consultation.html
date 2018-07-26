@@ -7,6 +7,18 @@
 	<div class="texte">
 		<div class="titre"><%= data.livre.titre %></div>
 		<div class="resume"><%= data.livre.resume %></div>
+		<% if (data.livre.infos) { %>
+			<div class="infos">
+				<ul class="left">
+					<% 
+						for (var index in data.livre.infos) {
+						var info = data.livre.infos[index];
+					%>
+						<li><%= info %></li>
+					<% } %>
+				</ul>
+			</div>
+		<% } %>
 	</div>
 </div>
 <div class="bottom">

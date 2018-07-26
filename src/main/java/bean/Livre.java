@@ -1,5 +1,8 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe representant un livre
  * 
@@ -11,8 +14,9 @@ public class Livre {
 	private String premiere;
 	private String quatrieme;
 	private String resume;
-    private Float price;
-    private Float poids;
+	private Float price;
+	private Float poids;
+	private List<String> infos = new ArrayList<>();
 
 	/**
 	 * @return the titre
@@ -74,33 +78,48 @@ public class Livre {
 		this.resume = resume;
 	}
 
-    /**
-     * @return the price
-     */
-    public Float getPrice() {
-        return price;
-    }
+	/**
+	 * @return the price
+	 */
+	public Float getPrice() {
+		return price;
+	}
 
-    /**
-     * @param price
-     *            the price to set
-     */
-    public void setPrice(final Float price) {
-        this.price = price;
-    }
+	/**
+	 * @param price
+	 *            the price to set
+	 */
+	public void setPrice(final Float price) {
+		this.price = price;
+	}
 
-    /**
-     * @return the poids
-     */
-    public Float getPoids() {
-        return poids;
-    }
+	/**
+	 * @return the poids
+	 */
+	public Float getPoids() {
+		return poids;
+	}
 
-    /**
-     * @param poids
-     *            the poids to set
-     */
-    public void setPoids(final Float poids) {
-        this.poids = poids;
-    }
+	/**
+	 * @param poids
+	 *            the poids to set
+	 */
+	public void setPoids(final Float poids) {
+		this.poids = poids;
+	}
+
+	/**
+	 * @return the infos
+	 */
+	public List<String> getInfos() {
+		return infos;
+	}
+
+	/**
+	 * @param infos
+	 *            the infos to set
+	 */
+	public void setInfos(final List<String> infos) {
+		this.infos = infos;
+	}
 }
