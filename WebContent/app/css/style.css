@@ -699,6 +699,9 @@ ul.menu-liste li:hover {
     float: left;
     text-align: left;
 }
+.panier-popup-content .total-price {
+    color: #b30000;
+}
 .panier-popup-content .next {
 	cursor: pointer;
     right: 0;
@@ -710,6 +713,16 @@ ul.menu-liste li:hover {
 }
 .panier-articles li:hover:not(.total) {
     text-decoration: line-through;
+}
+
+.panier-popup-content .valider {
+    color: #00b300;
+    text-decoration: underline;
+}
+.panier-popup-content .valider:hover {
+    color: #00e600;
+    text-decoration: none;
+    border: 2px solid #00e600;
 }
 
 /**

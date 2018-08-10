@@ -49,14 +49,14 @@ define(["jquery",
 			    if (offreAFaire == 0) {
 			        that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
 			    }else {
-			        var msgTotal = "Attention, "
+			        var msgTotal = "Attention, ";
 	                if (offreAFaire == 1) {
 	                    msgTotal += "vous n'avez pas choisi votre marque-page gratuit. ";
 	                }else if (offreAFaire > 1) {
 	                    msgTotal += "vous n'avez pas choisi vos "+offreAFaire+" marque-pages gratuits. ";
 	                }
 	                
-	                msgTotal += "Êtes-vous sûr de vouloir valider votre commande ?"
+	                msgTotal += "Êtes-vous sûr de vouloir valider votre commande ?";
 	                    
 			        if (confirm(msgTotal)) {
 			            that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
@@ -138,7 +138,7 @@ define(["jquery",
 			poidsTotal = poidsTotal.toFixed(2);
 			if (total > 0) {
 				this.fdp = this.calculerFdp(poidsTotal, total);
-				var msgTotal = "<b>Total</b> : " + total + " euros<br/>";
+				var msgTotal = "<b>Total</b> : <span class='total-price'>" + total + " euros</span><br/>";
 				if (this.fdp == 0) {
 					msgTotal += "Frais de livraison offerts";
 				}else {
