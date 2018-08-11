@@ -12,7 +12,6 @@ define(["jquery",
 			this.el = $("#panier-popup");
 			this.listArticle = JSON.parse(sessionStorage.getItem("aeferrets.panier"));
 			this.fdp = 0;
-			this.nbrLivre = 0;
 			this.offreAFaire = 0;
 			if (!this.listArticle) {
 				this.listArticle = [];
@@ -47,7 +46,7 @@ define(["jquery",
 			$("#panier-popup .next").click(function() {
 			    var offreAFaire = that.offreAFaire;
 			    if (offreAFaire == 0) {
-			        that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
+			        that.livraison.render(that.listArticle, that.fdp, that.getNbrLivres());
 			    }else {
 			        var msgTotal = "Attention, ";
 	                if (offreAFaire == 1) {
@@ -59,7 +58,7 @@ define(["jquery",
 	                msgTotal += "Êtes-vous sûr de vouloir valider votre commande ?";
 	                    
 			        if (confirm(msgTotal)) {
-			            that.livraison.render(that.listArticle, that.fdp, that.nbrLivre);
+			            that.livraison.render(that.listArticle, that.fdp, that.getNbrLivres());
 			        }else {
 			            $("#panier-popup").hide();
 			        }
@@ -68,7 +67,6 @@ define(["jquery",
 		};
 		
 		this.addArticle = function(name, price, poids, needDedicace) {
-		    if (needDedicace) this.nbrLivre++;
 		    var article = {
 					id : new Date().valueOf(),
 					name : name,
@@ -88,7 +86,6 @@ define(["jquery",
 		
 		this.removeArticle = function(id) {
 			var article = this.listArticle.splice(id, 1)[0];
-			if (article.needDedicace) this.nbrLivre--;
 			sessionStorage.setItem("aeferrets.panier", JSON.stringify(this.listArticle));
 			
 			this.refreshArticles();
@@ -103,19 +100,28 @@ define(["jquery",
 			$("#panier-popup").show();
 		};
 		
+		this.getNbrLivres = function() {
+			var nbLivre = 0;
+			for (var index in this.listArticle) {
+				var article = this.listArticle[index];
+				if (article.needDedicace) nbLivre++;
+			}
+			return nbLivre;
+		};
+		
 		this.refreshArticles = function() {
 			$(".panier-articles").empty();
 			var total = 0;
 			var poidsTotal = 0;
 			var that = this;
-			var offreAFaire = parseInt(this.nbrLivre / 2);
+			var offreAFaire = parseInt(this.getNbrLivres() / 2);
 			
 			for (var index in this.listArticle) {
 				var article = this.listArticle[index];
 				var articlePrice = article.price;
 				
 				if (offreAFaire > 0 && article.name.indexOf("Marque Page") > -1) {
-				    articlePrice = 0;
+					articlePrice = 0;
 				    offreAFaire--;
 				}
 				
