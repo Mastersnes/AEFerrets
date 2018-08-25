@@ -26,22 +26,7 @@ function($, _, page) {
 		
 		this.makeEvents = function() {
 			var that = this;
-			$(".accueil").mouseenter(function() {
-				if (!that.width || that.width == 0) {
-					that.width = $(".accueil #quatrieme").width();
-				}
-				$(".accueil #premiere").animate({
-					width: '0'
-				}, "slow");
-				$(".plus").css("text-decoration", "underline");
-			});
-			$(".accueil").mouseleave(function() {
-				$(".accueil #premiere").animate({
-					width: that.width
-				}, "slow");
-				$(".plus").css("text-decoration", "none");
-			});
-			$(".accueil").on("click", function() {
+				$(".accueil").on("click", function() {
 				that.parent.consult(that.parent.livres[0]);
 			});
 		};
@@ -50,19 +35,11 @@ function($, _, page) {
 		 * 
 		 */
 		this.loadImage = function() {
-		    if ($(".accueil img#quatrieme").height() > 0) {
-		        $(".accueil img#quatrieme").on("load", function() {
-    		        $(".accueil img#premiere").height($(".accueil img#quatrieme").height());
-                    $(".accueil img#quatrieme").height($(".accueil img#quatrieme").height());
-                    $(".accueil .contenu").height($(".accueil img#quatrieme").height());
-                    $(".accueil .texte").height($(".accueil img#quatrieme").height());
-                    
-                    $(".accueil .texte").css("margin-left", $(".accueil img#quatrieme").width()+20);
-                    $(".accueil img#premiere").fadeIn("slow", function() {
-                        $(".accueil img#premiere").width($(".accueil img#quatrieme").width());
-                        $(".accueil img#quatrieme").show();
-                    });
-		        });
+		    if ($(".accueil img#premiere").height() > 0) {
+                $(".accueil .contenu").height($(".accueil img#premiere").height());
+                $(".accueil .texte").height($(".accueil img#premiere").height());
+                
+                $(".accueil .texte").css("margin-left", $(".accueil img#premiere").width()+20);
 		    }else {
     		    var that = this;
 		        setTimeout(function() {

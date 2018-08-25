@@ -177,10 +177,11 @@ define(["jquery",
 		this.calculerFdp = function(poidsTotal, prixTotal) {
 			if (prixTotal >= 50) return 0;
 			
-			var fdp = 4.80;
-			if (poidsTotal > 500) {
-				fdp = 6.20;
-			}
+			var fdp = 3.7;
+			if (poidsTotal > 20) fdp = 4.5;
+			if (poidsTotal > 100) fdp = 6.10;
+			if (poidsTotal > 250) fdp = 7.70;
+			if (poidsTotal > 3000) fdp = 35;
 			
 			return fdp;
 		};

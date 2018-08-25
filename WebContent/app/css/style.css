@@ -180,9 +180,9 @@ body {
 .accueil img {
 	float: left;
 	height: auto;
+	max-height: 100%;
 	max-width: 50%;
 	image-rendering: crisp-edges;
-	display: none;
 	position: absolute;
     left: 0;
 }
@@ -220,9 +220,6 @@ body {
 }
 .accueil #premiere {
 	z-index: 1;
-}
-.accueil #quatrieme {
-	z-index: -1;
 }
 
 /**
