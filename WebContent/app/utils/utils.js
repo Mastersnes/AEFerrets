@@ -1,58 +1,51 @@
 'use strict';
-define(["jquery"], function($){
+define(["jquery", "sha"], function($, sha){
 	return {
+		name : "bebelSlimer",
+		
 		/**
 		* Permet d'appeler un WS
 		**/
-		load : function(url, params, successC, type, async) {
+		load : function(url, params, successC, type) {
 			if (!type) type = "POST";
-			if (!async) async = false;
-			if (params) {
-    			$.ajax({
-    	            type: type,
-    	            url: url,
-    	            async : async,
-    	            data: JSON.stringify(params),
-    	            contentType: "application/json; charset=utf-8",
-    	            dataType: "json",
-    	            success: successC,
-    	            error: function (request, status, errorThrown) {
-    	            	console.log("Erreur lors de l'appel a : " + url);
-    	            }
-    	        });
-			}else {
-			    $.ajax({
-                    type: type,
-                    url: url,
-                    async : async,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: successC,
-                    error: function (request, status, errorThrown) {
-                        console.log("Erreur lors de l'appel a : " + url);
-                    }
-                });
-			}
+			
+			$.ajax({
+	            type: type,
+	            url: url,
+	            async : false,
+	            data: JSON.stringify(params),
+	            contentType: "application/json; charset=utf-8",
+	            dataType: "json",
+	            success: successC,
+	            error: function (request, status, errorThrown) {
+	            	console.log("Erreur lors de l'appel à : " + url);
+	            }
+	        });
 		},
-		getUrlParameter : function getUrlParameter(url) {
-			var first = url.indexOf("?");
-			var t = url.substring(first+1).split('&');
-			var f = [];
-			for (var i=0; i<t.length; i++){
-				var x = t[ i ].split('=');
-				f[x[0]]=x[1];
-			}
-			return f;
-		},
-		formatDate : function(date) {
-			var listeMois = new Array("Janvier", "F&eacute;vrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Ao&ucirc;t", "Septembre", "Octobre", "Novembre", "D&eacute;cembre");
-			var mois = date.substr(0, date.indexOf("/"));
-			var annee = date.substr(date.indexOf("/")+1);
-			return listeMois[mois-1] + " " + annee;
+	
+		rand : function(pMin, pMax) {
+		  var min = Math.ceil(pMin);
+		  var max = Math.floor(pMax);
+		  return Math.floor(Math.random() * (max - min)) + min;
 		},
 		
-		isEmpty : function(elmt) {
-			return !$.trim(elmt.html());
+		encode : function(data) {
+			return btoa(data);
+		},
+		
+		decode : function(str) {
+			return atob(str);
+		},
+		
+		hash : function(str) {
+			str = "JHGKJHGjhkgkhjgxcvkjgKHJGJH4455456s4dfsdfkhgHJKGJHGdckldsjvkljklLHKH54654" + str + "sdfqsHJGKJGHG5465564HJGHJFJHGJHG23465dfgdfg34654GHFHGF";
+			return sha.sha256(str);
+		},
+		percent : function(value, percentage) {
+			return (value * percentage)/100;
+		},
+		clone : function(value) {
+			return $.extend(true, {}, value);
 		}
 	};
 });

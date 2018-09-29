@@ -1,163 +1,88 @@
 /*global define */
 define(["jquery",
-        'underscore', 
-        "app/utils/utils", 
-        "app/utils/tracking",
-        "text!app/template/main.html",
-        "app/view/accueilView",
-        "app/view/contactView",
-        "app/view/newsView",
-        "app/view/livresView",
-        "app/view/salonsView",
-        "app/view/moiView",
-        "app/view/partenaireView",
-        "app/view/consultView",
-        "app/view/liseuseView",
-        "app/view/panierView",
-        "app/view/marquesPageView"], 
-function($, _, Utils, tracker, page, 
-		AccueilView, ContactView, NewsView, LivresView, SalonsView, MoiView, 
-		PartenaireView, ConsultView, LiseuseView, PanierView, MarquesPageView) {
+        'underscore',
+        "app/utils/utils",
+        "text!app/template/main.html"], 
+function($, _, Utils, page) {
 	'use strict';
 
 	return function() {
 		this.init = function() {
-			tracker.push('Connexion au site');
-			
-			this.el = $("#app");
-			var that = this;
-			Utils.load("list", "", function(data) {
-				var codeRetour = data.codeRetour;
-				if (codeRetour === 0) {
-					that.livres = data.livres;
-					that.render();
-				}
-			}, "GET");
+		    this.el = $("#app");
+		    this.lastScroll = 0;
+			this.render();
 		};
 
 		this.render = function() {
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
-			var templateData = {};
+			var templateData = {
+			};
 			this.el.html(template(templateData));
 			
-			this.chargeAccueil();
-			this.gereMenu();
-			this.panier = new PanierView();
-			this.consultation = new ConsultView(this);
-			this.liseuse = new LiseuseView();
-			
+			this.change($("#section1"));
 			this.makeEvents();
-		};
-		
-		this.chargeAccueil = function() {
-			if (!this.accueil) {
-				this.accueil = new AccueilView(this);
-			}
-			this.accueil.show();
-		};
-		this.chargeNews = function() {
-			tracker.push('Chargement des news');
-			if (!this.news) {
-				this.news = new NewsView(this);
-			}
-			this.news.show();
-		};
-		this.chargeLivres = function() {
-			tracker.push('Chargement des livres');
-			if (!this.listLivre) {
-				this.listLivre = new LivresView(this);
-			}
-			this.listLivre.show();
-		};
-		this.chargeGratuits = function() {
-			tracker.push('Chargement des oeuvres gratuites');
-			if (!this.listGratuit) {
-				this.listGratuit = new LivresView(this, true);
-			}
-			this.listGratuit.show();
-		};
-		this.chargeSalons = function() {
-			tracker.push('Chargement des salons');
-			if (!this.salons) {
-				this.salons = new SalonsView(this);
-			}
-			this.salons.show();
-		};
-		this.chargeMoi = function() {
-			tracker.push('Chargement de la biographie');
-			if (!this.moi) {
-				this.moi = new MoiView(this);
-			}
-			this.moi.show();
-		};
-		this.chargePartenaire = function() {
-			tracker.push('Chargement des partenaires');
-			if (!this.partenaire) {
-				this.partenaire = new PartenaireView(this);
-			}
-			this.partenaire.show();
-		};
-		this.chargeMarquesPage = function() {
-			tracker.push('Chargement des marques page');
-			if (!this.marquesPage) {
-				this.marquesPage = new MarquesPageView(this);
-			}
-			this.marquesPage.show();
-		};
-		this.chargeContact = function() {
-			tracker.push('Chargement des contacts');
-			if (!this.contact) {
-				this.contact = new ContactView(this);
-			}
-			this.contact.show();
-		};
-		
-		this.gereMenu = function() {
-			var that = this;
-			$("#accueil").click(function() {
-				that.chargeAccueil();
-			});
-			$("#news").click(function() {
-				that.chargeNews();
-			});
-			$("#livres").click(function() {
-				that.chargeLivres();
-			});
-			$("#gratuit").click(function() {
-				that.chargeGratuits();
-			});
-			$("#salons").click(function() {
-				that.chargeSalons();
-			});
-			$("#qui").click(function() {
-				that.chargeMoi();
-			});
-			$("#partenaire").click(function() {
-				that.chargePartenaire();
-			});
-			$("#marquesPage").click(function() {
-				that.chargeMarquesPage();
-			});
-			$("#contact").click(function() {
-				that.chargeContact();
-			});
-		};
-		
-		this.consult = function(livre) {
-			tracker.push('Consultation du livre : ' + livre.titre);
-			this.consultation.show(livre);
-		};
-		this.lecture = function(livre) {
-			tracker.push('Lecture du livre gratuit : ' + livre.titre);
-			this.liseuse.show(livre);
 		};
 		
 		this.makeEvents = function() {
 			var that = this;
-			$(".link").click(function() {
-				tracker.push('Click sur le lien : ' + $(this).attr("title"));
+			$('nav.menu a').click(function(e){
+				e.preventDefault();
+				that.change($($(this).attr("target")));
+				$('html, body').animate({
+			    scrollTop: $($(this).attr('target') ).offset().top
+			  }, 500);
 			});
+			
+			$( window ).on( 'debouncedresize', function() {
+			  $('html, body').animate({
+			    scrollTop: $("#"+that.currentSection).offset().top
+			  }, 500);
+			} );
+
+			$(window).on("mousewheel DOMMouseScroll", function(event) {
+				if (that.stopScroll) return;
+				that.stopScroll = true;
+				setTimeout(function() {
+					that.stopScroll = false;
+				}, 300);
+				
+				var direction = that.getDirection(event);
+				var domNext;
+				if (direction > 0) {
+					domNext = $($("#"+that.currentSection).next("section"));
+				}else {
+					domNext = $($("#"+that.currentSection).prev("section"));
+				}
+				if (domNext.length) {
+					that.change(domNext);
+					$('html, body').animate({
+						scrollTop: domNext.offset().top
+					}, 500);
+				}
+			} );
+		};
+		
+		this.getDirection = function(e) {
+			if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
+			    if(e.originalEvent.detail > 0) {
+			      return 1;
+			    } else if(e.originalEvent.detail < 0){
+			        return -1;
+			    }
+			  } else if (typeof e.originalEvent.wheelDelta == 'number') {
+			    if(e.originalEvent.wheelDelta < 0) {
+			        return 1;
+			    } else if(e.originalEvent.wheelDelta > 0) {
+			        return -1;
+			    }
+			  }
+		};
+		
+		this.change = function(section){
+		  $('nav a').removeClass('current');
+		  this.currentSection = section.attr('id');
+		  $("nav a[target='#"+this.currentSection+"']").addClass('current');
 		};
 		
 		this.init();

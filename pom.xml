@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.aeferrets</groupId>
 	<artifactId>AEFerrets</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>AEFerrets</name>
-	<description>Site professionnel de A.E Ferrets</description>
+	<description>Site vitrine one page de A.E Ferrets</description>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -18,37 +18,37 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
 			<!-- Minify css and js -->
 			<plugin>
-				<groupId>com.samaxes.maven</groupId>
-				<artifactId>minify-maven-plugin</artifactId>
-				<version>1.7.2</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>minify</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<charset>UTF-8</charset>
-					<skipMerge>true</skipMerge>
-					<webappSourceDir>${basedir}/WebContent</webappSourceDir>
-					<cssSourceDir>app/css</cssSourceDir>
-					<jsSourceDir>app</jsSourceDir>
-					<jsEngine>CLOSURE</jsEngine>
-					<nosuffix>true</nosuffix>
-					<cssSourceIncludes>
-						<cssSourceInclude>**/*.css</cssSourceInclude>
-					</cssSourceIncludes>
-					<jsSourceIncludes>
-						<jsSourceInclude>**/*.js</jsSourceInclude>
-					</jsSourceIncludes>
-				</configuration>
+			    <groupId>com.samaxes.maven</groupId>
+			    <artifactId>minify-maven-plugin</artifactId>
+			    <version>1.7.2</version>
+			    <executions>
+			        <execution>
+			            <phase>prepare-package</phase>
+			            <goals>
+			                <goal>minify</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			    <configuration>
+			        <charset>UTF-8</charset>
+			        <skipMerge>true</skipMerge>
+			        <webappSourceDir>${basedir}/WebContent</webappSourceDir>
+			        <cssSourceDir>app/css</cssSourceDir>
+			        <jsSourceDir>app</jsSourceDir>
+			        <jsEngine>CLOSURE</jsEngine>
+			        <closureLanguage>ECMASCRIPT5</closureLanguage>
+			        <nosuffix>true</nosuffix>
+			        <cssSourceIncludes>
+			            <cssSourceInclude>**/*.css</cssSourceInclude>
+			        </cssSourceIncludes>
+			        <jsSourceIncludes>
+			            <jsSourceInclude>**/*.js</jsSourceInclude>
+			        </jsSourceIncludes>
+			    </configuration>
 			</plugin>
-
+			
 			<!-- Create war -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -60,55 +60,8 @@
 					<warSourceExcludes>app/**/*.js, app/**/*.css</warSourceExcludes>
 				</configuration>
 			</plugin>
-
-			<!-- Make test -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.6.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.3</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-		</dependency>
-		<dependency>
-            <groupId>com.sendgrid</groupId>
-            <artifactId>sendgrid-java</artifactId>
-            <version>2.2.2</version>
-        </dependency>
-        <dependency>
-		    <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <version>42.2.2.jre7</version>
-		</dependency>
-		<dependency>
-		    <groupId>postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <version>9.1-901-1.jdbc4</version>
-		</dependency>
-	</dependencies>
+    </dependencies>
 </project>
